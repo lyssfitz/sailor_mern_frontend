@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { setAuthToken } from "./../../actions";
 import LocalAPI from "./../../apis/local";
+import FormInput from "./fields/FormInput";
+import { Button } from "antd";
+
 
 class SignupForm extends Component {
 
@@ -20,18 +23,19 @@ class SignupForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+
     return (
       <form onSubmit={handleSubmit(this.onFormSubmit)}>
         <div>
           <label>Email</label>
-          <Field name="email" component="input" type="email" />
+          <Field name="email" component={FormInput} type="email" />
         </div>
 
         <div>
           <label>Password</label>
-          <Field name="password" component="input" type="password" />
+          <Field name="password" component={FormInput} type="password" />
         </div>
-        <input type="submit" value="Signup" />
+        <Button htmlType="submit">Sign Up</Button>
       </form>
     );
   }
@@ -49,8 +53,11 @@ const WrappedSignupForm = reduxForm({
     if (!formValues.password) {
       errors.password = "Password is required";
     }
+
+    return errors;
   }
 })(SignupForm);
+
 
 export default connect(
   null,

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 class LandingPage extends Component {
   render() {
@@ -8,10 +9,10 @@ class LandingPage extends Component {
         <h1>Welcome to SailorMERN</h1>
         <div>
           <Link to="/login">
-            <button>Login</button>
+            <Button>Login</Button>
           </Link>
           <Link to="/signup">
-            <button>Sign up</button>
+            <Button>Sign up</Button>
           </Link>
         </div>
       </>
