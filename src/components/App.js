@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import history from "./../history";
 import PrivateRoute from "./PrivateRoute"
 import FeedPage from "./pages/FeedPage";
+import "antd/dist/antd.css";
 
 class App extends Component {
   render() {
