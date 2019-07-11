@@ -2,11 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { setAuthToken } from "./../../actions";
+import LocalAPI from "./../../apis/local";
 
 class SignupForm extends Component {
+
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    console.log(email, password);
+    
+    LocalAPI.post("/auth/register", { email, password })
+      .then(response => {
+        // this.props.setAuthToken(response.data.token);
+        console.log(response);
+        this.props.setAuthToken("FAKE TOKEN");
+        this.props.history.push("/");
+      })
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -20,7 +30,7 @@ class SignupForm extends Component {
 
         <div>
           <label>Password</label>
-          <Field name="email" component="input" type="password" />
+          <Field name="password" component="input" type="password" />
         </div>
         <input type="submit" value="Signup" />
       </form>
