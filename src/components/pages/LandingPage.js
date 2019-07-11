@@ -7,8 +7,12 @@ class LandingPage extends Component {
       <>
         <h1>Welcome to SailorMERN</h1>
         <div>
-          <Link to="/login">login</Link>
-          <Link to="/signup">signup</Link>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+          <Link to="/signup">
+            <button>Sign up</button>
+          </Link>
         </div>
       </>
     );

@@ -13,7 +13,7 @@ class SignupForm extends Component {
       .then(response => {
         // currently response.data.token is faked from json server
         this.props.setAuthToken(response.data.token);
-        this.props.history.push("/");
+        this.props.history.push("/feed");
       })
       .catch(error => console.log(error));
   };
