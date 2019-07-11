@@ -11,13 +11,8 @@ class SignupForm extends Component {
     
     LocalAPI.post("/auth/register", { email, password })
       .then(response => {
-        // ------- START
-        // eventually, with backend, we want to retrieve token from response and pass to setAuthToken:
-        // this.props.setAuthToken(response.data.token);
-        // but for the meantime, using JSON web server:
-        console.log(response);
-        this.props.setAuthToken("FAKE TOKEN");
-        // ------- END
+        // currently response.data.token is faked from json server
+        this.props.setAuthToken(response.data.token);
         this.props.history.push("/");
       })
       .catch(error => console.log(error));

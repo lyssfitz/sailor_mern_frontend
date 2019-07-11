@@ -1,6 +1,6 @@
 import axios from "axios";
 // import history from "./../history";
-import store from "./../store";
+// import store from "./../store";
 
 const LocalAPI = axios.create({
   baseURL: process.env.REACT_APP_API_URL
