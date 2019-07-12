@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 import "antd/dist/antd.css";
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Icon, Dropdown } from 'antd';
+import { connect } from "react-redux";
 
 const { Header } = Layout;
 
@@ -28,22 +29,71 @@ const MainMenu = styled(Menu)`
   border-bottom: 0px;
 `;
 
-class AppHeader extends Component {
-  render() {
+const icon = {
+  fontSize: "1.5em",
+  paddingTop: "20px"
+}
+
+
+
+const AppHeader = (props) => {
+  const { token } = props;
+
+  if (token) {
+    const dropdownItems = (
+      <Menu>
+        <Menu.Item>
+          <Link to="#">
+            View Profile
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="#">
+            Logout
+          </Link>
+        </Menu.Item>
+      </Menu>
+    );
+
     return (
       <MainHeader>
         <MainLogo />
         <MainMenu mode="horizontal">    
           <Menu.Item key="1">
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/login">Login</Link>
+            <Dropdown overlay={dropdownItems} trigger={['click']}>
+              <Link to="#">
+                <Icon style={icon} type="user" />
+              </Link>
+            </Dropdown>
           </Menu.Item>
         </MainMenu>
       </MainHeader>
     );
   }
+
+  return (
+    <MainHeader>
+      <MainLogo />
+      <MainMenu mode="horizontal">    
+        <Menu.Item key="1">
+          <Link to="/signup">Sign Up</Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to="/login">Login</Link>
+        </Menu.Item>
+      </MainMenu>
+    </MainHeader>
+  );
 }
 
-export default AppHeader;
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token
+  }
+};
+
+
+export default connect(mapStateToProps)(AppHeader);
