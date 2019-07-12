@@ -25,6 +25,7 @@ const MainMenu = styled(Menu)`
   text-align: right;
   width: 100%;
   background: transparent;
+  border-bottom: 0px;
 `;
 
 class AppHeader extends Component {

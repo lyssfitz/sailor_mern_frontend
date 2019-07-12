@@ -13,27 +13,44 @@ import AppFooter from "./AppFooter"
 import styled from "styled-components";
 const { Content } = Layout;
 
-const MainContent = styled(Content)`
+const GridLayout = styled(Layout)`
+  display: grid;
+  grid-template-rows: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
+  min-height: 100vh;
   background: #FFF;
+`;
+
+const GridHeader = styled(AppHeader)`
+  grid-row: 1;
+`;
+
+const GridContent = styled(Content)`
+  background: #FFF;
+  grid-row: 2;
+  align-self: center;
+`;
+
+const GridFooter = styled(AppFooter)`
+  grid-row: 1;
 `;
 
 class App extends Component {
   render() {
     return (
-      <Layout className="layout">
+      <GridLayout>
         <Router history={history}>
-          <AppHeader />
+          <GridHeader />
           <Switch>
-            <MainContent style={{ padding: '50px 50px' }}>
+            <GridContent style={{ padding: '50px 50px' }}>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/login" component={LoginPage} />
               <PrivateRoute exact path="/feed" component={FeedPage} />
-            </MainContent>
+            </GridContent>
           </Switch>
-          <AppFooter />
+          <GridFooter />
         </Router>
-      </Layout>
+      </GridLayout>
     );
   }
 }

@@ -13,7 +13,7 @@ class LoginPage extends Component {
         </div>
         <LoginForm {...this.props} />
         <div>
-          New to XXXX? <Link to="/signup">Sign Up</Link>
+          New user? <Link to="/signup">Sign Up</Link>
         </div>
       </>
     );
