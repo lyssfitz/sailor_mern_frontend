@@ -13,7 +13,14 @@ const Signup = styled.section`
 `;
 
 const SignupContent = styled.div`
-  grid-column: 1;
+  
+  max-width: 400px;
+  margin: auto;
+
+  @media (min-width: 768px) {
+    grid-column: 1;
+    width: 100%;
+  }
 `; 
 
 const SignupImage = styled.div`

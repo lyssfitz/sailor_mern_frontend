@@ -22,7 +22,7 @@ const HeadingSm = styled.h2`
 `;
 
 const Line = styled.hr`
-  border: 3px solid #EEE;
+  border: 2px solid #EEE;
   border-radius: 5px;
   max-width: 500px;
   margin: 20px auto;
@@ -30,6 +30,7 @@ const Line = styled.hr`
 
 const StartButton = styled(Button)`
   margin-top: 20px;
+  font-weight: bold;
 `;
 
 class LandingPage extends Component {
