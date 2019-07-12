@@ -10,4 +10,9 @@ describe('Landing Page', () => {
     cy.contains('Login').click();
     cy.url().should('include', '/login');
   })
+
+  it("Without a token, feed should be inaccessible", () => {
+    cy.visit("/feed");
+    cy.url().should('eq', 'http://localhost:3001/')
+  })
 })
