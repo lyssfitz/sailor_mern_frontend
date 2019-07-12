@@ -7,18 +7,29 @@ import history from "./../history";
 import PrivateRoute from "./PrivateRoute"
 import FeedPage from "./pages/FeedPage";
 import "antd/dist/antd.css";
+import { Layout } from 'antd';
+import AppHeader from "./AppHeader"
+import AppFooter from "./AppFooter"
+const { Content } = Layout;
+
 
 class App extends Component {
   render() {
     return (
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <PrivateRoute exact path="/feed" component={FeedPage} />
-        </Switch>
-      </Router>
+      <Layout className="layout">
+        <Router history={history}>
+          <AppHeader />
+          <Switch>
+            <Content style={{ padding: '50px 50px' }}>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/signup" component={SignupPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <PrivateRoute exact path="/feed" component={FeedPage} />
+            </Content>
+          </Switch>
+          <AppFooter />
+        </Router>
+      </Layout>
     );
   }
 }
