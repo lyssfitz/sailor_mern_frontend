@@ -24,11 +24,13 @@ class SignupForm extends Component {
       .catch(error => console.log(error));
   };
 
+
+
   render() {
     const { handleSubmit } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit(this.onFormSubmit)}>
+      <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
         <div>
           <Field placeholder="First Name" name="firstName" component={AInput} type="text"  />
         </div>
@@ -47,10 +49,6 @@ class SignupForm extends Component {
 
         <div>
           <Button htmlType="submit">Sign Up</Button>
-        </div>
-
-        <div>
-          Already a member? <Link to="/login">Log in</Link>
         </div>
       </Form>
     );

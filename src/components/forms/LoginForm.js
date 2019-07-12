@@ -28,7 +28,7 @@ class LoginForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit(this.onFormSubmit)}>
+      <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
 
         <div>
           <Field name="email" placeholder="Email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
@@ -41,10 +41,7 @@ class LoginForm extends Component {
         <div>
           <Button htmlType="submit">Sign Up</Button>
         </div>
-        
-        <div>
-          Not a member? <Link to="/signup">Sign Up</Link>
-        </div>
+      
       </Form>
     );
   }
