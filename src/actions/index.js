@@ -1,4 +1,4 @@
-// import LocalAPI from "./../apis/local";
+
 
 export const setAuthToken = token => {
   sessionStorage.setItem("token", token);
@@ -8,3 +8,11 @@ export const setAuthToken = token => {
     payload: token
   };
 };
+
+export const removeAuthToken = () => {
+  sessionStorage.removeItem("token");
+
+  return {
+    type: "AUTH_TOKEN"
+  };
+}

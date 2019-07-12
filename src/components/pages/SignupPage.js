@@ -41,7 +41,7 @@ class SignupPage extends Component {
           </div>
           <SignupForm {...this.props} />
           <div>
-            Already a member? <Link to="/login">Log in</Link>
+            Already a member? <Link to="/login">Log In</Link>
           </div>
         </SignupContent>
         <SignupImage />

@@ -4,6 +4,7 @@ import styled from "styled-components"
 import "antd/dist/antd.css";
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { connect } from "react-redux";
+import { removeAuthToken } from "./../actions";
 
 const { Header } = Layout;
 
@@ -18,7 +19,7 @@ const MainLogo = styled.div`
   background-color: #DDD;
   margin: 16px 24px;
   float: left;
-  border-radius: 50%;
+  border-radius: 10px;
 `;
 
 const MainMenu = styled(Menu)`
@@ -34,7 +35,9 @@ const icon = {
   paddingTop: "20px"
 }
 
-
+const onLogoutClick = () => {
+  removeAuthToken();
+}
 
 const AppHeader = (props) => {
   const { token } = props;
@@ -47,10 +50,8 @@ const AppHeader = (props) => {
             View Profile
           </Link>
         </Menu.Item>
-        <Menu.Item>
-          <Link to="#">
+        <Menu.Item onClick={onLogoutClick}>
             Logout
-          </Link>
         </Menu.Item>
       </Menu>
     );

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import LandingPage from "./pages/LandingPage";
 import history from "./../history";
 import PrivateRoute from "./PrivateRoute"
+import PublicRoute from "./PublicRoute"
 import FeedPage from "./pages/FeedPage";
 import "antd/dist/antd.css";
 import { Layout } from 'antd';
@@ -45,14 +46,14 @@ class App extends Component {
       <GridLayout>
         <Router history={history}>
           <GridHeader />
-          <Switch>
             <GridContent>
-              <Route exact path="/" component={LandingPage} />
-              <Route exact path="/signup" component={SignupPage} />
-              <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/feed" component={FeedPage} />
+              <Switch>
+                <PublicRoute exact path="/" component={LandingPage} />
+                <PublicRoute exact path="/signup" component={SignupPage} />
+                <PublicRoute exact path="/login" component={LoginPage} />
+                <PrivateRoute exact path="/feed" component={FeedPage} />
+              </Switch>
             </GridContent>
-          </Switch>
           <GridFooter />
         </Router>
       </GridLayout>
