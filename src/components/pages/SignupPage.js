@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+import SignupForm from "./../forms/SignupForm";
 
 class SignupPage extends Component {
   render() {
-    return <h1> Signup Page</h1>;
+    return (
+      <>
+        <h1>Signup</h1>
+        <SignupForm {...this.props} />
+      </>
+    );
   }
 }
 
