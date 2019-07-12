@@ -30,23 +30,19 @@ class SignupForm extends Component {
     return (
       <Form onSubmit={handleSubmit(this.onFormSubmit)}>
         <div>
-          <label>First Name *</label>
-          <Field name="firstName" component={AInput} type="text"  />
+          <Field placeholder="First Name" name="firstName" component={AInput} type="text"  />
         </div>
 
         <div>
-          <label>Last Name *</label>
-          <Field name="lastName" component={AInput} type="text" />
+          <Field placeholder="Last Name" name="lastName" component={AInput} type="text" />
         </div>
 
         <div>
-          <label>Email *</label>
-          <Field name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field placeholder="Email" name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <label>Password *</label>
-          <Field name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field placeholder="Password" name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>

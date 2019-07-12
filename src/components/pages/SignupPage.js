@@ -5,7 +5,7 @@ class SignupPage extends Component {
   render() {
     return (
       <>
-        <h1>Signup</h1>
+        <h1>Sign Up</h1>
         <SignupForm {...this.props} />
       </>
     );

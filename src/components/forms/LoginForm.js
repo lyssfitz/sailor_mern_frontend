@@ -31,13 +31,11 @@ class LoginForm extends Component {
       <Form onSubmit={handleSubmit(this.onFormSubmit)}>
 
         <div>
-          <label>Email *</label>
-          <Field name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field name="email" placeholder="Email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <label>Password *</label>
-          <Field name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field name="password" placeholder="Password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>

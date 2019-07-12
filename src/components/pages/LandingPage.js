@@ -10,7 +10,7 @@ class LandingPage extends Component {
   render() {
     return (
       <>
-        <h1 style={style}>Welcome to SailorMERN</h1>
+        <h1 style={style}>Welcome to Sailor MERN</h1>
       </>
     );
   }
