@@ -10,12 +10,12 @@ import MakeField from "./fields/MakeField";
 
 const AInput = MakeField(Input);
 
-class SignupForm extends Component {
+class LoginForm extends Component {
 
   onFormSubmit = async formValues => {
-    const { firstName, lastName, email, password } = formValues;
+    const { email, password } = formValues;
     
-    LocalAPI.post("/auth/signup", { firstName, lastName, email, password })
+    LocalAPI.post("/auth/login", { email, password })
       .then(response => {
         // currently response.data.token is faked from json server
         this.props.setAuthToken(response.data.token);
@@ -24,39 +24,31 @@ class SignupForm extends Component {
       .catch(error => console.log(error));
   };
 
-
-
   render() {
     const { handleSubmit } = this.props;
 
     return (
       <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
+
         <div>
-          <Field placeholder="First Name" name="firstName" component={AInput} type="text"  />
+          <Field name="email" placeholder="Email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <Field placeholder="Last Name" name="lastName" component={AInput} type="text" />
-        </div>
-
-        <div>
-          <Field placeholder="Email" name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
-        </div>
-
-        <div>
-          <Field placeholder="Password" name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field name="password" placeholder="Password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
           <Button htmlType="submit">Sign Up</Button>
         </div>
+      
       </Form>
     );
   }
 }
 
-const WrappedSignupForm = reduxForm({
-  form: "signup",
+const WrappedLoginForm = reduxForm({
+  form: "login",
   validate: formValues => {
     const errors = {};
 
@@ -68,20 +60,12 @@ const WrappedSignupForm = reduxForm({
       errors.password = "Password is required";
     }
 
-    if (!formValues.firstName) {
-      errors.firstName = "First Name is required";
-    }
-
-    if (!formValues.lastName) {
-      errors.lastName = "Last Name is required";
-    }
-
     return errors;
   }
-})(SignupForm);
+})(LoginForm);
 
 
 export default connect(
   null,
   { setAuthToken }
-)(WrappedSignupForm);
+)(WrappedLoginForm);

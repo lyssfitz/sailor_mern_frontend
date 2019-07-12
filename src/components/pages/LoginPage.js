@@ -1,8 +1,22 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import LoginForm from "./../forms/LoginForm";
+import { Button } from "antd";
 
 class LoginPage extends Component {
   render() {
-    return <h1>Login Page</h1>;
+    return (
+      <>
+        <h1>Welcome Back</h1>
+        <div>
+          <Button type="primary">Login with LinkedIn OAuth</Button>
+        </div>
+        <LoginForm {...this.props} />
+        <div>
+          New to XXXX? <Link to="/signup">Sign Up</Link>
+        </div>
+      </>
+    );
   }
 }
 
