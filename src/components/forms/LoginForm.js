@@ -10,12 +10,12 @@ import MakeField from "./fields/MakeField";
 
 const AInput = MakeField(Input);
 
-class SignupForm extends Component {
+class LoginForm extends Component {
 
   onFormSubmit = async formValues => {
-    const { firstName, lastName, email, password } = formValues;
+    const { email, password } = formValues;
     
-    LocalAPI.post("/auth/signup", { firstName, lastName, email, password })
+    LocalAPI.post("/auth/login", { email, password })
       .then(response => {
         // currently response.data.token is faked from json server
         this.props.setAuthToken(response.data.token);
@@ -29,15 +29,6 @@ class SignupForm extends Component {
 
     return (
       <Form onSubmit={handleSubmit(this.onFormSubmit)}>
-        <div>
-          <label>First Name *</label>
-          <Field name="firstName" component={AInput} type="text"  />
-        </div>
-
-        <div>
-          <label>Last Name *</label>
-          <Field name="lastName" component={AInput} type="text" />
-        </div>
 
         <div>
           <label>Email *</label>
@@ -52,17 +43,17 @@ class SignupForm extends Component {
         <div>
           <Button htmlType="submit">Sign Up</Button>
         </div>
-
+        
         <div>
-          Already a member? <Link to="/login">Log in</Link>
+          Not a member? <Link to="/signup">Sign Up</Link>
         </div>
       </Form>
     );
   }
 }
 
-const WrappedSignupForm = reduxForm({
-  form: "signup",
+const WrappedLoginForm = reduxForm({
+  form: "login",
   validate: formValues => {
     const errors = {};
 
@@ -74,20 +65,12 @@ const WrappedSignupForm = reduxForm({
       errors.password = "Password is required";
     }
 
-    if (!formValues.firstName) {
-      errors.firstName = "First Name is required";
-    }
-
-    if (!formValues.lastName) {
-      errors.lastName = "Last Name is required";
-    }
-
     return errors;
   }
-})(SignupForm);
+})(LoginForm);
 
 
 export default connect(
   null,
   { setAuthToken }
-)(WrappedSignupForm);
+)(WrappedLoginForm);
