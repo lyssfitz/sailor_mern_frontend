@@ -10,8 +10,12 @@ import "antd/dist/antd.css";
 import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
+import styled from "styled-components";
 const { Content } = Layout;
 
+const MainContent = styled(Content)`
+  background: #FFF;
+`;
 
 class App extends Component {
   render() {
@@ -20,12 +24,12 @@ class App extends Component {
         <Router history={history}>
           <AppHeader />
           <Switch>
-            <Content style={{ padding: '50px 50px' }}>
+            <MainContent style={{ padding: '50px 50px' }}>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/login" component={LoginPage} />
               <PrivateRoute exact path="/feed" component={FeedPage} />
-            </Content>
+            </MainContent>
           </Switch>
           <AppFooter />
         </Router>
