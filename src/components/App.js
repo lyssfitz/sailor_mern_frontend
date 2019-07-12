@@ -28,6 +28,11 @@ const GridContent = styled(Content)`
   background: #FFF;
   grid-row: 2;
   align-self: center;
+  padding: 15px;
+
+  @media (min-width: 768px) {
+    padding: 50px;
+  }
 `;
 
 const GridFooter = styled(AppFooter)`
@@ -41,7 +46,7 @@ class App extends Component {
         <Router history={history}>
           <GridHeader />
           <Switch>
-            <GridContent style={{ padding: '50px 50px' }}>
+            <GridContent>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/login" component={LoginPage} />

@@ -1,21 +1,44 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
+import "antd/dist/antd.css";
+import styled from "styled-components";
 import SignupForm from "./../forms/SignupForm";
+
+const Signup = styled.section`
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const SignupContent = styled.div`
+  grid-column: 1;
+`; 
+
+const SignupImage = styled.div`
+  grid-column: 2;
+  background: #EEE;
+  margin: 40px;
+  border-radius: 20px;
+`;
 
 class SignupPage extends Component {
   render() {
     return (
-      <>
-        <h1>Sign Up</h1>
-        <div>
-          <Button type="primary">Register with LinkedIn OAuth</Button>
-        </div>
-        <SignupForm {...this.props} />
-        <div>
-          Already a member? <Link to="/login">Log in</Link>
-        </div>
-      </>
+      <Signup>
+        <SignupContent>
+          <h1>Sign Up</h1>
+          <div>
+            <Button type="primary">Register with LinkedIn OAuth</Button>
+          </div>
+          <SignupForm {...this.props} />
+          <div>
+            Already a member? <Link to="/login">Log in</Link>
+          </div>
+        </SignupContent>
+        <SignupImage />
+      </Signup>
     );
   }
 }
