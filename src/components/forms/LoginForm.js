@@ -39,7 +39,7 @@ class LoginForm extends Component {
         </div>
 
         <div>
-          <Button htmlType="submit">Sign Up</Button>
+          <Button htmlType="submit">Log In</Button>
         </div>
       
       </Form>

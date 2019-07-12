@@ -54,7 +54,7 @@ class SignupForm extends Component {
     );
   }
 }
-
+// SubmissionError 
 const WrappedSignupForm = reduxForm({
   form: "signup",
   validate: formValues => {
