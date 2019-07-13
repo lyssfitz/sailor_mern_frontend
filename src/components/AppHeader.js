@@ -1,7 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components"
-// import "antd/dist/antd.css";
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { connect } from "react-redux";
 import { removeAuthToken } from "./../actions";
@@ -35,59 +34,66 @@ const icon = {
   paddingTop: "20px"
 }
 
-const onLogoutClick = () => {
-  removeAuthToken();
-}
 
-const AppHeader = (props) => {
-  const { token } = props;
+// const AppHeader = (props) => {
+class AppHeader extends Component {
 
-  if (token) {
-    const dropdownItems = (
-      <Menu>
-        <Menu.Item>
-          <Link to="#">
-            View Profile
-          </Link>
-        </Menu.Item>
-        <Menu.Item onClick={onLogoutClick}>
-            Logout
-        </Menu.Item>
-      </Menu>
-    );
+  onLogoutClick = () => {
+    this.props.removeAuthToken();
+    return <Redirect to="/" />;
+  }
 
+  render() {
+    const { token } = this.props;
+
+
+    if (token) {
+      const dropdownItems = (
+        <Menu>
+          <Menu.Item>
+            <Link to="#">
+              View Profile
+            </Link>
+          </Menu.Item>
+          <Menu.Item onClick={this.onLogoutClick}>
+              Logout
+          </Menu.Item>
+        </Menu>
+      );
+  
+      return (
+        <MainHeader>
+          <MainLogo />
+          <MainMenu mode="horizontal">    
+            <Menu.Item key="1">
+              <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Dropdown overlay={dropdownItems} trigger={['click']}>
+                <Link to="#">
+                  <Icon style={icon} type="user" />
+                </Link>
+              </Dropdown>
+            </Menu.Item>
+          </MainMenu>
+        </MainHeader>
+      );
+    }
+  
     return (
       <MainHeader>
         <MainLogo />
         <MainMenu mode="horizontal">    
           <Menu.Item key="1">
-            <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
+            <Link to="/signup">Sign Up</Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Dropdown overlay={dropdownItems} trigger={['click']}>
-              <Link to="#">
-                <Icon style={icon} type="user" />
-              </Link>
-            </Dropdown>
+            <Link to="/login">Login</Link>
           </Menu.Item>
         </MainMenu>
       </MainHeader>
     );
   }
-
-  return (
-    <MainHeader>
-      <MainLogo />
-      <MainMenu mode="horizontal">    
-        <Menu.Item key="1">
-          <Link to="/signup">Sign Up</Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/login">Login</Link>
-        </Menu.Item>
-      </MainMenu>
-    </MainHeader>
-  );
 }
 
 const mapStateToProps = state => {
@@ -97,4 +103,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps)(AppHeader);
+export default connect(mapStateToProps, { removeAuthToken })(AppHeader);
