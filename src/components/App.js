@@ -1,3 +1,4 @@
+import "antd/dist/antd.css";
 import React, { Component } from "react";
 import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
@@ -7,7 +8,6 @@ import history from "./../history";
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 import FeedPage from "./pages/FeedPage";
-import "antd/dist/antd.css";
 import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"

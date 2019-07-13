@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { connect } from "react-redux";
 import { removeAuthToken } from "./../actions";

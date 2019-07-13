@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "./../forms/LoginForm";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import styled from "styled-components";
-import { Button } from "antd";
+import LinkedinButton from "./LinkedinButton";
 
 const Login = styled.section`
   max-width: 400px;
   margin: auto;
+  text-align: center;
 `;
+
 
 class LoginPage extends Component {
   render() {
@@ -16,7 +18,7 @@ class LoginPage extends Component {
       <Login>
         <h1>Welcome Back</h1>
         <div>
-          <Button type="primary">Login with LinkedIn OAuth</Button>
+          <LinkedinButton />
         </div>
         <LoginForm {...this.props} />
         <div>

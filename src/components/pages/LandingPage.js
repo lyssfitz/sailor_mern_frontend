@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 
@@ -37,10 +37,10 @@ class LandingPage extends Component {
   render() {
     return (
       <Landing>
-        <HeadingLg>Stay Informed</HeadingLg>
-        <HeadingLg>Get Inspired</HeadingLg>
+        <HeadingLg>Heading 1</HeadingLg>
+        <HeadingLg>Heading 2</HeadingLg>
         <Line />
-        <HeadingSm>Stories Curated for You</HeadingSm>
+        <HeadingSm>Heading 3</HeadingSm>
         <Link to="/signup">
           <StartButton type="primary" size="large" shape="round">Get Started</StartButton>
         </Link>

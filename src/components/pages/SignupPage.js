@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import styled from "styled-components";
 import SignupForm from "./../forms/SignupForm";
+import LinkedinButton from "./LinkedinButton";
 
 const Signup = styled.section`
+  text-align: center;
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -37,7 +39,7 @@ class SignupPage extends Component {
         <SignupContent>
           <h1>Sign Up</h1>
           <div>
-            <Button type="primary">Register with LinkedIn OAuth</Button>
+            <LinkedinButton />
           </div>
           <SignupForm {...this.props} />
           <div>
