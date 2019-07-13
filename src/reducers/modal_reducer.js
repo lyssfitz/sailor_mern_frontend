@@ -1,6 +1,6 @@
 const defaultState = {
   loading: false,
-  visible: false
+  visible: false,
 };
 
 export default (state = defaultState, action) => {

@@ -1,3 +1,5 @@
+// import LocalAPI from "./../apis/local";
+
 export const setAuthToken = token => {
   sessionStorage.setItem("token", token);
 
@@ -16,6 +18,15 @@ export const removeAuthToken = () => {
   };
 }
 
+// export const setInterests = (interests) => {
+//   return {
+//     type: "INTERESTS_LIST",
+//     payload: interests
+//   }
+// }
+
+
+
 // Modal
 export const showModal = () => {
   return {
@@ -24,6 +35,16 @@ export const showModal = () => {
       visible: true
     }
   };
+}
+
+export const closeModal = () => {
+  return {
+    type: "MODAL",
+    payload: {
+      visible: false,
+      loading: false
+    }
+  };  
 }
 
 // export const handleRequest = () => {
@@ -41,8 +62,8 @@ export const handleOk = () => {
     payload: {
       visible: false,
       loading: false
-    }
-  };  
+    } 
+  };
 }
 
 

@@ -33,14 +33,42 @@ const InterestContainer = styled.div`
 `;
 
 const InterestCard = styled(Card)`
-  // min-width: max-content;
 `;
 
 class InterestsModal extends Component {
+  state = {
+    interests: [],
+  }
+
+  onInterestClick = (interest) => {
+    const { interests } = this.state; 
+
+    if (interests.includes(interest)) {
+      let i = interests.indexOf(interest);
+      let interestsCopy = [...interests];
+      interestsCopy.splice(i, 1);
+      return this.setState({ interests: interestsCopy });
+    }
+
+    return this.setState({ interests: [...interests, interest] });
+  }
+
+  selected = (interest) => {
+    const { interests } = this.state;
+    if (interests.includes(interest)) {
+      return {
+        backgroundColor: "#DDD"
+      }
+    }
+
+    return {
+      backgroundColor: "white"
+    }
+  }
 
   render() {
     const { visible, loading } = this.props;
-
+    // console.log(this.state);
     return (
       <Modal
         visible={visible}
@@ -64,6 +92,8 @@ class InterestsModal extends Component {
                 size="small"
                 key={interest}
                 hoverable
+                style={this.selected(interest)}
+                onClick={() => this.onInterestClick(interest)}
                 cover={<PlaceHolder />}
               >
                 <Meta title={interest} />

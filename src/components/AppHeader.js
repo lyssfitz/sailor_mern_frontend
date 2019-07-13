@@ -29,6 +29,9 @@ const MainMenu = styled(Menu)`
   border-bottom: 0px;
 `;
 
+const MenuItem = styled(Menu.Item)`
+`;
+
 const icon = {
   fontSize: "1.5em",
   paddingTop: "20px"
@@ -50,14 +53,14 @@ class AppHeader extends Component {
     if (token) {
       const dropdownItems = (
         <Menu>
-          <Menu.Item>
+          <MenuItem>
             <Link to="#">
               View Profile
             </Link>
-          </Menu.Item>
-          <Menu.Item onClick={this.onLogoutClick}>
+          </MenuItem>
+          <MenuItem onClick={this.onLogoutClick}>
               Logout
-          </Menu.Item>
+          </MenuItem>
         </Menu>
       );
   
@@ -65,16 +68,16 @@ class AppHeader extends Component {
         <MainHeader>
           <MainLogo />
           <MainMenu mode="horizontal">    
-            <Menu.Item key="1">
+            <MenuItem key="1">
               <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
-            </Menu.Item>
-            <Menu.Item key="2">
+            </MenuItem>
+            <MenuItem key="2">
               <Dropdown overlay={dropdownItems} trigger={['click']}>
                 <Link to="#">
                   <Icon style={icon} type="user" />
                 </Link>
               </Dropdown>
-            </Menu.Item>
+            </MenuItem>
           </MainMenu>
         </MainHeader>
       );
@@ -84,12 +87,12 @@ class AppHeader extends Component {
       <MainHeader>
         <MainLogo />
         <MainMenu mode="horizontal">    
-          <Menu.Item key="1">
+          <MenuItem key="1">
             <Link to="/signup">Sign Up</Link>
-          </Menu.Item>
-          <Menu.Item key="2">
+          </MenuItem>
+          <MenuItem key="2">
             <Link to="/login">Login</Link>
-          </Menu.Item>
+          </MenuItem>
         </MainMenu>
       </MainHeader>
     );
