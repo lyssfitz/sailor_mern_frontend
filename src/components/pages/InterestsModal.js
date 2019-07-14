@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { handleOk, handleCancel } from "./../../actions";
+import { saveInterests, handleCancel, editInterests } from "./../../actions";
 import styled from "styled-components";
 
 const { Meta } = Card;
 
-const interests = [
+const allInterests = [
   "Devices",
   "Pharmaceuticals",
   "Wellness",
@@ -36,25 +36,21 @@ const InterestCard = styled(Card)`
 `;
 
 class InterestsModal extends Component {
-  state = {
-    interests: [],
-  }
 
   onInterestClick = (interest) => {
-    const { interests } = this.state; 
-
+    const { interests } = this.props; 
     if (interests.includes(interest)) {
       let i = interests.indexOf(interest);
       let interestsCopy = [...interests];
       interestsCopy.splice(i, 1);
-      return this.setState({ interests: interestsCopy });
+      return this.props.editInterests(interestsCopy)
     }
 
-    return this.setState({ interests: [...interests, interest] });
+    return this.props.editInterests([...interests, interest]);
   }
 
   selected = (interest) => {
-    const { interests } = this.state;
+    const { interests } = this.props;
     if (interests.includes(interest)) {
       return {
         backgroundColor: "#DDD"
@@ -67,26 +63,26 @@ class InterestsModal extends Component {
   }
 
   render() {
-    const { visible, loading } = this.props;
-    // console.log(this.state);
+    const { visible, loading, interests } = this.props;
+    console.log(interests);
     return (
       <Modal
         visible={visible}
         width="600px"
         title="Customise Your Feed"
-        onOk={this.props.handleOk}
+        onOk={() => this.props.saveInterests(interests)}
         onCancel={this.props.handleCancel}
         footer={[
           <Button key="back" onClick={this.props.handleCancel}>
             Skip
           </Button>,
-          <Button key="submit" type="primary" loading={loading} onClick={this.props.handleOk}>
+          <Button key="submit" type="primary" loading={loading} onClick={() => this.props.saveInterests(interests)}>
             Save Interests
           </Button>,
         ]}
       >
         <InterestContainer>
-          {interests.map((interest) => {
+          {allInterests.map((interest) => {
             return (
               <InterestCard
                 size="small"
@@ -109,8 +105,9 @@ class InterestsModal extends Component {
 const mapStateToProps = (state) => {
   return {
       loading: state.modal.loading,
-      visible: state.modal.visible
+      visible: state.modal.visible,
+      interests: state.interests
   };
 }
 
-export default connect(mapStateToProps, { handleOk, handleCancel })(InterestsModal);
+export default connect(mapStateToProps, { saveInterests, handleCancel, editInterests })(InterestsModal);
