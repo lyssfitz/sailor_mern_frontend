@@ -47,7 +47,6 @@ export const closeModal = () => {
 }
 
 export const saveInterests = (interests) => {
-  console.log(interests);
   return async (dispatch, getState) => {
     const response = await LocalAPI.post(`/interests`, interests);
     dispatch(setInterests(response.data));
@@ -56,7 +55,6 @@ export const saveInterests = (interests) => {
 }
 
 
-// Modal
 export const showModal = () => {
   return {
     type: "MODAL",
@@ -76,16 +74,6 @@ export const showModal = () => {
 //   };
 // }
 
-// export const handleOk = () => {
-//   return {
-//     type: "MODAL",
-//     payload: {
-//       visible: false,
-//       loading: false
-//     } 
-//   };
-// }
-
 
 export const handleCancel = () => {
   return {
@@ -95,4 +83,3 @@ export const handleCancel = () => {
     }
   };
 }
-// End Modal

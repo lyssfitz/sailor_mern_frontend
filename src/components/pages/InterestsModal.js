@@ -29,10 +29,12 @@ const PlaceHolder = styled.div`
 const InterestContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 10px;
+  grid-gap: 20px;
 `;
 
 const InterestCard = styled(Card)`
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 class InterestsModal extends Component {
@@ -56,7 +58,8 @@ class InterestsModal extends Component {
     const { interests } = this.props;
     if (interests.includes(interest)) {
       return {
-        backgroundColor: "#DDD"
+        backgroundColor: "#DDD",
+        
       }
     }
 
@@ -67,7 +70,7 @@ class InterestsModal extends Component {
 
   render() {
     const { visible, loading, interests } = this.props;
-    // console.log(interests);
+
     return (
       <Modal
         visible={visible}
