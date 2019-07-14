@@ -28,7 +28,8 @@ export const setInterests = (interests) => {
 export const fetchInterests = () => {
   return async (dispatch, getState) => {
       const response = await LocalAPI.get("/interests");
-      dispatch(setInterests(response.data));
+      // temporarily set to last element for JSON server
+      dispatch(setInterests(response.data[response.data.length - 1]));
   }
 }
 
@@ -48,8 +49,8 @@ export const closeModal = () => {
 
 export const saveInterests = (interests) => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/interests`, interests);
-    dispatch(setInterests(response.data));
+    LocalAPI.post(`/interests`, interests);
+    dispatch(setInterests(interests));
     dispatch(closeModal());
   }
 }
