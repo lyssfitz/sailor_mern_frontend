@@ -1,9 +1,19 @@
 import React, { Component } from "react";
+import { Mentions } from 'antd';
+
+const { Option } = Mentions;
 
 class UserComment extends Component {
   render() {
     return (
-      <p>Enter a comment about the article...</p>
+      <Mentions
+        style={{ width: '100%' }}
+        defaultValue="@afc163"
+      >
+        <Option value="afc163">afc163</Option>
+        <Option value="zombieJ">zombieJ</Option>
+        <Option value="yesmeck">yesmeck</Option>
+      </Mentions>
     );
   }
 }
