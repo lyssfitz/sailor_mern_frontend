@@ -5,10 +5,12 @@ const { Option } = Mentions;
 
 class UserComment extends Component {
   render() {
+    const {comment} = this.props;
+
     return (
       <Mentions
         style={{ width: '100%' }}
-        defaultValue="@afc163"
+        value={comment}
       >
         <Option value="afc163">afc163</Option>
         <Option value="zombieJ">zombieJ</Option>
