@@ -47,9 +47,10 @@ export const closeModal = () => {
 }
 
 export const saveInterests = (interests) => {
+  console.log(interests);
   return async (dispatch, getState) => {
-    await LocalAPI.post(`/interests`, interests);
-    dispatch(setInterests(interests));
+    const response = await LocalAPI.post(`/interests`, interests);
+    dispatch(setInterests(response.data));
     dispatch(closeModal());
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { saveInterests, handleCancel, editInterests } from "./../../actions";
+import { fetchInterests, saveInterests, handleCancel, editInterests } from "./../../actions";
 import styled from "styled-components";
 
 const { Meta } = Card;
@@ -36,6 +36,9 @@ const InterestCard = styled(Card)`
 `;
 
 class InterestsModal extends Component {
+  componentDidMount = () => {
+    this.props.fetchInterests();
+  }
 
   onInterestClick = (interest) => {
     const { interests } = this.props; 
@@ -64,7 +67,7 @@ class InterestsModal extends Component {
 
   render() {
     const { visible, loading, interests } = this.props;
-    console.log(interests);
+    // console.log(interests);
     return (
       <Modal
         visible={visible}
@@ -110,4 +113,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { saveInterests, handleCancel, editInterests })(InterestsModal);
+export default connect(mapStateToProps, { fetchInterests, saveInterests, handleCancel, editInterests })(InterestsModal);
