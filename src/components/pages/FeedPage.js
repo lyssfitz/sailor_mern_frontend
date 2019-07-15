@@ -38,6 +38,7 @@ class FeedPage extends Component {
                 author={article.metadata.author}
                 source={article.metadata.source}
                 image={article.metadata.image}
+                id={article._id}
               />
             );
           })}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Icon } from "antd";
 
 const Article = styled.div`
@@ -25,7 +26,7 @@ const ArticleImg = styled.img`
   height: 200px;
   width: 100%;
   object-fit: cover;
-  background: #333;
+  background: #CCC;
   margin: 0;
   padding: 0;
   grid-row: 1;
@@ -69,11 +70,16 @@ class ArticleCard extends Component {
 
     return (
       <Article>
-        <ArticleImg src={this.props.image} />
-        <ArticleInfo>
-          <ArticleTitle>{this.props.title}</ArticleTitle>
-          <ArticleAuthor>{this.props.author}</ArticleAuthor> | <ArticleSource>{this.props.source}</ArticleSource>
-        </ArticleInfo>
+        <Link to={{ pathname: `/article/${this.props.id}` }}>
+          <ArticleImg src={this.props.image} />
+        </Link>
+          <ArticleInfo>
+            <Link to={{ pathname: `/article/${this.props.id}` }}>
+              <ArticleTitle>{this.props.title}</ArticleTitle>
+              <ArticleAuthor>{this.props.author}</ArticleAuthor> | <ArticleSource>{this.props.source}</ArticleSource>
+            </Link>
+          </ArticleInfo>
+        
         <ArticleButtons>
           <Icon
             type="heart"
