@@ -84,3 +84,19 @@ export const handleCancel = () => {
     }
   };
 }
+
+
+// feed
+export const setArticles = (articles) => {
+  return {
+    type: "ARTICLES_LIST",
+    payload: articles
+  }
+}
+
+export const fetchArticles = () => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.get("/feed");
+    dispatch(setArticles(response.data));
+  }
+}
