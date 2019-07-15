@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import InterestsModal from "./InterestsModal"
+// import InterestsModal from "./InterestsModal"
 import { showModal } from "./../../actions"
 
 class FeedPage extends Component {
@@ -11,7 +11,7 @@ class FeedPage extends Component {
   render() {
     return (
       <>
-        <InterestsModal />
+        {/* <InterestsModal /> */}
         <h1>Feed</h1>
       </>
     );
