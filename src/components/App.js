@@ -1,4 +1,5 @@
 import "antd/dist/antd.css";
+import "./../assets/style.css"
 import React, { Component } from "react";
 import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";

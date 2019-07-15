@@ -1,0 +1,89 @@
+import React, { Component } from "react";
+import styled from "styled-components";
+import { Icon } from "antd";
+
+const Article = styled.div`
+  display: grid;
+  grid-template-rows: 200px 1fr max-content;
+  border-bottom: 1px solid #CCC;
+`;
+
+const ArticleInfo = styled.div`
+  grid-row: 2;
+  padding-top: 10px;
+`;
+
+const ArticleButtons = styled.div`
+  grid-row: 3;
+  font-size: 1.4em;
+  text-align: right;
+  padding-bottom: 10px;
+  color: #eb0e42;
+`;
+
+const ArticleImg = styled.img`
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  background: #333;
+  margin: 0;
+  padding: 0;
+  grid-row: 1;
+`;
+
+const ArticleTitle = styled.h2`
+  font-size: 1.4em;
+  font-family: 'DM Serif Text', serif;
+`;
+
+const ArticleAuthor = styled.h3`
+  font-size: 0.9em;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+`;
+
+const ArticleSource = styled.h3`
+  font-size: 0.9em;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: 400;
+`;
+
+
+
+class ArticleCard extends Component {
+  // until user model has favourites, temporarily use 'local' state
+  // where favourites are not stored on user
+  state = {
+    favourited: false
+  }
+
+  onFavClick = () => {
+    const { favourited } = this.state;
+    favourited ? this.setState({ favourited: false }) : this.setState({ favourited: true })
+  }
+
+  render() {
+    const { favourited } = this.state;
+
+    return (
+      <Article>
+        <ArticleImg src={this.props.image} />
+        <ArticleInfo>
+          <ArticleTitle>{this.props.title}</ArticleTitle>
+          <ArticleAuthor>{this.props.author}</ArticleAuthor> | <ArticleSource>{this.props.source}</ArticleSource>
+        </ArticleInfo>
+        <ArticleButtons>
+          <Icon
+            type="heart"
+            theme={favourited && "filled"}
+            onClick={this.onFavClick}
+          />
+        </ArticleButtons>
+      </Article>
+    );
+  }
+}
+
+export default ArticleCard;
