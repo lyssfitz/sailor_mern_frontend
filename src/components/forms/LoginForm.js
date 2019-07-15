@@ -3,14 +3,12 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { setAuthToken } from "./../../actions";
 import LocalAPI from "./../../apis/local";
-// import FormInput from "./fields/FormInput";
 import { Form, Icon, Button, Input } from "antd";
 import MakeField from "./fields/MakeField";
 
 const AInput = MakeField(Input);
 
 class LoginForm extends Component {
-
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
     
