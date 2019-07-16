@@ -16,6 +16,8 @@ import AppFooter from "./AppFooter"
 import styled from "styled-components";
 const { Content } = Layout;
 
+
+
 const GridLayout = styled(Layout)`
   display: grid;
   grid-template-rows: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
