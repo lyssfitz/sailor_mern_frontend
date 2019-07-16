@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "./../forms/LoginForm";
-// import "antd/dist/antd.css";
 import styled from "styled-components";
 import LinkedinButton from "./LinkedinButton";
 

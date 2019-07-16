@@ -1,13 +1,15 @@
 import "antd/dist/antd.css";
+import "./../assets/style.css"
 import React, { Component } from "react";
 import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import LandingPage from "./pages/LandingPage";
 import history from "./../history";
-import PrivateRoute from "./PrivateRoute"
+// import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 import FeedPage from "./pages/FeedPage";
+import ArticlePage from "./pages/ArticlePage"
 import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
@@ -51,7 +53,11 @@ class App extends Component {
                 <PublicRoute exact path="/" component={LandingPage} />
                 <PublicRoute exact path="/signup" component={SignupPage} />
                 <PublicRoute exact path="/login" component={LoginPage} />
-                <PrivateRoute exact path="/feed" component={FeedPage} />
+                {/* DISABLE WHEN BACKEND NOT IN USE - TESTING */}
+                <PublicRoute exact path="/feed" component={FeedPage} />
+                <PublicRoute exact path="/article/:id" component={ArticlePage} />
+                {/* ENABLE WHEN BACKEND IN USE */}
+                {/* <PrivateRoute exact path="/feed" component={FeedPage} /> */}
               </Switch>
             </GridContent>
           <GridFooter />
