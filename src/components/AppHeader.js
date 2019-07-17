@@ -71,7 +71,7 @@ class AppHeader extends Component {
             <MenuItem key="1">
               <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
             </MenuItem>
-            <MenuItem key="2">
+            <MenuItem className="userprofile" key="2">
               <Dropdown overlay={dropdownItems} trigger={['click']}>
                 <Link to="#">
                   <Icon style={icon} type="user" />
