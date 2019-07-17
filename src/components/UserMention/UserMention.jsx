@@ -3,7 +3,7 @@ import { Mentions, Form, Button } from 'antd';
 
 const { Option } = Mentions;
 
-class UserComment extends Component {
+class UserMention extends Component {
   render() {
     const {comment, users} = this.props;
 
@@ -31,4 +31,4 @@ class UserComment extends Component {
   }
 }
 
-export default UserComment;
+export default UserMention;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import UserComment from 'components/UserComment/UserComment.jsx'
+import UserMention from 'components/UserMention/UserMention.jsx'
 
 const Users = [
   "afc163",
@@ -9,15 +9,15 @@ const Users = [
   "yesmeck",
 ]
 
-storiesOf('UserComment', module)
+storiesOf('UserMention', module)
   .addDecorator(story => <div style={{padding: '3rem'}}>{story()}</div>)
   .add('default', () => (
-    <UserComment/>
+    <UserMention/>
   ))
   .add('with entry', () => (
-    <UserComment users={Users} comment="This article is an excellent read"/>
+    <UserMention users={Users} comment="This article is an excellent read"/>
   ))
   .add('with entry and mention', () => (
-    <UserComment comment="@john I think you should read this"/>
+    <UserMention comment="@john I think you should read this"/>
   ))
 ;
