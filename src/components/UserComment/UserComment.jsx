@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Comment, Tooltip, List } from 'antd';
 import moment from 'moment';
 
+
+
 const data = [
   {
     actions: [<span>Reply to</span>],
@@ -56,25 +58,29 @@ const data = [
 ];
 
 class UserComment extends Component {
-render(
 
-    <List
-      className="comment-list"
-      header={`${data.length} replies`}
-      itemLayout="horizontal"
-      dataSource={data}
-      renderItem={item => (
-        <li>
-          <Comment
-            actions={item.actions}
-            author={item.author}
-            avatar={item.avatar}
-            content={item.content}
-            datetime={item.datetime}
-          />
-        </li>
-      )}
+  render() {
+    return (
+      <List
+        className="commentlist"
+        header={`${data.length} replies`}
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={item => (
+          <li>
+            <Comment
+              actions={item.actions}
+              author={item.author}
+              avatar={item.avatar}
+              content={item.content}
+              datetime={item.datetime}
+            />
+          </li>
+        
+        )}
+      />
+    );
+  }
 
-);
 }
 export default UserComment;
