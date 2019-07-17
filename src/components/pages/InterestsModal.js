@@ -70,6 +70,7 @@ class InterestsModal extends Component {
 
   render() {
     const { visible, loading, interests } = this.props;
+    console.log(interests);
     return (
       <Modal
         visible={visible}

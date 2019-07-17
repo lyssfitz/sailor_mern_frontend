@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-// import "antd/dist/antd.css";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 

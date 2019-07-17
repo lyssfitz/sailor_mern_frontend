@@ -77,6 +77,7 @@ class ArticleCard extends Component {
             <Link to={{ pathname: `/article/${this.props.id}` }}>
               <ArticleTitle>{this.props.title}</ArticleTitle>
               <ArticleAuthor>{this.props.author}</ArticleAuthor> | <ArticleSource>{this.props.source}</ArticleSource>
+              <h5>{this.props.date}</h5>
             </Link>
           </ArticleInfo>
         

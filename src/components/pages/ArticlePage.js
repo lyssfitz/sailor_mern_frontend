@@ -1,15 +1,8 @@
 import React, { Component } from "react";
 import LocalAPI from "./../../apis/local";
 import styled from "styled-components";
-import { Icon } from "antd";
-
-const Loading = styled(Icon)`
-  font-size: 3em;
-`;
-
-const LoadingPage = styled.div`
-  text-align: center;
-`;
+import LoadingPage from "./LoadingPage"
+import ReactHtmlParser from 'react-html-parser';
 
 const Article = styled.article`
   max-width: 600px;
@@ -20,11 +13,6 @@ const ArticleTitle = styled.h1`
   font-size: 3em;
   font-family: 'DM Serif Text', serif;
   line-height: 1.2em;
-`;
-
-const ArticleImage = styled.img`
-  width: 100%;
-  padding: 40px 0;
 `;
 
 const ArticleAuthor = styled.h2`
@@ -42,6 +30,10 @@ const ArticleBody = styled.div`
   font-size: 1.2em;
   color: #333;
   line-height: 2em;
+  img {
+    width: 100%;
+    margin: 30px 0;
+  }
 `;
 
 class ArticlePage extends Component {
@@ -57,8 +49,7 @@ class ArticlePage extends Component {
   fetchArticle = (id) => {
     LocalAPI.get(`/article/${id}`)
       .then(response => {
-        this.setState({ article: response.data });
-        console.log(response.data)
+        this.setState({ article: response.data.article });
       })
       .catch(error => console.log(error));
   }
@@ -74,9 +65,8 @@ class ArticlePage extends Component {
             <ArticleTitle>{article.metadata.title}</ArticleTitle>
             <ArticleAuthor>By {article.metadata.author}</ArticleAuthor>
             <ArticleSource>{article.date_posted}, {article.metadata.source}</ArticleSource>
-            <ArticleImage src={article.metadata.image} />
             <ArticleBody>
-              {article.article_body}
+              {ReactHtmlParser(article.article_body)}
             </ArticleBody>
           </Article>
         </>
@@ -84,9 +74,7 @@ class ArticlePage extends Component {
     }
 
     return (
-      <LoadingPage>
-        <Loading type="loading" />
-      </LoadingPage>
+      <LoadingPage />
     );
   }
 }
