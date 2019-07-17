@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 // import InterestsModal from "./InterestsModal"
 import { showModal, fetchArticles } from "./../../actions"
 import ArticleCard from "./ArticleCard"
+import LoadingPage from "./LoadingPage"
+
 
 const FeedContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 40px;
 `;
-
-
 
 class FeedPage extends Component {
   componentDidMount = () => {
@@ -22,35 +22,43 @@ class FeedPage extends Component {
 
   render() {
     const { articles } = this.props;
-    // console.log(articles);
-    console.log(this.props);
+    console.log(articles); 
+
+    if (articles) {
+      console.log(articles);
+      return (
+        <>
+          {/* Hide Interests Modal during development */}
+          {/* <InterestsModal /> */}
+          <h1>Feed</h1>
+          <FeedContainer>
+            {articles.map((article, index) => {
+              return (
+                <ArticleCard 
+                  date={article.date_posted}
+                  title={article.metadata.title}
+                  author={article.metadata.author}
+                  source={article.metadata.source}
+                  image={article.metadata.image}
+                  id={article._id}
+                />
+              );
+            })}
+          </FeedContainer>
+        </>
+      );
+    }
+
+
     return (
-      <>
-        {/* Hide Interests Modal during development */}
-        {/* <InterestsModal /> */}
-        <h1>Feed</h1>
-        <FeedContainer>
-          {articles.map((article, index) => {
-            return (
-              <ArticleCard 
-                date={article.date_posted}
-                title={article.metadata.title}
-                author={article.metadata.author}
-                source={article.metadata.source}
-                image={article.metadata.image}
-                id={article._id}
-              />
-            );
-          })}
-        </FeedContainer>
-      </>
+      <LoadingPage />
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles
+    articles: state.articles.articles
   }
 }
 
