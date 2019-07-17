@@ -54,7 +54,7 @@ class AppHeader extends Component {
       const dropdownItems = (
         <Menu>
           <MenuItem>
-            <Link to="#">
+            <Link to="/profile">
               View Profile
             </Link>
           </MenuItem>
