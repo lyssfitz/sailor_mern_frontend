@@ -20,7 +20,10 @@ class SignupForm extends Component {
         this.props.setAuthToken(response.data.token);
         this.props.history.push("/feed");
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        this.props.history.push("/signup");
+      });
   };
 
 
