@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import OAuthPage from "./pages/OAuthPage";
 import LandingPage from "./pages/LandingPage";
 import history from "./../history";
-// import PrivateRoute from "./PrivateRoute"
+import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 import FeedPage from "./pages/FeedPage";
 import ArticlePage from "./pages/ArticlePage"
@@ -58,10 +58,13 @@ class App extends Component {
                 <PublicRoute exact path="/login" component={LoginPage} />
                 <PublicRoute exact path="/oauth" component={OAuthPage} />
                 {/* DISABLE WHEN BACKEND NOT IN USE - TESTING */}
-                <PublicRoute exact path="/feed" component={FeedPage} />
-                <PublicRoute exact path="/article/:id" component={ArticlePage} />
+                {/* <PublicRoute exact path="/feed" component={FeedPage} />
+                <PublicRoute exact path="/article/:id" component={ArticlePage} /> */}
+                {/* ---- */}
                 {/* ENABLE WHEN BACKEND IN USE */}
-                {/* <PrivateRoute exact path="/feed" component={FeedPage} /> */}
+                <PrivateRoute exact path="/feed" component={FeedPage} />
+                <PrivateRoute exact path="/article/:id" component={ArticlePage} />
+                {/* ---- */}
               </Switch>
             </GridContent>
           <GridFooter />
