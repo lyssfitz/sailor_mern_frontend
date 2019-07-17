@@ -41,3 +41,53 @@ describe('Login Form with invalid password', () => {
     cy.url().should('include', '/login');
   })
 })
+
+describe('Login Form with blank email', () => {
+  it("visits the login page", () => {
+    cy.visit("/login");
+  })
+
+  it("adds a password", () => {
+    cy.get('input[type=password]').type('testpass1')
+  })
+
+  it("clicks the sign up button", () => {
+    cy.get('button').click();
+  })
+
+  it("redirects user to login", () => {
+    cy.url().should('include', '/login');
+  })
+})
+
+describe('Login Form with blank password', () => {
+  it("visits the login page", () => {
+    cy.visit("/login");
+  })
+
+  it("adds an email ", () => {
+    cy.get('input[type=email]').type('logsdfin@test.com')
+  })
+
+  it("clicks the sign up button", () => {
+    cy.get('button').click();
+  })
+
+  it("redirects user to login", () => {
+    cy.url().should('include', '/login');
+  })
+})
+
+describe('Login Form with blank email and password', () => {
+  it("visits the login page", () => {
+    cy.visit("/login");
+  })
+
+  it("clicks the sign up button", () => {
+    cy.get('button').click();
+  })
+
+  it("redirects user to login", () => {
+    cy.url().should('include', '/login');
+  })
+})
