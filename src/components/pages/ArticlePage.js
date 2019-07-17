@@ -31,8 +31,13 @@ const ArticleBody = styled.div`
   color: #333;
   line-height: 2em;
   img {
+    max-width: 100%;
+    height: auto;
+    margin: 30px auto;
+    display: block;
+  }
+  iframe {
     width: 100%;
-    margin: 30px 0;
   }
 `;
 

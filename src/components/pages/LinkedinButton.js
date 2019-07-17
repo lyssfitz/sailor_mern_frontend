@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import { Button, Icon } from "antd";
-import { setAuthToken } from "./../../actions";
-import LocalAPI from "./../../apis/local";
 
 const OAuthButton = styled(Button)`
   padding: 0px 20px 0 15px;
