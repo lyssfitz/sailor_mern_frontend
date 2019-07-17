@@ -19,28 +19,15 @@ const LinkedinIcon = styled(Icon)`
 `;
 
 class LinkedinButton extends Component {
-  // onLinkedinButtonSubmit = async () => {
-  //   LocalAPI.get("http://localhost:3000/auth/linkedin")
-  //   .then(
-  //     response => {
-  //       this.props.setAuthToken(response.data.token);
-  //       this.props.history.push("/feed");
-  //     })
-  //     .catch(error => console.log(error));
-      
-  // };
 
   render() {
 
-  return ( 
-    <OAuthButton size="large" type="primary" href={`${process.env.REACT_APP_API_URL}/auth/linkedin`}><LinkedinIcon type="linkedin" theme="filled" />Continue with LinkedIn</OAuthButton>
-  );
-  }
+    return ( 
+      <OAuthButton size="large" type="primary" href={`${process.env.REACT_APP_API_URL}/auth/linkedin`}>
+        <LinkedinIcon type="linkedin" theme="filled" />Continue with LinkedIn</OAuthButton>
+    );
+    }
 }
 
-// export default connect(
-//   null, 
-//   { setAuthToken }
-// )(LinkedinButton);
 
 export default LinkedinButton;

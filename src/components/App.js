@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import OAuthPage from "./pages/OAuthPage";
 import LandingPage from "./pages/LandingPage";
 import history from "./../history";
 // import PrivateRoute from "./PrivateRoute"
@@ -53,6 +54,7 @@ class App extends Component {
                 <PublicRoute exact path="/" component={LandingPage} />
                 <PublicRoute exact path="/signup" component={SignupPage} />
                 <PublicRoute exact path="/login" component={LoginPage} />
+                <PublicRoute exact path="/oauth" component={OAuthPage} />
                 {/* DISABLE WHEN BACKEND NOT IN USE - TESTING */}
                 <PublicRoute exact path="/feed" component={FeedPage} />
                 <PublicRoute exact path="/article/:id" component={ArticlePage} />
