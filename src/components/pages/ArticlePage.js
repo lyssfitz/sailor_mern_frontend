@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import LocalAPI from "./../../apis/local";
 import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
@@ -46,8 +47,11 @@ const ArticleBody = styled.div`
 
 class ArticlePage extends Component {
   state = {
-    article: null
+    article: null,
+    likes: 0,
+    liked: false
   }
+
 
   componentDidMount = () => {
     const { id } = this.props.match.params;
@@ -55,19 +59,41 @@ class ArticlePage extends Component {
   }
 
   fetchArticle = (id) => {
+    const { user } = this.props;
     LocalAPI.get(`/article/${id}`)
       .then(response => {
-        this.setState({ article: response.data.article });
+        this.setState({
+          article: response.data.article,
+          likes: response.data.article.likes.length,
+          liked: response.data.article.likes.includes(user)
+        });
       })
       .catch(error => console.log(error));
   }
 
+  onLikeButtonClick = () => {
+    const { user } = this.props;
+    const { id } = this.props.match.params;
+    LocalAPI.post(`/article/${id}/likes`, { user })
+      .then(response => {
+        this.setState({
+          liked: response.data.like,
+          likes: response.data.likesCount,
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
 
   render() {
-    const { id } = this.props.match.params;
-    const { article } = this.state;
+    const { article, likes, liked } = this.state;
+    // const { user } = this.props;
+    console.log(liked, likes)
 
     if (article) {
+
       return (
         <>
           <Article>
@@ -75,7 +101,9 @@ class ArticlePage extends Component {
             <ArticleAuthor>{article.metadata.author}</ArticleAuthor>
             <ArticleSource>{article.date_posted}, {article.metadata.source}</ArticleSource>
             <LikeButton 
-              articleId={id}
+              like={this.onLikeButtonClick}
+              liked={liked}
+              likes={likes}
             />
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}
@@ -91,4 +119,10 @@ class ArticlePage extends Component {
   }
 }
 
-export default ArticlePage;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user
+  };
+}
+
+export default connect(mapStateToProps, null)(ArticlePage);
