@@ -22,13 +22,13 @@ class ArticleForm extends Component {
   onFormSubmit = async (formValues, dispatch) => {
     const { url } = formValues;
     this.setState({ loading: true });
-
-    await LocalAPI.post("/article/new", { url })
+    console.log("here");
+    await LocalAPI.post("/admin/article/new", { url })
       .then(response => {
         if (response.data.error === 11000) {
           this.setState({ loading: false });
           dispatch(reset("article"))
-          throw new SubmissionError("Article already added");
+          throw new SubmissionError("Article has already been added");
         } else {
           this.props.closeArticleModal();
           dispatch(reset("article"))

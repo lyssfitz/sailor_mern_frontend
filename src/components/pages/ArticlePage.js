@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LocalAPI from "./../../apis/local";
 import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
+import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
 
 const Article = styled.article`
@@ -63,6 +64,7 @@ class ArticlePage extends Component {
 
 
   render() {
+    const { id } = this.props.match.params;
     const { article } = this.state;
 
     if (article) {
@@ -72,6 +74,9 @@ class ArticlePage extends Component {
             <ArticleTitle>{article.metadata.title}</ArticleTitle>
             <ArticleAuthor>{article.metadata.author}</ArticleAuthor>
             <ArticleSource>{article.date_posted}, {article.metadata.source}</ArticleSource>
+            <LikeButton 
+              articleId={id}
+            />
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}
             </ArticleBody>

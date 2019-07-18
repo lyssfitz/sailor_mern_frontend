@@ -9,6 +9,25 @@ export const setAuthToken = token => {
   };
 };
 
+// User Info
+
+export const setCurrentUser = (user) => {
+  return {
+    type: "CURRENT_USER",
+    payload: user
+  }
+}
+
+export const fetchCurrentUser = () => {
+  return async (dispatch, getState) => {
+      const response = await LocalAPI.get("/user");
+      dispatch(setCurrentUser(response.data));
+  }
+}
+
+
+// Auth token
+
 export const removeAuthToken = () => {
   sessionStorage.removeItem("token");
 
@@ -122,10 +141,3 @@ export const closeArticleModal = () => {
     }
   };
 }
-
-// export const saveArticle = (url) => {
-//   return async (dispatch, getState) => {
-//     LocalAPI.post(`/articles/new`, url);
-//     dispatch(closeArticleModal());
-//   }
-// }

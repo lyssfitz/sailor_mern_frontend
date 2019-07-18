@@ -18,6 +18,7 @@ const FeedContainer = styled.section`
 const FeedHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 0 30px 0;
 `;
 
 class FeedPage extends Component {
