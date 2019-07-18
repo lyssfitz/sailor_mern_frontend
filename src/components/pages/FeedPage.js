@@ -22,10 +22,7 @@ class FeedPage extends Component {
 
   render() {
     const { articles } = this.props;
-    console.log(articles); 
-
     if (articles) {
-      console.log(articles);
       return (
         <>
           {/* Hide Interests Modal during development */}
@@ -41,6 +38,7 @@ class FeedPage extends Component {
                   source={article.metadata.source}
                   image={article.metadata.image}
                   id={article._id}
+                  key={article._id}
                 />
               );
             })}

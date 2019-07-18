@@ -17,13 +17,15 @@ const ArticleTitle = styled.h1`
 
 const ArticleAuthor = styled.h2`
   font-size: 1.2em;
-  margin: 0;
+  margin: 10px 0;
+  font-weight: 700;
 `;
 
 const ArticleSource = styled.h2`
   font-size: 1em;
-  margin: 0;
+  margin: 10px 0;
   text-transform: uppercase;
+  font-weight: 600;
 `;
 
 const ArticleBody = styled.div`
@@ -31,8 +33,13 @@ const ArticleBody = styled.div`
   color: #333;
   line-height: 2em;
   img {
+    max-width: 100%;
+    height: auto;
+    margin: 30px auto;
+    display: block;
+  }
+  iframe {
     width: 100%;
-    margin: 30px 0;
   }
 `;
 
@@ -63,7 +70,7 @@ class ArticlePage extends Component {
         <>
           <Article>
             <ArticleTitle>{article.metadata.title}</ArticleTitle>
-            <ArticleAuthor>By {article.metadata.author}</ArticleAuthor>
+            <ArticleAuthor>{article.metadata.author}</ArticleAuthor>
             <ArticleSource>{article.date_posted}, {article.metadata.source}</ArticleSource>
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import queryStringParser from 'query-string';
 import {connect} from 'react-redux';
 import * as actions from './../../actions';
