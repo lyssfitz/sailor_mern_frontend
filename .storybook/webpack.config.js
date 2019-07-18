@@ -1,4 +1,7 @@
 const path = require('path');
+const fs  = require('fs');
+const lessToJs = require('less-vars-to-js');
+const themeVars = lessToJs(fs.readFileSync(path.join(__dirname, '../src/antTheme.less'), 'utf8'));
 
 module.exports = async ({ config, mode }) => {
 
@@ -7,7 +10,7 @@ module.exports = async ({ config, mode }) => {
       exclude: /node_modules/,
       test: /\.(js|jsx)$/,
       options: {
-          presets: ['@babel/react'],
+          presets: ['@babel/react', '@babel/preset-env'],
           plugins: [
               ['import', {
                 libraryName: 'antd',
@@ -26,7 +29,7 @@ module.exports = async ({ config, mode }) => {
           {
               loader: 'less-loader',
               options: {
-                  modifyVars: {'@primary-color': '#f00'},
+                  modifyVars: themeVars,
                   javascriptEnabled: true
               }
           }
@@ -36,6 +39,5 @@ module.exports = async ({ config, mode }) => {
         /[\\/]node_modules[\\/].*antd/
       ]
   });
-
   return config;
 };
