@@ -33,6 +33,7 @@ class ArticleForm extends Component {
           this.props.closeArticleModal();
           dispatch(reset("article"))
           this.props.fetchArticles();
+          this.setState({ loading: false });
           history.push("/feed");
         }
         
