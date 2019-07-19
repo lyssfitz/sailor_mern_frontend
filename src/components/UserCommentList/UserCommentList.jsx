@@ -8,8 +8,8 @@ class UserCommentList extends Component {
 
   getHeader() {
     const { userComments } = this.props;
-    if (this.userComments) {
-      if (this.userComments === 1) {
+    if (userComments) {
+      if (userComments.length === 1) {
         return `${userComments.length} reply`
       }
       return `${userComments.length} replies`
