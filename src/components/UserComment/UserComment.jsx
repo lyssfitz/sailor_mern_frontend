@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { Comment, Tooltip } from 'antd';
 import moment from 'moment';
 
-const authorName = "Mary Smith";
-const content = "That was an excellent article!";
-const dateTime = moment();
-
 class UserComment extends Component {
   render() {
+    const {authorName, content, dateTime} = this.props;
     return (
       <Comment
         author={<h4>{authorName}</h4>}
