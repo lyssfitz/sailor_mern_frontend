@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-// import InterestsModal from "./InterestsModal"
+import InterestsModal from "./InterestsModal"
 import ArticleForm from "./../forms/ArticleForm"
 import { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser } from "./../../actions"
 import { Button } from "antd";
@@ -25,7 +25,7 @@ class FeedPage extends Component {
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
     // hide interests modal during development
-    // this.props.showInterestsModal();
+    this.props.showInterestsModal();
 
     if (token) {
       fetchCurrentUser();
@@ -35,17 +35,17 @@ class FeedPage extends Component {
   }
 
   render() {
-    const { articles, showArticleModal } = this.props;
+    const { user, articles, showArticleModal } = this.props;
 
     if (articles) {
       return (
         <>
           {/* Hide Interests Modal during development */}
-          {/* <InterestsModal /> */}
+          <InterestsModal />
           <ArticleForm />
           <FeedHeader>
             <h1>Feed</h1>
-            {<Button type="primary" onClick={showArticleModal}>
+            {user && user.admin && <Button type="primary" onClick={showArticleModal}>
               Add an Article
             </Button>}
           </FeedHeader>
