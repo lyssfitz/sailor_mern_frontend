@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import "./../assets/style.css"
 import React, { Component } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -17,7 +17,7 @@ import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
 import styled from "styled-components";
-import { fetchCurrentUser } from "./../actions"
+// import { fetchCurrentUser } from "./../actions"
 const { Content } = Layout;
 
 
@@ -48,13 +48,7 @@ const GridFooter = styled(AppFooter)`
 `;
 
 class App extends Component {
-  componentDidMount = () => {
-    const { fetchCurrentUser, token } = this.props;
-    if (token) {
-      fetchCurrentUser();
-      console.log("just fetched user")
-    }
-  }
+
 
   render() {
     return (
@@ -85,11 +79,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.auth.token,
-    user: state.user
-  }
-}
 
-export default connect(mapStateToProps, { fetchCurrentUser })(App);
+
+export default App;

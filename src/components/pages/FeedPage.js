@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 // import InterestsModal from "./InterestsModal"
 import ArticleForm from "./../forms/ArticleForm"
-import { showArticleModal, showInterestsModal, fetchArticles } from "./../../actions"
+import { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser } from "./../../actions"
 import { Button } from "antd";
 import ArticleCard from "./ArticleCard"
 import LoadingPage from "./LoadingPage"
@@ -23,14 +23,20 @@ const FeedHeader = styled.div`
 
 class FeedPage extends Component {
   componentDidMount = () => {
+    const { fetchCurrentUser, token } = this.props;
     // hide interests modal during development
     // this.props.showInterestsModal();
+
+    if (token) {
+      fetchCurrentUser();
+    }
+
     this.props.fetchArticles();
   }
 
   render() {
-    const { user, articles, showArticleModal } = this.props;
-    console.log(user);
+    const { articles, showArticleModal } = this.props;
+
     if (articles) {
       return (
         <>
@@ -72,8 +78,9 @@ class FeedPage extends Component {
 const mapStateToProps = (state) => {
   return {
     articles: state.articles.articles,
+    token: state.auth.token,
     user: state.user.user
   }
 }
 
-export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles })(FeedPage);
+export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser })(FeedPage);
