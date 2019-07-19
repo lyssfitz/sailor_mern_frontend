@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { fetchInterests, saveInterests, handleCancel, editInterests } from "./../../actions";
+import { fetchInterests, saveInterests, handleInterestsCancel, editInterests } from "./../../actions";
 import styled from "styled-components";
 
 const { Meta } = Card;
@@ -77,9 +77,9 @@ class InterestsModal extends Component {
         width="600px"
         title="Customise Your Feed"
         onOk={() => this.props.saveInterests(interests)}
-        onCancel={this.props.handleCancel}
+        onCancel={this.props.handleInterestsCancel}
         footer={[
-          <Button key="back" onClick={this.props.handleCancel}>
+          <Button key="back" onClick={this.props.handleInterestsCancel}>
             Skip
           </Button>,
           <Button key="submit" type="primary" loading={loading} onClick={() => this.props.saveInterests(interests)}>
@@ -116,4 +116,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { fetchInterests, saveInterests, handleCancel, editInterests })(InterestsModal);
+export default connect(mapStateToProps, { fetchInterests, saveInterests, handleInterestsCancel, editInterests })(InterestsModal);
