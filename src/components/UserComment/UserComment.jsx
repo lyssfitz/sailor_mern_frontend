@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Comment, Tooltip } from 'antd';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 class UserComment extends Component {
   render() {
@@ -18,4 +19,11 @@ class UserComment extends Component {
     );
   }
 }
+
+UserComment.propTypes = {
+  authorName: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  dateTime: PropTypes.instanceOf(Date).isRequired
+};
+
 export default UserComment;
