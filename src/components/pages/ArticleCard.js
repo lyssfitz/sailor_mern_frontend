@@ -48,7 +48,7 @@ const ArticleSource = styled.h3`
   font-size: 0.9em;
   text-transform: uppercase;
   display: inline-block;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 
