@@ -39,7 +39,7 @@ class FeedPage extends Component {
           <ArticleForm />
           <FeedHeader>
             <h1>Feed</h1>
-            {user.admin && <Button type="primary" onClick={showArticleModal}>
+            {<Button type="primary" onClick={showArticleModal}>
               Add an Article
             </Button>}
           </FeedHeader>
