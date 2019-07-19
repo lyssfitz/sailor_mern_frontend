@@ -6,6 +6,7 @@ describe('UserComment', () => {
   it('should display the user name', () => {
     component = mount(<UserComment/>)
     let authorName = component.find('.ant-comment-content-author-name');
+    expect(authorName) 
   });
 
   it('should display the user comment', () => {
