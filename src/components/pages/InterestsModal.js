@@ -29,18 +29,13 @@ const InterestCard = styled(Card)`
 
 class InterestsModal extends Component {
   componentDidMount = () => {
-    const { userInterests } = this.props;
-    console.log(userInterests, "user interests on mount")
     this.props.fetchAllInterests();
     this.props.fetchUserInterests();
-    // if (userInterests) {
-    //   return this.setState({ userInterestsArray: userInterests })
-    // }
   }
 
   onInterestClick = (interest) => {
     const { userInterests, setUserInterests } = this.props; 
-    if (userInterests.includes(interest)) {
+    if (userInterests !== null && userInterests.includes(interest)) {
       let i = userInterests.indexOf(interest);
       let interestsCopy = [...userInterests];
       interestsCopy.splice(i, 1);
@@ -53,7 +48,7 @@ class InterestsModal extends Component {
   selected = (interest) => {
     const { userInterests } = this.props;
 
-    if (userInterests.includes(interest)) {
+    if (userInterests !== null && userInterests.includes(interest)) {
       return {
         backgroundColor: "#DDD",
       }

@@ -25,19 +25,21 @@ class FeedPage extends Component {
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
     // hide interests modal during development
-    this.props.showInterestsModal();
 
     if (token) {
       fetchCurrentUser();
     }
-
     this.props.fetchArticles();
+
   }
 
   render() {
-    const { user, articles, showArticleModal } = this.props;
+    const { user, articles, showArticleModal, userInterests } = this.props;
 
     if (articles) {
+      if (userInterests !== null && userInterests.length === 0) {
+        this.props.showInterestsModal();
+      }
       return (
         <>
           {/* Hide Interests Modal during development */}
@@ -79,7 +81,8 @@ const mapStateToProps = (state) => {
   return {
     articles: state.articles.articles,
     token: state.auth.token,
-    user: state.user.user
+    user: state.user.user,
+    userInterests: state.userInterests
   }
 }
 

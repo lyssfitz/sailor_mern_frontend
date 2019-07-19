@@ -100,7 +100,6 @@ export const fetchAllInterests = () => {
 
 // User interests editing and saving
 export const setUserInterests = (userInterests) => {
-  console.log(userInterests, "setting interests")
   return {
     type: "USER_INTERESTS_LIST",
     payload: userInterests
@@ -124,7 +123,6 @@ export const saveUserInterests = (userInterests) => {
   return async (dispatch, getState) => {
     LocalAPI.post(`/user/interests`, userInterests);
     dispatch(setUserInterests(userInterests));
-    console.log(userInterests);
     dispatch(closeInterestsModal());
   }
 }
