@@ -53,6 +53,7 @@ class FeedPage extends Component {
           </FeedHeader>
           <FeedContainer>
             {articles.map((article, index) => {
+              console.log(article);
               return (
                 <ArticleCard 
                   date={article.date_posted}
@@ -62,6 +63,7 @@ class FeedPage extends Component {
                   image={article.metadata.image}
                   id={article._id}
                   key={article._id}
+                  interests={article.interests}
                 />
               );
             })}
