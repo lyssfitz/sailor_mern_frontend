@@ -49,7 +49,7 @@ class ArticlePage extends Component {
   state = {
     article: null,
     likes: 0,
-    liked: false
+    liked: null
   }
 
 
@@ -58,16 +58,24 @@ class ArticlePage extends Component {
     this.fetchArticle(id);
   }
 
-  fetchArticle = (id) => {
+  componentDidUpdate = () => {
     const { user } = this.props;
-    console.log("****")
-    console.log(this.props);
+    const { article, liked } = this.state;
+
+    if (user && article && liked === null ) {
+      this.setState((state) => {
+        return { liked: state.article.likes.includes(user._id) }
+      });
+    }
+  }
+
+  fetchArticle = (id) => {
+
     LocalAPI.get(`/article/${id}`)
       .then(response => {
         this.setState({
           article: response.data.article,
           likes: response.data.article.likes.length,
-          liked: response.data.article.likes.includes(user)
         });
       })
       .catch(error => console.log(error));
@@ -91,9 +99,6 @@ class ArticlePage extends Component {
 
   render() {
     const { article, likes, liked } = this.state;
-    const { user } = this.props;
-    console.log("I'm in render")
-    console.log(user)
 
     if (article) {
 
