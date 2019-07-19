@@ -18,7 +18,7 @@ const PlaceHolder = styled.div`
 
 const InterestContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   grid-gap: 20px;
 `;
 
@@ -66,7 +66,7 @@ class InterestsModal extends Component {
       return (
         <Modal
           visible={visible}
-          width="600px"
+          width="700px"
           title="Customise Your Feed"
           onOk={() => this.props.saveUserInterests(userInterests)}
           onCancel={this.props.closeInterestsModal}
