@@ -9,6 +9,25 @@ export const setAuthToken = token => {
   };
 };
 
+// User Info
+
+export const setCurrentUser = (user) => {
+  return {
+    type: "CURRENT_USER",
+    payload: user
+  }
+}
+
+export const fetchCurrentUser = () => {
+  return async (dispatch, getState) => {
+      const response = await LocalAPI.get("/user");
+      dispatch(setCurrentUser(response.data));
+  }
+}
+
+
+// Auth token
+
 export const removeAuthToken = () => {
   sessionStorage.removeItem("token");
 
@@ -29,7 +48,7 @@ export const fetchInterests = () => {
   return async (dispatch, getState) => {
       const response = await LocalAPI.get("/interests");
       // temporarily set to last element for JSON server
-      dispatch(setInterests(response.data[response.data.length - 1]));
+      dispatch(setInterests(response.data));
   }
 }
 
@@ -37,9 +56,9 @@ export const editInterests = (interests) => {
   return setInterests(interests);
 }
 
-export const closeModal = () => {
+export const closeInterestsModal = () => {
   return {
-    type: "MODAL",
+    type: "INTERESTS_MODAL",
     payload: {
       visible: false,
       loading: false
@@ -51,14 +70,14 @@ export const saveInterests = (interests) => {
   return async (dispatch, getState) => {
     LocalAPI.post(`/interests`, interests);
     dispatch(setInterests(interests));
-    dispatch(closeModal());
+    dispatch(closeInterestsModal());
   }
 }
 
 
-export const showModal = () => {
+export const showInterestsModal = () => {
   return {
-    type: "MODAL",
+    type: "INTERESTS_MODAL",
     payload: {
       visible: true
     }
@@ -66,9 +85,9 @@ export const showModal = () => {
 }
 
 
-// export const handleRequest = () => {
+// export const handleInterestsRequest = () => {
 //   return {
-//     type: "MODAL",
+//     type: "INTERESTS_MODAL",
 //     payload: {
 //       loading: true
 //     }
@@ -76,9 +95,9 @@ export const showModal = () => {
 // }
 
 
-export const handleCancel = () => {
+export const handleInterestsCancel = () => {
   return {
-    type: "MODAL",
+    type: "INTERESTS_MODAL",
     payload: {
       visible: false
     }
@@ -99,4 +118,26 @@ export const fetchArticles = () => {
     const response = await LocalAPI.get("/feed");
     dispatch(setArticles(response.data));
   }
+}
+
+
+
+// Add Article Modal
+
+export const showArticleModal = () => {
+  return {
+    type: "ARTICLE_MODAL",
+    payload: {
+      visible: true
+    }
+  };
+}
+
+export const closeArticleModal = () => {
+  return {
+    type: "ARTICLE_MODAL",
+    payload: {
+      visible: false
+    }
+  };
 }

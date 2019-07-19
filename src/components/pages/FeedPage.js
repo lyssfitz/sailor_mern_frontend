@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 // import InterestsModal from "./InterestsModal"
-import { showModal, fetchArticles } from "./../../actions"
+import ArticleForm from "./../forms/ArticleForm"
+import { showArticleModal, showInterestsModal, fetchArticles } from "./../../actions"
+import { Button } from "antd";
 import ArticleCard from "./ArticleCard"
 import LoadingPage from "./LoadingPage"
 
@@ -13,24 +15,34 @@ const FeedContainer = styled.section`
   grid-gap: 40px;
 `;
 
+const FeedHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 30px 0;
+`;
+
 class FeedPage extends Component {
   componentDidMount = () => {
     // hide interests modal during development
-    // this.props.showModal();
+    // this.props.showInterestsModal();
     this.props.fetchArticles();
   }
 
   render() {
-    const { articles } = this.props;
-    console.log(articles); 
-
+    const { user, articles, showArticleModal } = this.props;
+    console.log(user);
     if (articles) {
-      console.log(articles);
       return (
         <>
           {/* Hide Interests Modal during development */}
           {/* <InterestsModal /> */}
-          <h1>Feed</h1>
+          <ArticleForm />
+          <FeedHeader>
+            <h1>Feed</h1>
+            {user.admin && <Button type="primary" onClick={showArticleModal}>
+              Add an Article
+            </Button>}
+          </FeedHeader>
           <FeedContainer>
             {articles.map((article, index) => {
               return (
@@ -41,6 +53,7 @@ class FeedPage extends Component {
                   source={article.metadata.source}
                   image={article.metadata.image}
                   id={article._id}
+                  key={article._id}
                 />
               );
             })}
@@ -58,8 +71,9 @@ class FeedPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles.articles
+    articles: state.articles.articles,
+    user: state.user.user
   }
 }
 
-export default connect(mapStateToProps, { showModal, fetchArticles })(FeedPage);
+export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles })(FeedPage);

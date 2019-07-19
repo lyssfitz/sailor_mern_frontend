@@ -3,12 +3,21 @@ describe('Signup Form', () => {
     cy.visit("/signup");
   })
 
+  it("adds a first name", () => {
+    cy.get('input[name=firstName]').type('Test')
+  })
+
+  it("adds a last name", () => {
+    cy.get('input[name=lastName]').type('User')
+  })
+
+
   it("adds an email", () => {
-    cy.get('input[type=email]').type('cypress@test.com')
+    cy.get('input[type=email]').type('login2@test.com')
   })
 
   it("adds a password", () => {
-    cy.get('input[type=password]').type('pword')
+    cy.get('input[type=password]').type('testpass')
   })
 
   it("clicks the sign up button", () => {

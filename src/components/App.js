@@ -1,13 +1,15 @@
 import "antd/dist/antd.css";
 import "./../assets/style.css"
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import OAuthPage from "./pages/OAuthPage";
 import LandingPage from "./pages/LandingPage";
+import ProfilePage from "./pages/ProfilePage"
 import history from "./../history";
-// import PrivateRoute from "./PrivateRoute"
+import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 import FeedPage from "./pages/FeedPage";
 import ArticlePage from "./pages/ArticlePage"
@@ -15,8 +17,8 @@ import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
 import styled from "styled-components";
+import { fetchCurrentUser } from "./../actions"
 const { Content } = Layout;
-
 
 
 const GridLayout = styled(Layout)`
@@ -46,6 +48,14 @@ const GridFooter = styled(AppFooter)`
 `;
 
 class App extends Component {
+  componentDidMount = () => {
+    const { fetchCurrentUser, token } = this.props;
+    if (token) {
+      fetchCurrentUser();
+      console.log("just fetched user")
+    }
+  }
+
   render() {
     return (
       <GridLayout>
@@ -58,10 +68,14 @@ class App extends Component {
                 <PublicRoute exact path="/login" component={LoginPage} />
                 <PublicRoute exact path="/oauth" component={OAuthPage} />
                 {/* DISABLE WHEN BACKEND NOT IN USE - TESTING */}
-                <PublicRoute exact path="/feed" component={FeedPage} />
-                <PublicRoute exact path="/article/:id" component={ArticlePage} />
+                {/* <PublicRoute exact path="/feed" component={FeedPage} />
+                <PublicRoute exact path="/article/:id" component={ArticlePage} /> */}
+                {/* ---- */}
                 {/* ENABLE WHEN BACKEND IN USE */}
-                {/* <PrivateRoute exact path="/feed" component={FeedPage} /> */}
+                <PrivateRoute exact path="/feed" component={FeedPage} />
+                <PrivateRoute exact path="/article/:id" component={ArticlePage} />
+                <PrivateRoute exact path="/profile" component={ProfilePage} />
+                {/* ---- */}
               </Switch>
             </GridContent>
           <GridFooter />
@@ -71,4 +85,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.token,
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, { fetchCurrentUser })(App);

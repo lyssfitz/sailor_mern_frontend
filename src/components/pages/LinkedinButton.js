@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import { Button, Icon } from "antd";
-import { setAuthToken } from "./../../actions";
-import LocalAPI from "./../../apis/local";
 
 const OAuthButton = styled(Button)`
   padding: 0px 20px 0 15px;
@@ -12,6 +9,7 @@ const OAuthButton = styled(Button)`
   align-items: center;
   margin: auto;
   font-weight: bold;
+  width: max-content;
 `;
 
 const LinkedinIcon = styled(Icon)`
@@ -24,7 +22,8 @@ class LinkedinButton extends Component {
 
     return ( 
       <OAuthButton size="large" type="primary" href={`${process.env.REACT_APP_API_URL}/auth/linkedin`}>
-        <LinkedinIcon type="linkedin" theme="filled" />Continue with LinkedIn</OAuthButton>
+        <LinkedinIcon type="linkedin" theme="filled" />Continue with LinkedIn
+      </OAuthButton>
     );
     }
 }
