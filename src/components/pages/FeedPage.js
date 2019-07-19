@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-// import InterestsModal from "./InterestsModal"
+import InterestsModal from "./InterestsModal"
 import ArticleForm from "./../forms/ArticleForm"
-import { showArticleModal, showInterestsModal, fetchArticles } from "./../../actions"
+import { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser } from "./../../actions"
 import { Button } from "antd";
 import ArticleCard from "./ArticleCard"
 import LoadingPage from "./LoadingPage"
@@ -23,23 +23,29 @@ const FeedHeader = styled.div`
 
 class FeedPage extends Component {
   componentDidMount = () => {
+    const { fetchCurrentUser, token } = this.props;
     // hide interests modal during development
-    // this.props.showInterestsModal();
+    this.props.showInterestsModal();
+
+    if (token) {
+      fetchCurrentUser();
+    }
+
     this.props.fetchArticles();
   }
 
   render() {
     const { user, articles, showArticleModal } = this.props;
-    console.log(user);
+
     if (articles) {
       return (
         <>
           {/* Hide Interests Modal during development */}
-          {/* <InterestsModal /> */}
+          <InterestsModal />
           <ArticleForm />
           <FeedHeader>
             <h1>Feed</h1>
-            {user.admin && <Button type="primary" onClick={showArticleModal}>
+            {user && user.admin && <Button type="primary" onClick={showArticleModal}>
               Add an Article
             </Button>}
           </FeedHeader>
@@ -72,8 +78,9 @@ class FeedPage extends Component {
 const mapStateToProps = (state) => {
   return {
     articles: state.articles.articles,
+    token: state.auth.token,
     user: state.user.user
   }
 }
 
-export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles })(FeedPage);
+export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser })(FeedPage);

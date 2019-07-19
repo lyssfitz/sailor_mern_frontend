@@ -61,9 +61,11 @@ class ArticlePage extends Component {
   componentDidUpdate = () => {
     const { user } = this.props;
     const { article, liked } = this.state;
-
+    console.log(this.props);
     if (user && article && liked === null ) {
       this.setState((state) => {
+        console.log(user);
+        console.log("***")
         return { liked: state.article.likes.includes(user._id) }
       });
     }
