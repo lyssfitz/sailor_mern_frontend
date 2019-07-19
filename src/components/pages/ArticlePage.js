@@ -60,6 +60,8 @@ class ArticlePage extends Component {
 
   fetchArticle = (id) => {
     const { user } = this.props;
+    console.log("****")
+    console.log(this.props);
     LocalAPI.get(`/article/${id}`)
       .then(response => {
         this.setState({
@@ -89,8 +91,9 @@ class ArticlePage extends Component {
 
   render() {
     const { article, likes, liked } = this.state;
-    // const { user } = this.props;
-    console.log(liked, likes)
+    const { user } = this.props;
+    console.log("I'm in render")
+    console.log(user)
 
     if (article) {
 

@@ -29,7 +29,8 @@ class FeedPage extends Component {
   }
 
   render() {
-    const { articles, showArticleModal } = this.props;
+    const { user, articles, showArticleModal } = this.props;
+    console.log(user);
     if (articles) {
       return (
         <>
@@ -38,9 +39,9 @@ class FeedPage extends Component {
           <ArticleForm />
           <FeedHeader>
             <h1>Feed</h1>
-            <Button type="primary" onClick={showArticleModal}>
+            {user.admin && <Button type="primary" onClick={showArticleModal}>
               Add an Article
-            </Button>
+            </Button>}
           </FeedHeader>
           <FeedContainer>
             {articles.map((article, index) => {
@@ -70,7 +71,8 @@ class FeedPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles.articles
+    articles: state.articles.articles,
+    user: state.user.user
   }
 }
 

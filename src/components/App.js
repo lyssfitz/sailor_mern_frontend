@@ -52,6 +52,7 @@ class App extends Component {
     const { fetchCurrentUser, token } = this.props;
     if (token) {
       fetchCurrentUser();
+      console.log("just fetched user")
     }
   }
 
