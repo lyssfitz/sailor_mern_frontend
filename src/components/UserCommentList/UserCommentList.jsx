@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+
+// Ant.d components
 import { List } from 'antd';
-import moment from 'moment';
+
+// Custom components
 import UserComment from 'components/UserComment/UserComment.jsx'
 
 class UserCommentList extends Component {

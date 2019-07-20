@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Comment, Tooltip } from 'antd';
-import moment from 'moment';
 import PropTypes from 'prop-types';
+
+// Ant.d components
+import { Comment, Tooltip } from 'antd';
+
 
 class UserComment extends Component {
   render() {
