@@ -18,6 +18,8 @@ import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
 import styled from "styled-components";
 import { fetchCurrentUser } from "./../actions"
+import UserCommentsPage from "./pages/UserCommentsPage";
+
 const { Content } = Layout;
 
 
@@ -75,6 +77,7 @@ class App extends Component {
                 <PrivateRoute exact path="/feed" component={FeedPage} />
                 <PrivateRoute exact path="/article/:id" component={ArticlePage} />
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
+                 <PublicRoute exact path="/user-comments" component={UserCommentsPage} />
                 {/* ---- */}
               </Switch>
             </GridContent>
