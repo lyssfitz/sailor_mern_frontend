@@ -16,7 +16,8 @@ module.exports = async ({ config, mode }) => {
                 libraryName: 'antd',
                 libraryDirectory: 'es',
                 style: true
-              }]
+              }],
+              "@babel/plugin-proposal-class-properties"
           ]
       },
   });
@@ -39,5 +40,6 @@ module.exports = async ({ config, mode }) => {
         /[\\/]node_modules[\\/].*antd/
       ]
   });
+
   return config;
 };
