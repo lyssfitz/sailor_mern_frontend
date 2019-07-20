@@ -37,72 +37,7 @@ export const removeAuthToken = () => {
   };
 }
 
-export const setInterests = (interests) => {
-  return {
-    type: "INTERESTS_LIST",
-    payload: interests
-  }
-}
 
-export const fetchInterests = () => {
-  return async (dispatch, getState) => {
-      const response = await LocalAPI.get("/interests");
-      // temporarily set to last element for JSON server
-      dispatch(setInterests(response.data));
-  }
-}
-
-export const editInterests = (interests) => {
-  return setInterests(interests);
-}
-
-export const closeInterestsModal = () => {
-  return {
-    type: "INTERESTS_MODAL",
-    payload: {
-      visible: false,
-      loading: false
-    }
-  };  
-}
-
-export const saveInterests = (interests) => {
-  return async (dispatch, getState) => {
-    LocalAPI.post(`/interests`, interests);
-    dispatch(setInterests(interests));
-    dispatch(closeInterestsModal());
-  }
-}
-
-
-export const showInterestsModal = () => {
-  return {
-    type: "INTERESTS_MODAL",
-    payload: {
-      visible: true
-    }
-  };
-}
-
-
-// export const handleInterestsRequest = () => {
-//   return {
-//     type: "INTERESTS_MODAL",
-//     payload: {
-//       loading: true
-//     }
-//   };
-// }
-
-
-export const handleInterestsCancel = () => {
-  return {
-    type: "INTERESTS_MODAL",
-    payload: {
-      visible: false
-    }
-  };
-}
 
 
 // feed
@@ -140,4 +75,74 @@ export const closeArticleModal = () => {
       visible: false
     }
   };
+}
+
+
+// Interests
+// Retrieve list of interests
+export const setAllInterests = (interests) => {
+  return {
+    type: "INTERESTS_LIST",
+    payload: interests
+  }
+}
+
+export const fetchAllInterests = () => {
+  return async (dispatch, getState) => {
+      const response = await LocalAPI.get("/user/interests/all");
+      // temporarily set to last element for JSON server
+      dispatch(setAllInterests(response.data));
+  }
+} 
+
+
+
+
+// User interests editing and saving
+export const setUserInterests = (userInterests) => {
+  return {
+    type: "USER_INTERESTS_LIST",
+    payload: userInterests
+  }
+}
+
+export const fetchUserInterests = () => {
+  return async (dispatch, getState) => {
+      const response = await LocalAPI.get("/user/interests");
+      dispatch(setUserInterests(response.data.interests));
+  }
+} 
+
+
+// export const editUserInterests = (userInterests) => {
+//   return setUserInterests(userInterests);
+// }
+
+
+export const saveUserInterests = (userInterests) => {
+  return async (dispatch, getState) => {
+    LocalAPI.post(`/user/interests`, userInterests);
+    dispatch(setUserInterests(userInterests));
+    dispatch(closeInterestsModal());
+  }
+}
+
+// Interests popup
+export const showInterestsModal = () => {
+  return {
+    type: "INTERESTS_MODAL",
+    payload: {
+      visible: true
+    }
+  };
+}
+
+
+export const closeInterestsModal = () => {
+  return {
+    type: "INTERESTS_MODAL",
+    payload: {
+      visible: false
+    }
+  };  
 }

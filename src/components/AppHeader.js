@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components"
-import { Layout, Menu, Icon, Dropdown } from 'antd';
+import { Layout, Menu, Icon, Dropdown, Button } from 'antd';
 import { connect } from "react-redux";
-import { removeAuthToken } from "./../actions";
+import { removeAuthToken, showInterestsModal } from "./../actions";
 
 const { Header } = Layout;
 
@@ -68,6 +68,11 @@ class AppHeader extends Component {
         <MainHeader>
           <MainLogo />
           <MainMenu mode="horizontal">    
+            <MenuItem key="3">
+              <Button type="primary" onClick={this.props.showInterestsModal}>
+                  Edit Interests
+              </Button>
+            </MenuItem>
             <MenuItem key="1">
               <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
             </MenuItem>
@@ -106,4 +111,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { removeAuthToken })(AppHeader);
+export default connect(mapStateToProps, { removeAuthToken, showInterestsModal })(AppHeader);

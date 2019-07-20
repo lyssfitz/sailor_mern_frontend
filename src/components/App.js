@@ -50,9 +50,9 @@ const GridFooter = styled(AppFooter)`
 class App extends Component {
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
+
     if (token) {
       fetchCurrentUser();
-      console.log("just fetched user")
     }
   }
 
@@ -88,7 +88,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
-    user: state.user
+    user: state.user.user
   }
 }
 

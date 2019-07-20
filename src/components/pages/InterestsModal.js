@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { fetchInterests, saveInterests, handleInterestsCancel, editInterests } from "./../../actions";
+import { setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal } from "./../../actions";
+import LoadingPage from "./LoadingPage"
 import styled from "styled-components";
 
 const { Meta } = Card;
 
-const allInterests = [
-  "Devices",
-  "Pharmaceuticals",
-  "Wellness",
-  "Aged Care",
-  "Palliative Care", 
-  "R & D",
-  "Genetics",
-  "Interest 8",
-  "Interest 9",
-]
 
 const PlaceHolder = styled.div`
   width: 100%;
@@ -39,27 +29,28 @@ const InterestCard = styled(Card)`
 
 class InterestsModal extends Component {
   componentDidMount = () => {
-    this.props.fetchInterests();
+    this.props.fetchAllInterests();
+    this.props.fetchUserInterests();
   }
 
   onInterestClick = (interest) => {
-    const { interests } = this.props; 
-    if (interests.includes(interest)) {
-      let i = interests.indexOf(interest);
-      let interestsCopy = [...interests];
+    const { userInterests, setUserInterests } = this.props; 
+    if (userInterests !== null && userInterests.includes(interest)) {
+      let i = userInterests.indexOf(interest);
+      let interestsCopy = [...userInterests];
       interestsCopy.splice(i, 1);
-      return this.props.editInterests(interestsCopy)
+      return setUserInterests(interestsCopy);
     }
 
-    return this.props.editInterests([...interests, interest]);
+    return setUserInterests([...userInterests, interest]);
   }
 
   selected = (interest) => {
-    const { interests } = this.props;
-    if (interests.includes(interest)) {
+    const { userInterests } = this.props;
+
+    if (userInterests !== null && userInterests.includes(interest)) {
       return {
         backgroundColor: "#DDD",
-        
       }
     }
 
@@ -69,51 +60,57 @@ class InterestsModal extends Component {
   }
 
   render() {
-    const { visible, loading, interests } = this.props;
-    console.log(interests);
+    const { visible, interests, userInterests } = this.props;
+
+    if (interests) {
+      return (
+        <Modal
+          visible={visible}
+          width="600px"
+          title="Customise Your Feed"
+          onOk={() => this.props.saveUserInterests(userInterests)}
+          onCancel={this.props.closeInterestsModal}
+          footer={[
+            <Button key="back" onClick={this.props.closeInterestsModal}>
+              Skip
+            </Button>,
+            <Button key="submit" type="primary" onClick={() => this.props.saveUserInterests(userInterests)}>
+              Save Interests
+            </Button>,
+          ]}
+        >
+          <InterestContainer>
+            {interests.map((interest) => {
+              return (
+                <InterestCard
+                  size="small"
+                  key={interest}
+                  hoverable
+                  style={this.selected(interest)}
+                  onClick={() => this.onInterestClick(interest)}
+                  cover={<PlaceHolder />}
+                >
+                  <Meta title={interest} />
+                </InterestCard>
+              );
+            })}
+          </InterestContainer>
+        </Modal>
+      );
+    }
+
     return (
-      <Modal
-        visible={visible}
-        width="600px"
-        title="Customise Your Feed"
-        onOk={() => this.props.saveInterests(interests)}
-        onCancel={this.props.handleInterestsCancel}
-        footer={[
-          <Button key="back" onClick={this.props.handleInterestsCancel}>
-            Skip
-          </Button>,
-          <Button key="submit" type="primary" loading={loading} onClick={() => this.props.saveInterests(interests)}>
-            Save Interests
-          </Button>,
-        ]}
-      >
-        <InterestContainer>
-          {allInterests.map((interest) => {
-            return (
-              <InterestCard
-                size="small"
-                key={interest}
-                hoverable
-                style={this.selected(interest)}
-                onClick={() => this.onInterestClick(interest)}
-                cover={<PlaceHolder />}
-              >
-                <Meta title={interest} />
-              </InterestCard>
-            );
-          })}
-        </InterestContainer>
-      </Modal>
+      <LoadingPage />
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-      loading: state.modal.loading,
-      visible: state.modal.visible,
-      interests: state.interests
+      visible: state.interestsModal.visible,
+      interests: state.interests,
+      userInterests: state.userInterests
   };
 }
 
-export default connect(mapStateToProps, { fetchInterests, saveInterests, handleInterestsCancel, editInterests })(InterestsModal);
+export default connect(mapStateToProps, { setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal })(InterestsModal);
