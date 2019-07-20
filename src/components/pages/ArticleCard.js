@@ -35,21 +35,22 @@ const ArticleImg = styled.img`
 `;
 
 const ArticleTitle = styled.h2`
-  font-size: 1.4em;
-  font-family: 'DM Serif Text', serif;
+  font-size: 2em;
+  line-height: 1.2em;
+  letter-spacing: -0.5px;
+  margin: 10px 0;
+  // font-family: 'DM Serif Text', serif;
 `;
 
 const ArticleAuthor = styled.h3`
   font-size: 0.9em;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   font-weight: 700;
-  display: inline-block;
 `;
 
 const ArticleSource = styled.h3`
   font-size: 0.9em;
   text-transform: uppercase;
-  display: inline-block;
   font-weight: 600;
 `;
 
@@ -86,7 +87,8 @@ class ArticleCard extends Component {
           <ArticleInfo>
             <Link to={{ pathname: `/article/${this.props.id}` }}>
               <ArticleTitle>{this.props.title}</ArticleTitle>
-              <ArticleAuthor>{this.props.author}</ArticleAuthor> | <ArticleSource>{this.props.source}</ArticleSource>
+              <ArticleAuthor>{this.props.author}</ArticleAuthor>
+              <ArticleSource>{this.props.source}</ArticleSource>
               <h5>{this.props.date}</h5>
             </Link>
             <Tags>

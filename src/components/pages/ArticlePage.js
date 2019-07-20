@@ -13,7 +13,7 @@ const Article = styled.article`
 
 const ArticleTitle = styled.h1`
   font-size: 3em;
-  font-family: 'DM Serif Text', serif;
+  // font-family: 'DM Serif Text', serif;
   line-height: 1.2em;
 `;
 

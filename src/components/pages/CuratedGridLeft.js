@@ -5,9 +5,9 @@ import ArticleCard from "./ArticleCard"
 
 const CuratedGrid = styled.section`
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 30px;
   grid-template-columns: 1fr;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -16,8 +16,10 @@ const CuratedGrid = styled.section`
 `;
 
 const InterestHeader = styled.h3`
-  font-size: 3em;
+  font-size: 4em;
   border-right: 0px;
+  line-height: 1em;
+  padding-right: 20px;
   @media (min-width: 768px) {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;

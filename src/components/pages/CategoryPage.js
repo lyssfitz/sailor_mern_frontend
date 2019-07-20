@@ -11,7 +11,7 @@ const CategoryContainer = styled.section`
 
 const CategoryTitle = styled.h1`
   font-size: 4em;
-  text-align: right;
+  text-align: center;
   align-self: center;
 `;
 

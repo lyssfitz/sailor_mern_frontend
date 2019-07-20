@@ -3,18 +3,43 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import InterestsModal from "./InterestsModal"
 import ArticleForm from "./../forms/ArticleForm"
-import { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser } from "./../../actions"
+import { showArticleModal, fetchArticles, fetchCurrentUser } from "./../../actions"
 import { Button } from "antd";
 // import RegularFeed from "./RegularFeed"
 import CuratedFeed from "./CuratedFeed"
 
 
 const FeedHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
   margin: 0 0 30px 0;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 4fr 1fr;
+  }
 `;
 
+const FeedTitle = styled.h1`
+  font-size: 4em;
+  text-align: center;
+  align-self: center;
+  letter-spacing: -1px;
+
+  @media (min-width: 768px) {
+    grid-column: 2;
+    align-self: center;
+  }
+`;
+
+const ArticleButton = styled(Button)`
+  width: max-content; 
+  justify-self: center;
+  @media (min-width: 768px) {
+    grid-column: 3;
+    justify-self: end;
+    align-self: start;
+  }
+`;
 
 class FeedPage extends Component {
   componentDidMount = () => {
@@ -38,10 +63,12 @@ class FeedPage extends Component {
         <InterestsModal />
         <ArticleForm />
         <FeedHeader>
-          <h1>Feed</h1>
-          {user && user.admin && <Button type="primary" onClick={showArticleModal}>
+          <FeedTitle>
+            My Feed
+          </FeedTitle>
+          {user && user.admin && <ArticleButton type="primary" onClick={showArticleModal}>
             Add an Article
-          </Button>}
+          </ArticleButton>}
         </FeedHeader>
         <CuratedFeed />
       </>
@@ -59,4 +86,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser })(FeedPage);
+export default connect(mapStateToProps, { showArticleModal, fetchArticles, fetchCurrentUser })(FeedPage);
