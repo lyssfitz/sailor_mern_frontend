@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal } from "./../../actions";
+import { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal,  } from "./../../actions";
 import LoadingPage from "./LoadingPage"
 import styled from "styled-components";
 
@@ -18,12 +18,12 @@ const PlaceHolder = styled.div`
 
 const InterestContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   grid-gap: 20px;
 `;
 
 const InterestCard = styled(Card)`
-  border-radius: 5px;
+  border-radius: 20px;
   overflow: hidden;
 `;
 
@@ -31,6 +31,10 @@ class InterestsModal extends Component {
   componentDidMount = () => {
     this.props.fetchAllInterests();
     this.props.fetchUserInterests();
+  }
+
+  componentDidUpdate = () => {
+    this.props.fetchArticles();
   }
 
   onInterestClick = (interest) => {
@@ -66,15 +70,19 @@ class InterestsModal extends Component {
       return (
         <Modal
           visible={visible}
-          width="600px"
+          width="700px"
           title="Customise Your Feed"
-          onOk={() => this.props.saveUserInterests(userInterests)}
+          onOk={() => {
+            this.props.saveUserInterests(userInterests);
+          }}
           onCancel={this.props.closeInterestsModal}
           footer={[
             <Button key="back" onClick={this.props.closeInterestsModal}>
               Skip
             </Button>,
-            <Button key="submit" type="primary" onClick={() => this.props.saveUserInterests(userInterests)}>
+            <Button key="submit" type="primary" onClick={() => {
+                this.props.saveUserInterests(userInterests);
+              }}>
               Save Interests
             </Button>,
           ]}
@@ -113,4 +121,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal })(InterestsModal);
+export default connect(mapStateToProps, { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal })(InterestsModal);

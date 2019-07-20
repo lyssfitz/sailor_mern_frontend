@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components"
 import { Layout, Menu, Icon, Dropdown, Button } from 'antd';
+import InterestsModal from "./pages/InterestsModal";
 import { connect } from "react-redux";
 import { removeAuthToken, showInterestsModal } from "./../actions";
 
@@ -47,11 +48,10 @@ class AppHeader extends Component {
   }
 
   render() {
-    const { token } = this.props;
-
+    const { token, userInterests } = this.props;
 
     if (token) {
-      const dropdownItems = (
+      const dropdownUserItems = (
         <Menu>
           <MenuItem>
             <Link to="/profile">
@@ -65,26 +65,63 @@ class AppHeader extends Component {
       );
   
       return (
+        <>
+        <InterestsModal />
         <MainHeader>
           <MainLogo />
           <MainMenu mode="horizontal">    
+
             <MenuItem key="3">
-              <Button type="primary" onClick={this.props.showInterestsModal}>
-                  Edit Interests
+              <Button onClick={this.props.showInterestsModal}>
+                Edit Interests
               </Button>
             </MenuItem>
+
+            <MenuItem key="5">
+              <Link to="/feed">
+                <Button type="primary">
+                  View Feed
+                </Button>
+              </Link>
+            </MenuItem>
+
+            {userInterests && userInterests.length > 0 &&
+              <MenuItem key="4">
+                <Dropdown overlay={
+                  <Menu>
+                  {userInterests.map((interest) => {
+                    return (
+                      <MenuItem key={interest}>
+                        <Link to={{ pathname: `/feed/${interest.replace(" ", "-")}` }}>
+                          {interest}
+                        </Link>
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
+                } trigger={['click']}>
+                  <Link to="#">
+                    <Icon style={icon} type="filter" />
+                  </Link>
+                </Dropdown>
+              </MenuItem>
+            }
+
             <MenuItem key="1">
               <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
             </MenuItem>
+
             <MenuItem className="userprofile" key="2">
-              <Dropdown overlay={dropdownItems} trigger={['click']}>
+              <Dropdown overlay={dropdownUserItems} trigger={['click']}>
                 <Link to="#">
                   <Icon style={icon} type="user" />
                 </Link>
               </Dropdown>
             </MenuItem>
+
           </MainMenu>
         </MainHeader>
+        </>
       );
     }
   
@@ -106,7 +143,8 @@ class AppHeader extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.auth.token
+    token: state.auth.token,
+    userInterests: state.userInterests
   }
 };
 
