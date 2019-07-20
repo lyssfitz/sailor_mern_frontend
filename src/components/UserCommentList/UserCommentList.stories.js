@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import UserCommentList from './UserCommentList.jsx'
 import moment from 'moment';
 
-const UserComments = [
+export const UserComments = [
   {
     authorName: "Mary Smith",
     content: "That was an excellent article!",
