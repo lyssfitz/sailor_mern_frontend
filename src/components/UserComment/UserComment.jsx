@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Moment from 'moment';
 import PropTypes from 'prop-types';
 
 // Ant.d components
@@ -25,7 +26,7 @@ class UserComment extends Component {
 UserComment.propTypes = {
   authorName: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  dateTime: PropTypes.instanceOf(Date).isRequired
+  dateTime: PropTypes.instanceOf(Moment).isRequired
 };
 
 export default UserComment;

@@ -1,46 +1,36 @@
 import React from 'react';
+import moment from 'moment';
 import { mount } from "enzyme";
 import UserComment from "./UserComment.jsx";
 
+const authorName = "Mary Smith";
+const content = "That was an excellent article!";
+const dateTime = moment().subtract(1, 'hour');
+
 describe('UserComment', () => {
+  let component;
+
+  beforeEach(() => {
+    component = mount(
+      <UserComment
+        authorName={authorName}
+        content={content}
+        dateTime={dateTime}
+      />);
+  });
+
   it('should display the user name', () => {
-    component = mount(<UserComment/>)
-    let authorName = component.find('.ant-comment-content-author-name');
-    expect(authorName) 
+    let authorNameElement = component.find('h4').first();
+    expect(authorNameElement.text()).toEqual(authorName);
   });
 
   it('should display the user comment', () => {
-    
+    let contentElement = component.find('p').first();
+    expect(contentElement.text()).toEqual(content);
   });
 
-  it('should display multiple user comments', () => {
-    
+  it('should display the time that has passed since the user posted the comment', () => {
+    let postDateElement = component.find('.ant-comment-content-author-time').first();
+    expect(postDateElement.text()).toEqual("an hour ago");
   });
-
-  it('should display a user comment on an existing comment', () => {
-    
-  });
-  // let component;
-
-  // beforeEach(() => {
-  //   component = mount(<AddButton caption='Caption' subCaptions={['sub-caption 1', 'sub-caption 2']}/>)
-  // });
-
-  // it('should render a button with an plus symbol', () => {
-  //   const buttons = component.find('Button');
-  //   expect(buttons.length).toEqual(1);
-  //   expect(buttons.find('Add').length).toEqual(1);
-  // });
-
-  // it('should render a caption', () => {
-  //   const caption = component.find('p').at(0);
-  //   expect(caption.text()).toEqual('Caption')
-  // });
-
-  // it('should render multiple sub-captions', () => {
-  //   const subCaption1 = component.find('p').at(1);
-  //   expect(subCaption1.text()).toEqual('sub-caption 1');
-  //   const subCaption2 = component.find('p').at(2);
-  //   expect(subCaption2.text()).toEqual('sub-caption 2');
-  // });
 });
