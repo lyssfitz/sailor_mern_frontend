@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal } from "./../../actions";
+import { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal,  } from "./../../actions";
 import LoadingPage from "./LoadingPage"
 import styled from "styled-components";
 
@@ -31,6 +31,10 @@ class InterestsModal extends Component {
   componentDidMount = () => {
     this.props.fetchAllInterests();
     this.props.fetchUserInterests();
+  }
+
+  componentDidUpdate = () => {
+    this.props.fetchArticles();
   }
 
   onInterestClick = (interest) => {
@@ -68,13 +72,17 @@ class InterestsModal extends Component {
           visible={visible}
           width="700px"
           title="Customise Your Feed"
-          onOk={() => this.props.saveUserInterests(userInterests)}
+          onOk={() => {
+            this.props.saveUserInterests(userInterests);
+          }}
           onCancel={this.props.closeInterestsModal}
           footer={[
             <Button key="back" onClick={this.props.closeInterestsModal}>
               Skip
             </Button>,
-            <Button key="submit" type="primary" onClick={() => this.props.saveUserInterests(userInterests)}>
+            <Button key="submit" type="primary" onClick={() => {
+                this.props.saveUserInterests(userInterests);
+              }}>
               Save Interests
             </Button>,
           ]}
@@ -113,4 +121,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal })(InterestsModal);
+export default connect(mapStateToProps, { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal })(InterestsModal);

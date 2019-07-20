@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import LocalAPI from "./../../apis/local"
-import LoadingPage from "./LoadingPage"
+import styled from "styled-components";
+import ArticleCard from "./ArticleCard"
 
+const CategoryContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 40px;
+`;
+
+const CategoryTitle = styled.h1`
+  font-size: 4em;
+  text-align: right;
+  align-self: center;
+`;
 
 class CategoryPage extends Component {
   state = {
@@ -12,6 +24,11 @@ class CategoryPage extends Component {
     const { interest } = this.props.match.params;
     this.getArticlesByInterest(interest);
   }
+
+  // componentDidUpdate() {
+  //   const { interest } = this.props.match.params;
+  //   this.getArticlesByInterest(interest);
+  // }
 
   getArticlesByInterest = (interest) => {
     LocalAPI.get(`/feed/${interest}`)
@@ -28,24 +45,33 @@ class CategoryPage extends Component {
     const { interest } = this.props.match.params;
     let interestTag = interest.replace("-", " ");
     const { articles } = this.state;
-
+    console.log(articles);
     if (articles) {
       return (
-        <>
-          <h1>{interestTag}</h1>
+        <CategoryContainer>
+          <CategoryTitle>{interestTag}</CategoryTitle>
           {articles.map(article => {
             return (
-              <div key={article._id}>
-                {article.metadata.title}
-              </div>
+              <ArticleCard 
+                date={article.date_posted}
+                title={article.metadata.title}
+                author={article.metadata.author}
+                source={article.metadata.source}
+                image={article.metadata.image}
+                id={article._id}
+                key={article._id}
+                interests={article.interests}
+              />
             );
           })}
-        </>
+        </CategoryContainer>
       );
     }
 
     return (
-      <LoadingPage />
+      <div>
+        No articles found.
+      </div>
     );
 
   }

@@ -5,15 +5,9 @@ import InterestsModal from "./InterestsModal"
 import ArticleForm from "./../forms/ArticleForm"
 import { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser } from "./../../actions"
 import { Button } from "antd";
-import ArticleCard from "./ArticleCard"
-import LoadingPage from "./LoadingPage"
+// import RegularFeed from "./RegularFeed"
+import CuratedFeed from "./CuratedFeed"
 
-
-const FeedContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 40px;
-`;
 
 const FeedHeader = styled.div`
   display: flex;
@@ -21,86 +15,47 @@ const FeedHeader = styled.div`
   margin: 0 0 30px 0;
 `;
 
-// const InterestsBar = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   margin: 0 0 30px 0;
-// `;
 
 class FeedPage extends Component {
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
-    // hide interests modal during development
 
     if (token) {
       fetchCurrentUser();
     }
     this.props.fetchArticles();
-
   }
 
   render() {
-    const { user, articles, showArticleModal, userInterests } = this.props;
+    const { user, showArticleModal } = this.props;
 
-    if (articles) {
-      if (userInterests !== null && userInterests.length === 0) {
-        this.props.showInterestsModal();
-      }
-      return (
-        <>
-          {/* Hide Interests Modal during development */}
-          <InterestsModal />
-          <ArticleForm />
-          <FeedHeader>
-            <h1>Feed</h1>
-            {user && user.admin && <Button type="primary" onClick={showArticleModal}>
-              Add an Article
-            </Button>}
-          </FeedHeader>
-          {/* {userInterests && <InterestsBar>
-            {userInterests.map((interest) => {
-              return (
-              <div key={interest}>
-                <Link to={{ pathname: `/feed/${interest.replace(" ", "-")}` }}>
-                  {interest}
-                </Link>
-              </div>
-              );
-            })}
-          </InterestsBar>} */}
-          <FeedContainer>
-            {articles.map((article, index) => {
-              return (
-                <ArticleCard 
-                  date={article.date_posted}
-                  title={article.metadata.title}
-                  author={article.metadata.author}
-                  source={article.metadata.source}
-                  image={article.metadata.image}
-                  id={article._id}
-                  key={article._id}
-                  interests={article.interests}
-                />
-              );
-            })}
-          </FeedContainer>
-        </>
-      );
-    }
-
+    // if (userInterests !== null && userInterests.length === 0) {
+    //   this.props.showInterestsModal();
+    // }
 
     return (
-      <LoadingPage />
+      <>
+        <InterestsModal />
+        <ArticleForm />
+        <FeedHeader>
+          <h1>Feed</h1>
+          {user && user.admin && <Button type="primary" onClick={showArticleModal}>
+            Add an Article
+          </Button>}
+        </FeedHeader>
+        <CuratedFeed />
+      </>
     );
+
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles.articles,
     token: state.auth.token,
     user: state.user.user,
-    userInterests: state.userInterests
+    userInterests: state.userInterests,
+    articles: state.articles
   }
 }
 
