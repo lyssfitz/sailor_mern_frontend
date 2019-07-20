@@ -64,8 +64,6 @@ class ArticlePage extends Component {
     console.log(this.props);
     if (user && article && liked === null ) {
       this.setState((state) => {
-        console.log(user);
-        console.log("***")
         return { liked: state.article.likes.includes(user._id) }
       });
     }

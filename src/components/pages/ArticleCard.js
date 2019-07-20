@@ -91,7 +91,7 @@ class ArticleCard extends Component {
             </Link>
             <Tags>
               {this.props.interests.map((tag) => {
-                return (<InterestTag>{tag}</InterestTag>);
+                return (<InterestTag key={tag}>{tag}</InterestTag>);
               })}
             </Tags>
           </ArticleInfo>

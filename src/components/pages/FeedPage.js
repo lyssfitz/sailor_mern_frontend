@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 import styled from "styled-components";
 import { connect } from "react-redux";
 import InterestsModal from "./InterestsModal"
@@ -16,6 +17,12 @@ const FeedContainer = styled.section`
 `;
 
 const FeedHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 30px 0;
+`;
+
+const InterestsBar = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 0 30px 0;
@@ -51,9 +58,19 @@ class FeedPage extends Component {
               Add an Article
             </Button>}
           </FeedHeader>
+          {userInterests && <InterestsBar>
+            {userInterests.map((interest) => {
+              return (
+              <div key={interest}>
+                <Link to={{ pathname: `/feed/${interest.replace(" ", "-")}` }}>
+                  {interest}
+                </Link>
+              </div>
+              );
+            })}
+          </InterestsBar>}
           <FeedContainer>
             {articles.map((article, index) => {
-              console.log(article);
               return (
                 <ArticleCard 
                   date={article.date_posted}
