@@ -1,3 +1,30 @@
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
+// Custom components
+import UserCommentList from '../UserCommentList/UserCommentList';
+import UserCommentEditor from '../UserCommentEditor/UserCommentEditor';
+
+class UserCommentsSection extends Component {
+  render() {
+    const { userCommentData } = this.props
+    return (
+      <div>
+        <UserCommentList userComments={userCommentData}/>
+        <UserCommentEditor/>
+      </div>
+    );
+  }
+}
+
+// UserCommentEditor.propTypes = {
+//   onChange: PropTypes.func,
+//   onSubmit: PropTypes.func,
+//   submitting: PropTypes.bool,
+//   value: PropTypes.string
+// };
+
+export default UserCommentsSection;
 // import { Comment, Avatar, Form, Button, List, Input } from 'antd';
 // import moment from 'moment';
 
