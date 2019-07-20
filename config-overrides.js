@@ -13,6 +13,10 @@ module.exports = override(
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: { '@primary-color': '#22C458' },
+    modifyVars: {
+      'primary-color': '#22C458',
+      'link-color': '#22C458',
+      'border-radius-base': '6px'
+    },
   }),
 );

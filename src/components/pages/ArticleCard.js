@@ -6,7 +6,7 @@ import { Icon, Tag } from "antd";
 const Article = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr max-content;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #EEE;
   padding: 0 0 20px 0;
 `;
 
@@ -28,7 +28,7 @@ const ArticleImg = styled.img`
   height: 200px;
   width: 100%;
   object-fit: cover;
-  background: #CCC;
+  background: #EEE;
   margin: 0;
   padding: 0;
   grid-row: 1;

@@ -16,14 +16,18 @@ const CuratedGrid = styled.section`
 `;
 
 const InterestHeader = styled.h3`
-  font-size: 4em;
+  font-size: 3em;
   border-right: 0px;
   line-height: 1em;
+  text-align: center;
   padding-right: 20px;
+
   @media (min-width: 768px) {
+    font-size: 4em;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #EEE;
+    text-align: right;
   }
 `;
 

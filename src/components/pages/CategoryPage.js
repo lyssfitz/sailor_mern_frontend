@@ -10,9 +10,15 @@ const CategoryContainer = styled.section`
 `;
 
 const CategoryTitle = styled.h1`
-  font-size: 4em;
+  font-size: 2em;
   text-align: center;
   align-self: center;
+  border-bottom: 7px solid #EEE;
+  width: max-content;
+
+  @media (min-width: 768px) {
+    font-size: 4em;
+  }
 `;
 
 class CategoryPage extends Component {

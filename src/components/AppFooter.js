@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
-// import "antd/dist/antd.css";
-import { Layout } from 'antd';
-const { Footer } = Layout;
 
-const MainFooter = styled(Footer)`
+const MainFooter = styled.div`
   display: grid;
   grid-template-rows: max-content max-content;
   grid-row-gap: 30px;
   text-align: center;
+  margin: 20px 0;
 `;
 
 const Links = styled.div`
