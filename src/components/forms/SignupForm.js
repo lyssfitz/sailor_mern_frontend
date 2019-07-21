@@ -50,6 +50,10 @@ class SignupForm extends Component {
         </div>
 
         <div>
+          <Field placeholder="Confirm Password" name="passwordConfirmation" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+        </div>
+
+        <div>
           <Button htmlType="submit">Sign Up</Button>
         </div>
       </Form>
@@ -64,18 +68,28 @@ const WrappedSignupForm = reduxForm({
 
     if (!formValues.email) {
       errors.email = "Email is required";
+    } else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(formValues.email)) {
+      errors.email = "Invalid email address";
     }
 
     if (!formValues.password) {
       errors.password = "Password is required";
+    } else if (formValues.password.length < 6 || formValues.password.length > 20) {
+      errors.password = "Password must be between 6 and 20 characters";
+    } else if (formValues.passwordConfirmation !== formValues.password) {
+      errors.passwordConfirmation = "Password must match" ;
     }
 
     if (!formValues.firstName) {
       errors.firstName = "First Name is required";
+    } else if (formValues.firstName.length > 30) {
+      errors.firstName = "Please enter less than 30 characters"
     }
 
     if (!formValues.lastName) {
       errors.lastName = "Last Name is required";
+    } else if (formValues.lastName.length > 30) {
+      errors.lastName = "Please enter less than 30 characters"
     }
 
     return errors;

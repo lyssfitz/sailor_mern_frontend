@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Icon, Tag } from "antd";
+import moment from "moment";
 
 const Article = styled.div`
   display: grid;
@@ -89,7 +90,7 @@ class ArticleCard extends Component {
               <ArticleTitle>{this.props.title}</ArticleTitle>
               <ArticleAuthor>{this.props.author}</ArticleAuthor>
               <ArticleSource>{this.props.source}</ArticleSource>
-              <h5>{this.props.date}</h5>
+              <h5>{moment(this.props.date).format("ddd Do MMM, 'YY")}</h5>
             </Link>
             <Tags>
               {this.props.interests.map((tag) => {

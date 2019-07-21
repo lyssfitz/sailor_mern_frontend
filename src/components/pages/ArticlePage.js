@@ -6,6 +6,7 @@ import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
+import moment from "moment";
 
 const Article = styled.article`
   max-width: 600px;
@@ -118,7 +119,7 @@ class ArticlePage extends Component {
           <Article>
             <ArticleTitle>{article.metadata.title}</ArticleTitle>
             <ArticleAuthor>{article.metadata.author}</ArticleAuthor>
-            <ArticleSource>{article.date_posted}, {article.metadata.source}</ArticleSource>
+            <ArticleSource>{moment(article.date_posted).format("h:m a dddd Do MMM 'YY")} | {article.metadata.source}</ArticleSource>
             <LikeButton 
               like={this.onLikeButtonClick}
               liked={liked}
