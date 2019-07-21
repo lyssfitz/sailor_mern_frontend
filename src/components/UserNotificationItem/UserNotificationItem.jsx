@@ -1,12 +1,22 @@
 import React, { Component } from "react";
+import Moment from 'moment';
 import PropTypes from 'prop-types';
+
+// Ant.d components
+import { Comment, Tooltip } from 'antd';
 
 class UserNotificationItem extends Component {
   render() {
+    const {content, dateTime} = this.props;
     return (
-      <div>
-      10:20PM today, Rose Petal mentioned you in a comment!
-      </div>
+      <Comment
+        content={<p>{content}</p>}
+        datetime={
+          <Tooltip title={dateTime.format('YYYY-MM-DD HH:mm:ss')}>
+            <span>{dateTime.fromNow()}</span>
+          </Tooltip>
+        }
+      />
     );
   }
 }
