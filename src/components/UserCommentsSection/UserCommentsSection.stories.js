@@ -4,16 +4,20 @@ import { action } from '@storybook/addon-actions';
 import UserCommentsSection from './UserCommentsSection'
 import { UserComments } from "../UserCommentList/UserCommentList.stories";
 
+const AuthorName = "Harry Potter"
+
 storiesOf('UserCommentsSection', module)
   .addDecorator(story => <div style={{padding: '3rem'}}>{story()}</div>)
   .add('no comments', () => (
     <UserCommentsSection 
-      userCommentData={[]}
+      authorName={AuthorName}
+      commentList={[]}
     />
   ))
   .add('with comments', () => (
     <UserCommentsSection 
-      userCommentData={UserComments}
+      authorName={AuthorName}
+      commentList={UserComments}
     />
   ))
 ;
