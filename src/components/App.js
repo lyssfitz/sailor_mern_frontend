@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import OAuthPage from "./pages/OAuthPage";
 import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage"
+import CategoryPage from "./pages/CategoryPage"
 import history from "./../history";
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
@@ -75,6 +76,7 @@ class App extends Component {
                 {/* ---- */}
                 {/* ENABLE WHEN BACKEND IN USE */}
                 <PrivateRoute exact path="/feed" component={FeedPage} />
+                <PrivateRoute exact path="/feed/:interest" component={CategoryPage} />
                 <PrivateRoute exact path="/article/:id" component={ArticlePage} />
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
                  <PublicRoute exact path="/user-comments" component={UserCommentsPage} />

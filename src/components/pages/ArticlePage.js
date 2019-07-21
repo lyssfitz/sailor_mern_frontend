@@ -13,7 +13,7 @@ const Article = styled.article`
 
 const ArticleTitle = styled.h1`
   font-size: 3em;
-  font-family: 'DM Serif Text', serif;
+  // font-family: 'DM Serif Text', serif;
   line-height: 1.2em;
 `;
 
@@ -64,8 +64,6 @@ class ArticlePage extends Component {
     console.log(this.props);
     if (user && article && liked === null ) {
       this.setState((state) => {
-        console.log(user);
-        console.log("***")
         return { liked: state.article.likes.includes(user._id) }
       });
     }

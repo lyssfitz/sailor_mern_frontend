@@ -3,87 +3,87 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import InterestsModal from "./InterestsModal"
 import ArticleForm from "./../forms/ArticleForm"
-import { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser } from "./../../actions"
+import { showArticleModal, fetchArticles, fetchCurrentUser } from "./../../actions"
 import { Button } from "antd";
-import ArticleCard from "./ArticleCard"
-import LoadingPage from "./LoadingPage"
+// import RegularFeed from "./RegularFeed"
+import CuratedFeed from "./CuratedFeed"
 
-
-const FeedContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 40px;
-`;
 
 const FeedHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
   margin: 0 0 30px 0;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+`;
+
+const FeedTitle = styled.h1`
+  font-size: 4em;
+  text-align: center;
+  align-self: center;
+  letter-spacing: -1px;
+
+  @media (min-width: 768px) {
+    grid-column: 2;
+    align-self: center;
+  }
+`;
+
+const ArticleButton = styled(Button)`
+  width: max-content; 
+  justify-self: center;
+  @media (min-width: 768px) {
+    grid-column: 3;
+    justify-self: end;
+    align-self: start;
+  }
 `;
 
 class FeedPage extends Component {
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
-    // hide interests modal during development
 
     if (token) {
       fetchCurrentUser();
     }
     this.props.fetchArticles();
-
   }
 
   render() {
-    const { user, articles, showArticleModal, userInterests } = this.props;
+    const { user, showArticleModal } = this.props;
 
-    if (articles) {
-      if (userInterests !== null && userInterests.length === 0) {
-        this.props.showInterestsModal();
-      }
-      return (
-        <>
-          {/* Hide Interests Modal during development */}
-          <InterestsModal />
-          <ArticleForm />
-          <FeedHeader>
-            <h1>Feed</h1>
-            {user && user.admin && <Button type="primary" onClick={showArticleModal}>
-              Add an Article
-            </Button>}
-          </FeedHeader>
-          <FeedContainer>
-            {articles.map((article, index) => {
-              return (
-                <ArticleCard 
-                  date={article.date_posted}
-                  title={article.metadata.title}
-                  author={article.metadata.author}
-                  source={article.metadata.source}
-                  image={article.metadata.image}
-                  id={article._id}
-                  key={article._id}
-                />
-              );
-            })}
-          </FeedContainer>
-        </>
-      );
-    }
-
+    // if (userInterests !== null && userInterests.length === 0) {
+    //   this.props.showInterestsModal();
+    // }
 
     return (
-      <LoadingPage />
+      <>
+        <InterestsModal />
+        <ArticleForm />
+        <FeedHeader>
+          <FeedTitle>
+            My Feed
+          </FeedTitle>
+          {user && user.admin && <ArticleButton type="primary" onClick={showArticleModal}>
+            Add an Article
+          </ArticleButton>}
+        </FeedHeader>
+        <CuratedFeed />
+      </>
     );
+
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.articles.articles,
     token: state.auth.token,
     user: state.user.user,
-    userInterests: state.userInterests
+    userInterests: state.userInterests,
+    articles: state.articles
   }
 }
 
-export default connect(mapStateToProps, { showArticleModal, showInterestsModal, fetchArticles, fetchCurrentUser })(FeedPage);
+export default connect(mapStateToProps, { showArticleModal, fetchArticles, fetchCurrentUser })(FeedPage);
