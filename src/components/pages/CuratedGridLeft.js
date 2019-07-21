@@ -20,7 +20,7 @@ const InterestHeader = styled.h3`
   border-right: 0px;
   line-height: 1em;
   text-align: center;
-  padding-right: 20px;
+  padding-right: 0;
 
   @media (min-width: 768px) {
     font-size: 4em;
@@ -28,6 +28,7 @@ const InterestHeader = styled.h3`
     grid-row: 1 / span 1;
     border-right: 1px solid #EEE;
     text-align: right;
+    padding-right: 20px;
   }
 `;
 

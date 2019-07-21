@@ -6,6 +6,7 @@ class LikeButton extends Component {
 
   render() {
     const { like, liked, likes } = this.props;
+
     return (
       <Button
         onClick={like}
@@ -14,7 +15,7 @@ class LikeButton extends Component {
           type="heart"
           theme={liked && "filled"}
         />
-        {likes} Like
+        {likes ? `${likes}` : null }
       </Button>
     );
   }

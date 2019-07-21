@@ -39,6 +39,7 @@ const FeedTitle = styled.h1`
 const ArticleButton = styled(Button)`
   width: max-content; 
   justify-self: center;
+  margin-top: 20px;
   @media (min-width: 768px) {
     grid-column: 3;
     justify-self: end;

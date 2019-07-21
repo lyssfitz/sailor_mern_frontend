@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Tag } from "antd";
 import LocalAPI from "./../../apis/local";
 import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
@@ -45,6 +46,15 @@ const ArticleBody = styled.div`
   }
 `;
 
+const Tags = styled.div`
+  line-height: 2.5em;
+`;
+
+const InterestTag = styled(Tag)`
+  // margin: 5px auto;
+`;
+
+
 class ArticlePage extends Component {
   state = {
     article: null,
@@ -61,7 +71,7 @@ class ArticlePage extends Component {
   componentDidUpdate = () => {
     const { user } = this.props;
     const { article, liked } = this.state;
-    console.log(this.props);
+
     if (user && article && liked === null ) {
       this.setState((state) => {
         return { liked: state.article.likes.includes(user._id) }
@@ -96,6 +106,7 @@ class ArticlePage extends Component {
       });
   }
 
+  
 
   render() {
     const { article, likes, liked } = this.state;
@@ -113,6 +124,11 @@ class ArticlePage extends Component {
               liked={liked}
               likes={likes}
             />
+            <Tags>
+              {article.interests.map((tag) => {
+                return (<InterestTag key={tag}>{tag}</InterestTag>);
+              })}
+            </Tags>
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}
             </ArticleBody>
