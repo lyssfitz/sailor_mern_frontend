@@ -7,13 +7,28 @@ import {Form, Button, Mentions} from 'antd';
 const { Option } = Mentions;
 
 class UserCommentEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.props.value,
+    }
+  }
+
+  handleChange = value => {
+    this.setState({
+      value: value,
+    });
+    this.props.onChange(value);
+  };
+
   render() {
-    const { onChange, onSubmit, submitting, userList } = this.props;
+    const { onSubmit, submitting, userList } = this.props;
     return (
       <div>
         <Form.Item>
           <Mentions
-            onChange={onChange}
+            value={this.state.value}
+            onChange={this.handleChange}
             style={{ width: '100%' }}
             rows="4"
           >
@@ -34,7 +49,12 @@ UserCommentEditor.propTypes = {
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   submitting: PropTypes.bool,
-  userList: PropTypes.array
+  userList: PropTypes.array,
+  value: PropTypes.string
+};
+
+UserCommentEditor.defaultProps = {
+  value: ''
 };
 
 export default UserCommentEditor;

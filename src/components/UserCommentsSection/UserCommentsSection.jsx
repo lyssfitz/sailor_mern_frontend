@@ -41,9 +41,9 @@ class UserCommentsSection extends Component {
     }, 500);
   };
 
-  handleChange = e => {
+  handleChange = value => {
     this.setState({
-      value: e.target.value,
+      value: value,
     });
   };
 
@@ -56,8 +56,8 @@ class UserCommentsSection extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
           submitting={submitting}
-          value={value}
           userList={this.props.userList}
+          value={value}
         />
       </div>
     );
