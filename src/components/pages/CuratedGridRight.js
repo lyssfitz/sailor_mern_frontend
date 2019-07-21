@@ -17,18 +17,18 @@ const CuratedGrid = styled.section`
 
 const InterestHeader = styled.h3`
   font-size: 2.8em;
-  border-right: 0px;
+  border-left: 0px;
   line-height: 1em;
   text-align: center;
-  padding-right: 0;
+  padding-left: 0;
 
   @media (min-width: 768px) {
     font-size: 3.8em;
-    grid-column: 1 / span 1;
+    grid-column: 4 / span 1;
     grid-row: 1 / span 1;
-    border-right: 1px solid #EEE;
-    text-align: right;
-    padding-right: 20px;
+    border-left: 1px solid #EEE;
+    text-align: left;
+    padding-left: 20px;
   }
 `;
 
@@ -45,7 +45,7 @@ const Separator = styled.div`
 
 const MainArticle = styled.div`
   @media (min-width: 768px) {
-    grid-column: 2 / span 3;
+    grid-column: 1 / span 3;
     grid-row: 1 / span 1;
   }
 `;
@@ -65,7 +65,7 @@ const SubArticle2 = styled.div`
 `;
 
 
-class CuratedGridLeft extends Component {
+class CuratedGridRight extends Component {
   
   render() {
     const { tag } = this.props;
@@ -127,4 +127,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(CuratedGridLeft);
+export default connect(mapStateToProps, null)(CuratedGridRight);

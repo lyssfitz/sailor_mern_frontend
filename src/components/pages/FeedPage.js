@@ -20,12 +20,17 @@ const FeedHeader = styled.div`
 `;
 
 const FeedTitle = styled.h1`
-  font-size: 4em;
+  font-size: 3em;
   text-align: center;
+  margin: auto;
   align-self: center;
   letter-spacing: -1px;
+  border-bottom: 7px solid #EEE;
+  width: max-content;
 
   @media (min-width: 768px) {
+    margin: 0;
+    font-size: 4em;
     grid-column: 2;
     align-self: center;
   }
@@ -34,6 +39,7 @@ const FeedTitle = styled.h1`
 const ArticleButton = styled(Button)`
   width: max-content; 
   justify-self: center;
+  margin-top: 20px;
   @media (min-width: 768px) {
     grid-column: 3;
     justify-self: end;
