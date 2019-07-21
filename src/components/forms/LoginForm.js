@@ -29,7 +29,7 @@ class LoginForm extends Component {
     const { handleSubmit, error } = this.props;
 
     return (
-      <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
+      <Form style={{ padding: "20px 0"}} onSubmit={handleSubmit(this.onFormSubmit)}>
         {error && <div style={{ marginBottom: "10px"}}>
             <Alert
             message={error}
@@ -37,15 +37,15 @@ class LoginForm extends Component {
           />
           </div>}
         <div>
-          <Field name="email" placeholder="Email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field style={{margin: "5px 0"}} size="large" name="email" placeholder="Email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <Field name="password" placeholder="Password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field style={{margin: "5px 0"}} size="large" name="password" placeholder="Password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <Button htmlType="submit">Log In</Button>
+          <Button size="large" htmlType="submit">Log In</Button>
         </div>
       
       </Form>

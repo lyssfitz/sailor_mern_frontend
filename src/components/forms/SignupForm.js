@@ -34,27 +34,27 @@ class SignupForm extends Component {
     return (
       <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
         <div>
-          <Field placeholder="First Name" name="firstName" component={AInput} type="text"  />
+          <Field style={{margin: "5px 0"}} size="large" placeholder="First Name" name="firstName" component={AInput} type="text"  />
         </div>
 
         <div>
-          <Field placeholder="Last Name" name="lastName" component={AInput} type="text" />
+          <Field style={{ margin: "5px 0"}} size="large" placeholder="Last Name" name="lastName" component={AInput} type="text" />
         </div>
 
         <div>
-          <Field placeholder="Email" name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field style={{ margin: "5px 0"}} size="large" placeholder="Email" name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <Field placeholder="Password" name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field style={{margin: "5p 0"}} size="large" placeholder="Password" name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <Field placeholder="Confirm Password" name="passwordConfirmation" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field style={{ margin: "5px 0"}} size="large" placeholder="Confirm Password" name="passwordConfirmation" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>
-          <Button htmlType="submit">Sign Up</Button>
+          <Button size="large" htmlType="submit">Sign Up</Button>
         </div>
       </Form>
     );
@@ -78,6 +78,10 @@ const WrappedSignupForm = reduxForm({
       errors.password = "Password must be between 6 and 20 characters";
     } else if (formValues.passwordConfirmation !== formValues.password) {
       errors.passwordConfirmation = "Password must match" ;
+    }
+
+    if (!formValues.passwordConfirmation) {
+      errors.passwordConfirmation = "Password confirmation is required" ;
     }
 
     if (!formValues.firstName) {
