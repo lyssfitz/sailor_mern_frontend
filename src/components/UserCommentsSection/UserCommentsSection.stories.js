@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import UserCommentsSection from './UserCommentsSection'
 import { UserComments } from "../UserCommentList/UserCommentList.stories";
+import { UserList} from "../UserCommentEditor/UserCommentEditor.stories";
 
-const AuthorName = "Harry Potter"
+const AuthorName = "Harry Potter";
 
 storiesOf('UserCommentsSection', module)
   .addDecorator(story => <div style={{padding: '3rem'}}>{story()}</div>)
@@ -12,12 +12,14 @@ storiesOf('UserCommentsSection', module)
     <UserCommentsSection 
       authorName={AuthorName}
       commentList={[]}
+      userList={UserList}
     />
   ))
   .add('with comments', () => (
     <UserCommentsSection 
       authorName={AuthorName}
       commentList={UserComments}
+      userList={UserList}
     />
   ))
 ;
