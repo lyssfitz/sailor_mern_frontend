@@ -1,9 +1,8 @@
-module.exports = function override(config, env) {
-  // do stuff with the webpack config...
-  return config;
-};
-
 const { override, fixBabelImports, addLessLoader } = require('customize-cra');
+const path = require('path');
+const fs  = require('fs');
+const lessToJs = require('less-vars-to-js');
+const themeVars = lessToJs(fs.readFileSync(path.join(__dirname, './src/antTheme.less'), 'utf8'));
 
 module.exports = override(
   fixBabelImports('import', {
@@ -13,10 +12,6 @@ module.exports = override(
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: {
-      'primary-color': '#22C458',
-      'link-color': '#22C458',
-      'border-radius-base': '6px'
-    },
+    modifyVars: themeVars,
   }),
 );
