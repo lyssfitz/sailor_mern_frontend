@@ -48,10 +48,19 @@ export const setArticles = (articles) => {
   }
 }
 
+// export const setCuratedArticles = (curatedArticles) => {
+//   return {
+//     type: "CURATED_ARTICLES_LIST",
+//     payload: curatedArticles
+//   }
+// }
+
 export const fetchArticles = () => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.get("/feed");
+    // console.log(response.data, "here");
     dispatch(setArticles(response.data));
+    // dispatch(setCuratedArticles(response.data));
   }
 }
 
