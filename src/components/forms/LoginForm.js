@@ -1,35 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, SubmissionError } from "redux-form";
 import { setAuthToken } from "./../../actions";
 import LocalAPI from "./../../apis/local";
-import { Form, Icon, Button, Input } from "antd";
+import styled from "styled-components";
+import { Alert, Form, Icon, Button, Input } from "antd";
 import MakeField from "./fields/MakeField";
 
 const AInput = MakeField(Input);
 
+
+
 class LoginForm extends Component {
+
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
     
-    LocalAPI.post("/auth/login", { email, password })
+    await LocalAPI.post("/auth/login", { email, password })
       .then(response => {
         // currently response.data.token is faked from json server
         this.props.setAuthToken(response.data.token);
         this.props.history.push("/feed");
       })
       .catch(error => {
-        console.log(error);
         this.props.history.push("/login");
+        throw new SubmissionError({ _error: "Invalid credentials"});
       });
   };
 
   render() {
-    const { handleSubmit } = this.props;
-
+    const { handleSubmit, error } = this.props;
+    console.log(error);
     return (
       <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
-
+        {error && <div style={{color: "black", marginBottom: "30px"}}>
+            <Alert
+            message={error}
+            type="error"
+          />
+          </div>}
         <div>
           <Field name="email" placeholder="Email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
@@ -54,12 +63,14 @@ const WrappedLoginForm = reduxForm({
 
     if (!formValues.email) {
       errors.email = "Email is required";
+    } else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(formValues.email)) {
+      errors.email = "Invalid email address";
     }
 
     if (!formValues.password) {
       errors.password = "Password is required";
     }
-
+    console.log(formValues);
     return errors;
   }
 })(LoginForm);
