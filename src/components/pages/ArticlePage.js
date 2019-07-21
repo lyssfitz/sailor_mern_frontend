@@ -30,7 +30,7 @@ const ArticleHeader = styled.div`
 
 const ArticleButtons = styled.div`
   grid-row: 3 / span 1;
-  text-align: right;
+  text-align: center;
 
   > * {
     margin: 5px;
@@ -42,6 +42,7 @@ const ArticleButtons = styled.div`
     position: -webkit-sticky;
     position: sticky;
     top: 100px;
+    text-align: right;
   }
 `;
 
@@ -113,7 +114,6 @@ const ArticleBody = styled.div`
 `;
 
 const Separator = styled.div`
-
 
   width: 40%;
   border-top: 5px solid #000;
@@ -205,7 +205,7 @@ class ArticlePage extends Component {
             <ArticleButtons>
             <Button
               // onClick={like}
-              style={{ textTransform: "uppercase", fontSize: "10px", letterSpacing: "0.5px" }}
+              style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
             >
               Share <Icon
                 type="mail"

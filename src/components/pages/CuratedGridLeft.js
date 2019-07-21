@@ -32,6 +32,17 @@ const InterestHeader = styled.h3`
   }
 `;
 
+const Separator = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    width: 15%;
+    border-top: 5px solid #000;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+`;
+
 const MainArticle = styled.div`
   @media (min-width: 768px) {
     grid-column: 2 / span 3;
@@ -63,7 +74,8 @@ class CuratedGridLeft extends Component {
       return (
         <CuratedGrid>
         <InterestHeader>
-          {tag.tag}
+          <Separator></Separator>
+          <span>{tag.tag}</span>
         </InterestHeader>
               <MainArticle>
                 <ArticleCard 

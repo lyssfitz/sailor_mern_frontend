@@ -10,6 +10,7 @@ class LikeButton extends Component {
     return (
       <Button
         onClick={like}
+        style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
       >
         <Icon
           type="heart"
