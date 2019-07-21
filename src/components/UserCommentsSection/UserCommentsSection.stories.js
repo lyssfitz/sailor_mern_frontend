@@ -1,25 +1,39 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import UserCommentsSection from './UserCommentsSection'
+import { mount } from "enzyme";
+import UserCommentsSection from "./UserCommentsSection";
 import { UserComments } from "../UserCommentList/UserCommentList.stories";
 import { UserList} from "../UserCommentEditor/UserCommentEditor.stories";
 
-const AuthorName = "Harry Potter";
+const AuthorName = "";
 
-storiesOf('UserCommentsSection', module)
-  .addDecorator(story => <div style={{padding: '3rem'}}>{story()}</div>)
-  .add('no comments', () => (
-    <UserCommentsSection 
-      authorName={AuthorName}
-      commentList={[]}
-      userList={UserList}
-    />
-  ))
-  .add('with comments', () => (
-    <UserCommentsSection 
-      authorName={AuthorName}
-      commentList={UserComments}
-      userList={UserList}
-    />
-  ))
-;
+describe('UserCommentsSection', () => {
+
+  it('should add a new comment to the list', () => {
+    let component = mount(
+      <UserCommentsSection
+        authorName={AuthorName}
+        commentList={UserComments}
+        userList={UserList}
+      />
+    );
+
+    // assert there are three comment to start with
+    let commentContentElements = component.find('.ant-comment-content-author');
+    expect(commentContentElements.length).toEqual(3);
+
+    // add a new comment
+    let userCommentEditor = component.find('UserCommentEditor').first();
+
+    let textAreaComponent = userCommentEditor.find('textarea').first();
+    textAreaComponent.simulate('change', {target: {value: 'abc'}});
+
+    let buttonElement = userCommentEditor.find('button').first();
+    buttonElement.simulate('click');
+
+    // assert there are three comment to start with
+    commentContentElements = component.find('.ant-comment-content-author');
+    expect(commentContentElements.length).toEqual(4);
+
+    // Todo: figure why this is not working, is there a better way?
+  });
+});

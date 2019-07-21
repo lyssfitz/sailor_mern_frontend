@@ -15,14 +15,17 @@ class UserCommentEditor extends Component {
   }
 
   handleChange = value => {
-    this.setState({
-      value: value,
-    });
+    this.setState({value: value,});
     this.props.onChange(value);
   };
 
+  handleSubmit = () => {
+    this.setState({value: '',});
+    this.props.onSubmit();
+  };
+
   render() {
-    const { onSubmit, submitting, userList } = this.props;
+    const { submitting, userList } = this.props;
     return (
       <div>
         <Form.Item>
@@ -36,7 +39,7 @@ class UserCommentEditor extends Component {
           </Mentions>
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
+          <Button htmlType="submit" loading={submitting} onClick={this.handleSubmit} type="primary">
             Add Comment
           </Button>
         </Form.Item>
