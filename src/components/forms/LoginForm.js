@@ -3,13 +3,10 @@ import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import { setAuthToken } from "./../../actions";
 import LocalAPI from "./../../apis/local";
-import styled from "styled-components";
 import { Alert, Form, Icon, Button, Input } from "antd";
 import MakeField from "./fields/MakeField";
 
 const AInput = MakeField(Input);
-
-
 
 class LoginForm extends Component {
 
@@ -30,10 +27,10 @@ class LoginForm extends Component {
 
   render() {
     const { handleSubmit, error } = this.props;
-    console.log(error);
+
     return (
       <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
-        {error && <div style={{color: "black", marginBottom: "30px"}}>
+        {error && <div style={{ marginBottom: "10px"}}>
             <Alert
             message={error}
             type="error"
@@ -70,7 +67,7 @@ const WrappedLoginForm = reduxForm({
     if (!formValues.password) {
       errors.password = "Password is required";
     }
-    console.log(formValues);
+
     return errors;
   }
 })(LoginForm);
