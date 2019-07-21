@@ -41,9 +41,9 @@ class UserCommentsSection extends Component {
     }, 500);
   };
 
-  handleChange = e => {
+  handleChange = value => {
     this.setState({
-      value: e.target.value,
+      value: value,
     });
   };
 
@@ -56,6 +56,7 @@ class UserCommentsSection extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
           submitting={submitting}
+          userList={this.props.userList}
           value={value}
         />
       </div>
@@ -66,6 +67,7 @@ class UserCommentsSection extends Component {
 UserCommentsSection.propTypes = {
   authorName: PropTypes.string.isRequired,
   commentList: PropTypes.array.isRequired,
+  userList: PropTypes.array.isRequired
 };
 
 export default UserCommentsSection;
