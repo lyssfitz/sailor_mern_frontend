@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import LocalAPI from "./../../apis/local"
+import { connect } from "react-redux";
+import styled from "styled-components";
+import LocalAPI from "./../../apis/local";
+import { showArticleModal, fetchArticles, fetchCurrentUser } from "./../../actions";
 
 class ProfilePage extends Component {
   state = {
@@ -9,6 +12,12 @@ class ProfilePage extends Component {
 
   componentDidMount = () => {
     // const { id } = this.props.match.params;
+    const { fetchCurrentUser, token } = this.props;
+
+    if (token) {
+      fetchCurrentUser();
+    }
+
     this.fetchLikes();
   }
 
@@ -35,6 +44,8 @@ class ProfilePage extends Component {
 
   render() {
     const { likes } = this.state;
+    const { user, showArticleModal } = this.props;
+    console.log(user);
 
     return(
       <>
@@ -55,4 +66,13 @@ class ProfilePage extends Component {
   }
 }
 
-export default ProfilePage;
+const mapStateToProps = (state) => {
+    return {
+      token: state.auth.token,
+      user: state.user.user,
+      userInterests: state.userInterests,
+      articles: state.articles
+    }
+  }
+  
+export default connect(mapStateToProps, { showArticleModal, fetchArticles, fetchCurrentUser })(ProfilePage);
