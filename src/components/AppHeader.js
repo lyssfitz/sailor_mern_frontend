@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Menu, Icon, Dropdown, Button } from 'antd';
 import InterestsModal from "./pages/InterestsModal";
 import { connect } from "react-redux";
-import { removeAuthToken, showInterestsModal } from "./../actions";
+import { removeAuthToken, showInterestsModal, getArticlesByInterest } from "./../actions";
 
 const MainHeader = styled.header`
   padding: 20px;
@@ -82,7 +82,7 @@ class AppHeader extends Component {
                   <Menu>
                   {userInterests.map((interest) => {
                     return (
-                      <Menu.Item key={interest}>
+                      <Menu.Item onClick={() => this.props.getArticlesByInterest(interest)} key={interest}>
                         <Link to={{ pathname: `/feed/${interest.replace(" ", "-")}` }}>
                           {interest}
                         </Link>
@@ -133,4 +133,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { removeAuthToken, showInterestsModal })(AppHeader);
+export default connect(mapStateToProps, { removeAuthToken, showInterestsModal, getArticlesByInterest })(AppHeader);

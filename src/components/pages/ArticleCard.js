@@ -8,7 +8,7 @@ const Article = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr max-content;
   border-bottom: 1px solid #EEE;
-  padding: 0 0 20px 0;
+  padding: 0 0 0 0;
 `;
 
 const ArticleInfo = styled.div`
@@ -16,13 +16,11 @@ const ArticleInfo = styled.div`
   padding-top: 10px;
 `;
 
-const ArticleButtons = styled.div`
+const ArticleFooter = styled.div`
   grid-row: 3;
   font-size: 1em;
   text-align: right;
-  padding-bottom: 10px;
-  color: #eb0e42;
-  display: none;
+  align-content: end;
 `;
 
 const ArticleImg = styled.img`
@@ -44,19 +42,32 @@ const ArticleTitle = styled.h2`
 `;
 
 const ArticleAuthor = styled.h3`
-  font-size: 0.9em;
+  font-size: 1em;
   // text-transform: uppercase;
   font-weight: 700;
+  display: inline-block;
 `;
 
+const ArticleDate = styled.h3`
+  font-size: 1em;
+  // text-transform: uppercase;
+  font-weight: 400;
+  display: inline-block;
+`;
+
+
 const ArticleSource = styled.h3`
-  font-size: 0.9em;
+  font-size: 1em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #CCC;
+  padding-top: 5px;
 `;
 
 const Tags = styled.div`
   line-height: 2.5em;
+  color: #CCC;
 `;
 
 const InterestTag = styled(Tag)`
@@ -66,19 +77,7 @@ const InterestTag = styled(Tag)`
 
 
 class ArticleCard extends Component {
-  // until user model has favourites, temporarily use 'local' state
-  // where favourites are not stored on user
-  state = {
-    favourited: false
-  }
-
-  onFavClick = () => {
-    const { favourited } = this.state;
-    favourited ? this.setState({ favourited: false }) : this.setState({ favourited: true })
-  }
-
   render() {
-    const { favourited } = this.state;
 
     return (
       <Article>
@@ -88,24 +87,23 @@ class ArticleCard extends Component {
           <ArticleInfo>
             <Link to={{ pathname: `/article/${this.props.id}` }}>
               <ArticleTitle>{this.props.title}</ArticleTitle>
-              <ArticleAuthor>{this.props.author}</ArticleAuthor>
-              <ArticleSource>{this.props.source}</ArticleSource>
-              <h5>{moment(this.props.date).format("ddd Do MMM, 'YY")}</h5>
+              <ArticleAuthor>{this.props.author}</ArticleAuthor>{this.props.author && <Icon style={{ color: "#CCC", padding: "0 3px" }} type="line" />}<ArticleDate>{moment(this.props.date).format("ddd Do MMM, 'YY")}</ArticleDate>
             </Link>
             <Tags>
-              {this.props.interests.map((tag) => {
+              {this.props.interests.length !== 0 && <Icon style={{ paddingRight: "5px" }} type="tag" />} {this.props.interests.map((tag) => {
                 return (<InterestTag key={tag}>{tag}</InterestTag>);
               })}
             </Tags>
           </ArticleInfo>
         
-        <ArticleButtons>
-          <Icon
+        <ArticleFooter>
+          {/* <Icon
             type="heart"
             theme={favourited && "filled"}
             onClick={this.onFavClick}
-          />
-        </ArticleButtons>
+          /> */}
+          <ArticleSource>{this.props.source} <Icon type="border" /></ArticleSource>
+        </ArticleFooter>
       </Article>
     );
   }

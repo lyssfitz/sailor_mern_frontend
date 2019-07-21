@@ -23,9 +23,7 @@ const InterestContainer = styled.div`
 `;
 
 const InterestCard = styled(Card)`
-  border-radius: 20px;
   overflow: hidden;
-
 `;
 
 class InterestsModal extends Component {

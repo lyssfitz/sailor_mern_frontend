@@ -119,7 +119,7 @@ class ArticlePage extends Component {
           <Article>
             <ArticleTitle>{article.metadata.title}</ArticleTitle>
             <ArticleAuthor>{article.metadata.author}</ArticleAuthor>
-            <ArticleSource>{moment(article.date_posted).format("h:m a dddd Do MMM 'YY")} | {article.metadata.source}</ArticleSource>
+            <ArticleSource>{moment(article.date_posted).format("h:mm a dddd Do MMM 'YY")} | {article.metadata.source}</ArticleSource>
             <LikeButton 
               like={this.onLikeButtonClick}
               liked={liked}
