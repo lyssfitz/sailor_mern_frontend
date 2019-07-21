@@ -5,9 +5,22 @@ import { setAuthToken } from "./../../actions";
 import LocalAPI from "./../../apis/local";
 // import FormInput from "./fields/FormInput";
 import { Form, Icon, Button, Input } from "antd";
+import styled from "styled-components"
 import MakeField from "./fields/MakeField";
 
 const AInput = MakeField(Input);
+
+const Name = styled.div`
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap 20px;
+  }
+`;
 
 class SignupForm extends Component {
 
@@ -33,13 +46,15 @@ class SignupForm extends Component {
 
     return (
       <Form style={{ padding: "20px 0" }} onSubmit={handleSubmit(this.onFormSubmit)}>
-        <div>
-          <Field style={{margin: "5px 0"}} size="large" placeholder="First Name" name="firstName" component={AInput} type="text"  />
-        </div>
+        <Name>
+          <div>
+            <Field style={{margin: "5px 0"}} size="large" placeholder="First Name" name="firstName" component={AInput} type="text"  />
+          </div>
 
-        <div>
-          <Field style={{ margin: "5px 0"}} size="large" placeholder="Last Name" name="lastName" component={AInput} type="text" />
-        </div>
+          <div>
+            <Field style={{ margin: "5px 0"}} size="large" placeholder="Last Name" name="lastName" component={AInput} type="text" />
+          </div>
+        </Name>
 
         <div>
           <Field style={{ margin: "5px 0"}} size="large" placeholder="Email" name="email" component={AInput} type="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />

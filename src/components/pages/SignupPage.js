@@ -12,6 +12,12 @@ const Signup = styled.section`
   }
 `;
 
+const SignupHeading = styled.h1`
+  font-size: 2.7em;
+  letter-spacing: -1px;
+`;
+
+
 const SignupContent = styled.div`
   
   max-width: 400px;
@@ -35,7 +41,7 @@ class SignupPage extends Component {
     return (
       <Signup>
         <SignupContent>
-          <h1>Sign Up</h1>
+          <SignupHeading>Sign Up</SignupHeading>
           <div>
             <LinkedinButton />
           </div>
