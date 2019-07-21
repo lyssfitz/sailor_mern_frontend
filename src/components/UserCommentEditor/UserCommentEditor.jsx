@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
 // Ant.d components
-import {Form, Button, Input, Mentions} from 'antd';
+import {Form, Button, Mentions} from 'antd';
 
-const { TextArea } = Input;
 const { Option } = Mentions;
-
 
 class UserCommentEditor extends Component {
   render() {
-    const { onChange, onSubmit, submitting, value, users } = this.props;
+    const { onSubmit, submitting, value, userList } = this.props;
     return (
       <div>
         <Form.Item>
@@ -19,7 +17,7 @@ class UserCommentEditor extends Component {
             // value={value}
             rows="4"
           >
-            {users && users.map((user, index) => <Option key={index} value={user}/>)}
+            {userList && userList.map((user, index) => <Option key={index} value={user}>{user}</Option>)}
           </Mentions>
         </Form.Item>
         <Form.Item>
@@ -37,7 +35,7 @@ UserCommentEditor.propTypes = {
   onSubmit: PropTypes.func,
   submitting: PropTypes.bool,
   value: PropTypes.string,
-  users: PropTypes.array
+  userList: PropTypes.array
 };
 
 export default UserCommentEditor;

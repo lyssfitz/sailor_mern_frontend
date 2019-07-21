@@ -57,6 +57,7 @@ class UserCommentsSection extends Component {
           onSubmit={this.handleSubmit}
           submitting={submitting}
           value={value}
+          userList={this.props.userList}
         />
       </div>
     );
@@ -66,6 +67,7 @@ class UserCommentsSection extends Component {
 UserCommentsSection.propTypes = {
   authorName: PropTypes.string.isRequired,
   commentList: PropTypes.array.isRequired,
+  userList: PropTypes.array.isRequired
 };
 
 export default UserCommentsSection;

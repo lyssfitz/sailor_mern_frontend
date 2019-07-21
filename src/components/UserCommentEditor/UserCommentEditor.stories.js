@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import UserCommentEditor from './UserCommentEditor'
 
-export const Users = [
+export const UserList = [
   "afc163",
   "zombieJ",
   "yesmeck",
@@ -20,7 +20,7 @@ storiesOf('UserCommentEditor', module)
     <UserCommentEditor 
       submitting={false}
       value="That was a great article."
-      users={Users}
+      userList={UserList}
       {...actions}
     />
   ))
