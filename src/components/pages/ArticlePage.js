@@ -14,9 +14,13 @@ const Article = styled.article`
 `;
 
 const ArticleTitle = styled.h1`
-  font-size: 3em;
-  // font-family: 'DM Serif Text', serif;
-  line-height: 1.2em;
+  font-size: 2em;
+  line-height: 1em;
+
+  @media (min-width: 768px) {
+    font-size: 3.8em;
+    line-height: 1em;
+  }
 `;
 
 const ArticleAuthor = styled.h2`

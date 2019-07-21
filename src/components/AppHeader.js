@@ -11,6 +11,10 @@ const MainHeader = styled.header`
   display: grid;
   grid-template-columns: 50px 1fr;
   border-bottom: 1px solid #EEE;
+  background: #FFF;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
 `;
 
 const MainLogo = styled.div`
