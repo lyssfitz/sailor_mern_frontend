@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 
 // Ant.d components
 import {Form, Button, Mentions} from 'antd';
@@ -11,8 +12,40 @@ class UserCommentEditor extends Component {
     super(props);
     this.state = {
       value: this.props.value,
-    }
+      loading: false,
+      search: '',
+      users: [],
+    };
+
+    this.loadGithubUsers = debounce(this.loadGithubUsers, 800);
   }
+
+  loadGithubUsers(key) {
+    if (!key) {
+      this.setState({
+        users: [],
+      });
+      return;
+    }
+
+    fetch(`https://api.github.com/search/users?q=${key}`)
+      .then(res => res.json())
+      .then(({ items = [] }) => {
+        const { search } = this.state;
+        if (search !== key) return;
+
+        this.setState({
+          users: items.slice(0, 10),
+          loading: false,
+        });
+      });
+  }
+
+  handleSearch = search => {
+    this.setState({ search, loading: !!search, users: [] });
+    console.log('Search:', search);
+    this.loadGithubUsers(search);
+  };
 
   handleChange = value => {
     this.setState({value: value,});
@@ -26,16 +59,19 @@ class UserCommentEditor extends Component {
 
   render() {
     const { submitting, userList } = this.props;
+    const { loading, value, users } = this.state;
     return (
       <div>
         <Form.Item>
           <Mentions
-            value={this.state.value}
+            value={value}
             onChange={this.handleChange}
+            onSearch={this.handleSearch}
+            loading={loading}
             style={{ width: '100%' }}
             rows="4"
           >
-            {userList && userList.map((user, index) => <Option key={index} value={user}>{user}</Option>)}
+            {users && users.map(({ login }) => <Option key={login} value={login}>{login}</Option>)}
           </Mentions>
         </Form.Item>
         <Form.Item>
