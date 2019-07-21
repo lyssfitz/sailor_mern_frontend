@@ -8,13 +8,13 @@ const { Option } = Mentions;
 
 class UserCommentEditor extends Component {
   render() {
-    const { onSubmit, submitting, value, userList } = this.props;
+    const { onChange, onSubmit, submitting, userList } = this.props;
     return (
       <div>
         <Form.Item>
           <Mentions
+            onChange={onChange}
             style={{ width: '100%' }}
-            // value={value}
             rows="4"
           >
             {userList && userList.map((user, index) => <Option key={index} value={user}>{user}</Option>)}
@@ -34,7 +34,6 @@ UserCommentEditor.propTypes = {
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   submitting: PropTypes.bool,
-  value: PropTypes.string,
   userList: PropTypes.array
 };
 
