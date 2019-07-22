@@ -9,6 +9,8 @@ import ReactHtmlParser from 'react-html-parser';
 import { Linkedin } from "react-social-sharing"
 import moment from "moment";
 
+// import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
+
 const Article = styled.article`
   max-width: 700px;
   margin: 0 auto;
@@ -114,6 +116,12 @@ const ArticleBody = styled.div`
 
 `;
 
+const ArticleComments = styled.div`
+  @media (min-width: 768px) {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+  }
+`;
 const Separator = styled.div`
 
   width: 40%;
@@ -185,7 +193,7 @@ class ArticlePage extends Component {
 
   render() {
     const { article, likes, liked } = this.state;
-    console.log(this.props)
+    // console.log(this.props)
     const article_url = this.props.location.pathname;
 
     if (article) {
@@ -214,7 +222,7 @@ class ArticlePage extends Component {
                 type="mail"
               />
             </Button>
-            <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} />
+            {/* <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} /> */}
             <Linkedin link={`${article.metadata.url}`} />
               <LikeButton 
                 like={this.onLikeButtonClick}
@@ -227,7 +235,9 @@ class ArticlePage extends Component {
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}
             </ArticleBody>
+            {/* <ArticleComments>{article && <UserCommentsSection comments={article.comments} articleId={article._id}/>}</ArticleComments> */}
           </Article>
+
         </>
       );
     }
