@@ -4,19 +4,7 @@ import { Modal, Button, Card } from 'antd';
 import { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal,  } from "./../../actions";
 import LoadingPage from "./LoadingPage"
 import styled from "styled-components";
-import DigitalHealth from "./../../assets/img/DigitalHealth.png";
-import GeneralPractice from "./../../assets/img/GeneralPractice.png"
 
-const { Meta } = Card;
-
-
-const PlaceHolder = styled.div`
-  width: 100%;
-  height: 50px;
-  background-color: #EEE;
-  padding: 0;
-  margin: 0;
-`;
 
 const InterestContainer = styled.div`
   display: grid;
