@@ -214,7 +214,7 @@ class ArticlePage extends Component {
                 type="mail"
               />
             </Button>
-            <Linkedin link={`${article_url}`} />
+            <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} />
             <Linkedin link={`${article.metadata.url}`} />
               <LikeButton 
                 like={this.onLikeButtonClick}
