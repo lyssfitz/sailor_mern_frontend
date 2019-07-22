@@ -185,6 +185,8 @@ class ArticlePage extends Component {
 
   render() {
     const { article, likes, liked } = this.state;
+    console.log(this.props)
+    const article_url = this.props.location.pathname;
 
     if (article) {
 
@@ -212,7 +214,8 @@ class ArticlePage extends Component {
                 type="mail"
               />
             </Button>
-            <Linkedin link="https://github.com" />
+            <Linkedin link={`${article_url}`} />
+            <Linkedin link={`${article.metadata.url}`} />
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}
