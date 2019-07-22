@@ -28,9 +28,11 @@ const InfoHeader = styled.h1`
   }
 `;
 
-const InfoBody = styled.div`
+const InfoBody = styled.article`
   grid-column: 1 / span 1;
   font-size: 1.2em;
+  color: #000;
+  line-height: 2em;
 
   @media (min-width: 768px) {
     grid-column: 1 / span 1;
