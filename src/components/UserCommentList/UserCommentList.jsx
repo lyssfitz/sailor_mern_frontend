@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 // Ant.d components
 import { List } from 'antd';
@@ -22,6 +23,7 @@ class UserCommentList extends Component {
 
   render() {
     const { userComments } = this.props;
+    // console.log(this.props.userComments);
     return (
       <List
         className="comment-list"
@@ -31,9 +33,9 @@ class UserCommentList extends Component {
         renderItem={item => (
           <li>
             <UserComment
-              authorName={item.authorName}
-              content={item.content}
-              dateTime={item.dateTime}
+              authorName={item.user_metadata.firstName}
+              content={item.body}
+              dateTime={Moment(item.date_posted)}
             />
           </li>
         )}
