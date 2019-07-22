@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import moment from 'moment';
 import LocalAPI from './../../apis/local';
 import { connect } from "react-redux";
 
@@ -31,24 +29,11 @@ class UserCommentsSection extends Component {
     const body = this.state.value
     const user_metadata = {commentor_id: user._id, firstName: user.firstName, lastName: user.lastName}
     const mention = {mentionee_id: "5d2d6050ec1b07710c0efa84"}
-    const response = await LocalAPI.post(`/article/${this.props.articleId}/comment_create`, {body, user_metadata, mention})
+    await LocalAPI.post(`/article/${this.props.articleId}/comment_create`, {body, user_metadata, mention})
     this.setState({
       submitting: false
     })
-    // setTimeout(() => {
-    //   this.setState({
-    //     submitting: false,
-    //     value: '',
-    //     comments: [
-    //       {
-    //         authorName: this.props.authorName,
-    //         content: this.state.value,
-    //         dateTime: moment(),
-    //       },
-    //       ...this.state.comments,
-    //     ],
-    //   });
-    // }, 500);
+
   };
 
   handleChange = value => {
@@ -74,11 +59,6 @@ class UserCommentsSection extends Component {
   }
 }
 
-// UserCommentsSection.propTypes = {
-//   authorName: PropTypes.string.isRequired,
-//   commentList: PropTypes.array.isRequired,
-//   userList: PropTypes.array.isRequired
-// };
 
 const mapStateToProps = (state) => {
   return {

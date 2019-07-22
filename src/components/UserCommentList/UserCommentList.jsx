@@ -23,7 +23,7 @@ class UserCommentList extends Component {
 
   render() {
     const { userComments } = this.props;
-    console.log(this.props.userComments);
+    // console.log(this.props.userComments);
     return (
       <List
         className="comment-list"

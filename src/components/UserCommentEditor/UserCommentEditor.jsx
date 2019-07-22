@@ -58,8 +58,8 @@ class UserCommentEditor extends Component {
   };
 
   render() {
-    console.log(this.state.users);
-    const { submitting, userList } = this.props;
+    // console.log(this.state.users);
+    const { submitting } = this.props;
     const { loading, value, users } = this.state;
     return (
       <div>
