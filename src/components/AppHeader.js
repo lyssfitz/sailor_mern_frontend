@@ -1,41 +1,44 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components"
-import { Layout, Menu, Icon, Dropdown, Button } from 'antd';
+import { Menu, Icon, Dropdown, Button } from 'antd';
 import InterestsModal from "./pages/InterestsModal";
 import { connect } from "react-redux";
-import { removeAuthToken, showInterestsModal } from "./../actions";
+import { removeAuthToken, showInterestsModal, getArticlesByInterest } from "./../actions";
 
-const { Header } = Layout;
-
-const MainHeader = styled(Header)`
-  background-color: #f0f2f5;
-  padding: 0;
+const MainHeader = styled.header`
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  border-bottom: 1px solid #EEE;
+  background: #FFF;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 `;
 
 const MainLogo = styled.div`
   width: 32px;
   height: 32px;
   background-color: #DDD;
-  margin: 16px 24px;
-  float: left;
   border-radius: 10px;
+  grid-column: 1;
 `;
 
-const MainMenu = styled(Menu)`
-  line-height: 64px;
-  text-align: right;
-  width: 100%;
-  background: transparent;
-  border-bottom: 0px;
+const MainMenu = styled.div`
+  grid-column: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  > * {
+    margin-left: 20px;
+  }
 `;
 
-const MenuItem = styled(Menu.Item)`
-`;
 
 const icon = {
   fontSize: "1.5em",
-  paddingTop: "20px"
 }
 
 
@@ -53,14 +56,14 @@ class AppHeader extends Component {
     if (token) {
       const dropdownUserItems = (
         <Menu>
-          <MenuItem>
+          <Menu.Item>
             <Link to="/profile">
               View Profile
             </Link>
-          </MenuItem>
-          <MenuItem onClick={this.onLogoutClick}>
+          </Menu.Item>
+          <Menu.Item onClick={this.onLogoutClick}>
               Logout
-          </MenuItem>
+          </Menu.Item>
         </Menu>
       );
   
@@ -69,33 +72,26 @@ class AppHeader extends Component {
         <InterestsModal />
         <MainHeader>
           <MainLogo />
-          <MainMenu mode="horizontal">    
+          <MainMenu>    
 
-            <MenuItem key="3">
-              <Button onClick={this.props.showInterestsModal}>
-                Edit Interests
-              </Button>
-            </MenuItem>
+            <Button onClick={this.props.showInterestsModal}>
+              Edit Interests
+            </Button>
 
-            <MenuItem key="5">
-              <Link to="/feed">
-                <Button type="primary">
-                  View Feed
-                </Button>
-              </Link>
-            </MenuItem>
+            <Button href="/feed" type="primary">
+              View Feed
+            </Button>
 
             {userInterests && userInterests.length > 0 &&
-              <MenuItem key="4">
                 <Dropdown overlay={
                   <Menu>
                   {userInterests.map((interest) => {
                     return (
-                      <MenuItem key={interest}>
+                      <Menu.Item onClick={() => this.props.getArticlesByInterest(interest)} key={interest}>
                         <Link to={{ pathname: `/feed/${interest.replace(" ", "-")}` }}>
                           {interest}
                         </Link>
-                      </MenuItem>
+                      </Menu.Item>
                     );
                   })}
                 </Menu>
@@ -104,20 +100,17 @@ class AppHeader extends Component {
                     <Icon style={icon} type="filter" />
                   </Link>
                 </Dropdown>
-              </MenuItem>
             }
 
-            <MenuItem key="1">
-              <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
-            </MenuItem>
+            <Link to="/notifications"><Icon style={icon} type="bell"/></Link>
 
-            <MenuItem className="userprofile" key="2">
-              <Dropdown overlay={dropdownUserItems} trigger={['click']}>
-                <Link to="#">
-                  <Icon style={icon} type="user" />
-                </Link>
-              </Dropdown>
-            </MenuItem>
+
+            <Dropdown overlay={dropdownUserItems} trigger={['click']}>
+              <Link to="#">
+                <Icon style={icon} type="user" />
+              </Link>
+            </Dropdown>
+
 
           </MainMenu>
         </MainHeader>
@@ -128,13 +121,9 @@ class AppHeader extends Component {
     return (
       <MainHeader>
         <MainLogo />
-        <MainMenu mode="horizontal">    
-          <MenuItem key="1">
-            <Link to="/signup">Sign Up</Link>
-          </MenuItem>
-          <MenuItem key="2">
-            <Link to="/login">Login</Link>
-          </MenuItem>
+        <MainMenu>    
+          <Button href="/signup" type="primary">Sign Up</Button>
+          <Button href="/login">Login</Button>
         </MainMenu>
       </MainHeader>
     );
@@ -149,4 +138,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { removeAuthToken, showInterestsModal })(AppHeader);
+export default connect(mapStateToProps, { removeAuthToken, showInterestsModal, getArticlesByInterest })(AppHeader);
