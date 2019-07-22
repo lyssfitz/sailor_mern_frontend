@@ -193,7 +193,7 @@ class ArticlePage extends Component {
 
   render() {
     const { article, likes, liked } = this.state;
-    console.log(this.props)
+    // console.log(this.props)
     const article_url = this.props.location.pathname;
 
     if (article) {

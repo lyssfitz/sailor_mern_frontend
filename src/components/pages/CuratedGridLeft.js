@@ -69,7 +69,7 @@ class CuratedGridLeft extends Component {
   
   render() {
     const { tag } = this.props;
-
+    console.log(this.props, "here");
     if (tag && tag.articles.length > 0) {
       return (
         <CuratedGrid>
