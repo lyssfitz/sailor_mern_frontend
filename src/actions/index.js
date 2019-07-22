@@ -64,6 +64,20 @@ export const fetchArticles = () => {
   }
 }
 
+export const setArticlesByInterest = (selectedArticles) => {
+  return {
+    type: "CATEGORY_ARTICLES_LIST",
+    payload: selectedArticles
+  }
+}
+
+
+export const getArticlesByInterest = (interest) => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.get(`/feed/${interest}`);
+    dispatch(setArticlesByInterest(response.data));
+  }
+}
 
 
 // Add Article Modal

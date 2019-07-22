@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import LocalAPI from "./../../apis/local"
+// import LocalAPI from "./../../apis/local"
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { getArticlesByInterest } from "./../../actions"
 import ArticleCard from "./ArticleCard"
+import LoadingPage from "./LoadingPage"
 
 const CategoryContainer = styled.section`
   display: grid;
@@ -10,47 +13,34 @@ const CategoryContainer = styled.section`
 `;
 
 const CategoryTitle = styled.h1`
-  font-size: 4em;
-  text-align: center;
+  font-size: 2em;
+  margin: 0 auto;
   align-self: center;
+  border-bottom: 7px solid #EEE;
+  width: max-content;
+
+  @media (min-width: 768px) {
+    font-size: 4em;
+    margin: 0;
+  }
 `;
 
 class CategoryPage extends Component {
-  state = {
-    articles: null
-  }
-
   componentDidMount() {
     const { interest } = this.props.match.params;
-    this.getArticlesByInterest(interest);
+    this.props.getArticlesByInterest(interest);
   }
-
-  // componentDidUpdate() {
-  //   const { interest } = this.props.match.params;
-  //   this.getArticlesByInterest(interest);
-  // }
-
-  getArticlesByInterest = (interest) => {
-    LocalAPI.get(`/feed/${interest}`)
-      .then(response => {
-        this.setState({
-          articles: response.data.selectedArticles
-        })
-      })
-      .catch(error => console.log(error));
-  }
-
 
   render() {
     const { interest } = this.props.match.params;
     let interestTag = interest.replace("-", " ");
-    const { articles } = this.state;
-    console.log(articles);
-    if (articles) {
+    const { selectedArticles } = this.props;
+
+    if (selectedArticles) {
       return (
         <CategoryContainer>
           <CategoryTitle>{interestTag}</CategoryTitle>
-          {articles.map(article => {
+          {selectedArticles.map(article => {
             return (
               <ArticleCard 
                 date={article.date_posted}
@@ -69,12 +59,17 @@ class CategoryPage extends Component {
     }
 
     return (
-      <div>
-        No articles found.
-      </div>
+      <LoadingPage />
     );
 
   }
 }
 
-export default CategoryPage;
+const mapStateToProps = (state) => {
+  return {
+    selectedArticles: state.categoryArticles.selectedArticles
+  }
+}
+
+
+export default connect(mapStateToProps, { getArticlesByInterest })(CategoryPage);

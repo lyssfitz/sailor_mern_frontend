@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import ArticleCard from "./ArticleCard"
 import CuratedGridLeft from "./CuratedGridLeft"
+import CuratedGridRight from "./CuratedGridRight"
 import RegularFeed from "./RegularFeed"
 
 
@@ -22,7 +23,7 @@ class CuratedFeed extends Component {
         return (
           <>
           <CuratedGridLeft tag={tag0} />
-          <CuratedGridLeft tag={tag1} />
+          <CuratedGridRight tag={tag1} />
           <CuratedGridLeft tag={tag2} />
 
           <FeedContainer>

@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
-// import "antd/dist/antd.css";
-import { Layout } from 'antd';
-const { Footer } = Layout;
 
-const MainFooter = styled(Footer)`
+const MainFooter = styled.div`
   display: grid;
   grid-template-rows: max-content max-content;
   grid-row-gap: 30px;
   text-align: center;
+  margin: 20px 0;
 `;
 
 const Links = styled.div`
@@ -36,11 +34,11 @@ class AppFooter extends Component {
     return (
       <MainFooter>
         <Links>
-          <Link to="#">Log In</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Help</Link>
-          <Link to="#">Terms</Link>
-          <Link to="#">Privacy Policy</Link>
+          <Link to="/login">Log In</Link>
+          <Link to="/info">About Us</Link>
+          <Link to="/help">Help</Link>
+          <Link to="/terms">Terms</Link>
+          <Link to="/privacy">Privacy Policy</Link>
         </Links>
         <Copy>
           Sailor MERN © 2019
