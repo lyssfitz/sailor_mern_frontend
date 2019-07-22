@@ -6,6 +6,8 @@ import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
 
+import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
+
 const Article = styled.article`
   max-width: 600px;
   margin: 0 auto;
@@ -117,6 +119,7 @@ class ArticlePage extends Component {
               {ReactHtmlParser(article.article_body)}
             </ArticleBody>
           </Article>
+          {article && <UserCommentsSection comments={article.comments} articleId={article._id}/>}
         </>
       );
     }
