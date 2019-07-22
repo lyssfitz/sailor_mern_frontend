@@ -7,6 +7,12 @@ import LoadingPage from "./LoadingPage";
 import ArticleCard from "./ArticleCard"
 import { Tag } from "antd";
 
+
+const ProfileContainer = styled.section`
+max-width: 800px;
+margin: 0 auto;
+`;
+
 const FeedContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -65,7 +71,7 @@ class ProfilePage extends Component {
     
     if (user) {
         return(
-            <>
+            <ProfileContainer>
             <h1>{`${user.firstName} ${user.lastName}`}</h1>
             <Tags>
               {user.interests.map((tag) => {
@@ -73,7 +79,6 @@ class ProfilePage extends Component {
               })}
             </Tags>
             <FeedContainer>
-              <ul>
                 {likes.map(article => {
                   return (
                     <ArticleCard 
@@ -88,9 +93,8 @@ class ProfilePage extends Component {
                 />
                   );
                 })}
-              </ul>
             </FeedContainer>
-            </>
+            </ProfileContainer>
           );
     }
     return (
