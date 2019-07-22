@@ -10,13 +10,44 @@ import Avatar from 'react-avatar';
 
 
 const ProfileContainer = styled.section`
-max-width: 800px;
-margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
+`;
+
+const UserInfo = styled.div`
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: max-content max-content;
+    }
+`;
+
+const LeftSection = styled.div`
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+
+    @media (min-width: 768px) {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 1;
+        padding-right: 20px;
+    }
+`;
+
+const RightSection = styled.div`
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 1;
+
+    @media (min-width: 768px) {
+        grid-column: 4 / span 1;
+        grid-row: 1 / span 1;
+    }
 `;
 
 const UserName = styled.h1`
   font-size: 3em;
-  // font-family: 'DM Serif Text', serif;
   line-height: 1.2em;
 `;
 
@@ -31,7 +62,13 @@ const InterestTag = styled(Tag)`
 const LikeTitle = styled.h3`
     font-size: 2em;
     border-bottom: 1px solid #CCC;
-    padding-top: 2em;
+    padding-top: 1em;
+
+    // @media (min-width: 768px) {
+    //     grid-column: 1 / span 4;
+    //     grid-row: 2 / span 1;
+    //     padding-right: 20px;
+    // }
 `;
 
 const LikeContainer = styled.section`
@@ -86,17 +123,23 @@ class ProfilePage extends Component {
     if (user) {
         return(
             <ProfileContainer>
-            <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
-            {user.avatar ? (
-                <Avatar src={`${user.avatar}`} size="150" round={true} />
-             ) : (
-                <Avatar name={`${user.firstName} ${user.lastName}`} round={true} color={'#CCC'} size="150" />
-             )}
-            <Tags>
-              {user.interests.map((tag) => {
-                return (<InterestTag key={tag}>{tag}</InterestTag>);
-              })}
-            </Tags>
+                <UserInfo>
+                    <LeftSection>
+                        <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
+                        <Tags>
+                            {user.interests.map((tag) => {
+                                return (<InterestTag key={tag}>{tag}</InterestTag>);
+                            })}
+                        </Tags>
+                    </LeftSection>
+                    <RightSection>
+                        {user.avatar ? (
+                            <Avatar src={`${user.avatar}`} size="150" round={true} />
+                        ) : (
+                            <Avatar name={`${user.firstName} ${user.lastName}`} round={true} color={'#CCC'} size="150" />
+                        )}
+                    </RightSection>
+                </UserInfo>
             <LikeTitle>Likes</LikeTitle>
             <LikeContainer>
                 {likes.map(article => {
