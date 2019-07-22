@@ -123,10 +123,15 @@ const ArticleBody = styled.div`
 //   }
 // `;
 const Separator = styled.div`
+  display: none;
 
-  width: 40%;
-  border-top: 5px solid #000;
-  margin-left: auto;
+  @media (min-width: 768px) {
+    display: block;
+    width: 40%;
+    border-top: 5px solid #000;
+    margin-left: auto;
+  }
+
 `;
 
 const Tags = styled.div`

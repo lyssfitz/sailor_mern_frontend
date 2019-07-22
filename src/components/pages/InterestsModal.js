@@ -4,6 +4,8 @@ import { Modal, Button, Card } from 'antd';
 import { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal,  } from "./../../actions";
 import LoadingPage from "./LoadingPage"
 import styled from "styled-components";
+import DigitalHealth from "./../../assets/img/DigitalHealth.png";
+import GeneralPractice from "./../../assets/img/GeneralPractice.png"
 
 const { Meta } = Card;
 
@@ -24,6 +26,13 @@ const InterestContainer = styled.div`
 
 const InterestCard = styled(Card)`
   overflow: hidden;
+  text-align: center;
+
+  &:active {
+    position: relative;
+    top: 1px;
+    left: 1px;
+  }
 `;
 
 class InterestsModal extends Component {
@@ -54,11 +63,14 @@ class InterestsModal extends Component {
     if (userInterests !== null && userInterests.includes(interest)) {
       return {
         backgroundColor: "#DDD",
+        borderRadius: "7px",
       }
     }
 
     return {
       backgroundColor: "#FFF",
+      borderRadius: "7px",
+      boxShadow: "1px 1px 4px #CCC"
     }
   }
 
@@ -70,6 +82,7 @@ class InterestsModal extends Component {
         <Modal
           visible={visible}
           width="700px"
+          centered
           title="Customise Your Feed"
           onOk={() => {
             this.props.saveUserInterests(userInterests);
@@ -95,9 +108,9 @@ class InterestsModal extends Component {
                   hoverable
                   style={this.selected(interest)}
                   onClick={() => this.onInterestClick(interest)}
-                  cover={<PlaceHolder />}
+                  // cover={<img style={{maxHeight: "60px", objectFit: "cover" }} src={DigitalHealth} />}
                 >
-                  <Meta title={interest} />
+                  {interest}
                 </InterestCard>
               );
             })}
