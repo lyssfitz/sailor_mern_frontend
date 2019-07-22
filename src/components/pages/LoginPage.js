@@ -10,12 +10,17 @@ const Login = styled.section`
   text-align: center;
 `;
 
+const LoginHeading = styled.h1`
+  font-size: 2.7em;
+  letter-spacing: -1px;
+`;
+
 
 class LoginPage extends Component {
   render() {
     return (
       <Login>
-        <h1>Welcome Back</h1>
+        <LoginHeading>Welcome Back</LoginHeading>
         <div>
           <LinkedinButton />
         </div>

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
+import { Linkedin } from "react-social-sharing"
 import moment from "moment";
 
 const Article = styled.article`
@@ -211,6 +212,7 @@ class ArticlePage extends Component {
                 type="mail"
               />
             </Button>
+            <Linkedin link="https://github.com" />
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}

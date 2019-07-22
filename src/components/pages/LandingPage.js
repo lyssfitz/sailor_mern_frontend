@@ -8,8 +8,9 @@ const Landing = styled.div`
 `;
 
 const HeadingLg = styled.h1`
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
+  letter-spacing: -1px;
   margin: 0;
   padding: 0;
 `;
@@ -17,6 +18,7 @@ const HeadingLg = styled.h1`
 const HeadingSm = styled.h2`
   font-size: 2em;
   font-weight: bold;
+  letter-spacing: -1px;
   margin: 0;
 `;
 

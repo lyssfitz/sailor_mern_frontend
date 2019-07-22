@@ -34,11 +34,11 @@ class AppFooter extends Component {
     return (
       <MainFooter>
         <Links>
-          <Link to="#">Log In</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Help</Link>
-          <Link to="#">Terms</Link>
-          <Link to="#">Privacy Policy</Link>
+          <Link to="/login">Log In</Link>
+          <Link to="/info">About Us</Link>
+          <Link to="/help">Help</Link>
+          <Link to="/terms">Terms</Link>
+          <Link to="/privacy">Privacy Policy</Link>
         </Links>
         <Copy>
           Sailor MERN © 2019
