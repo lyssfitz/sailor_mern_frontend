@@ -116,12 +116,12 @@ const ArticleBody = styled.div`
 
 `;
 
-const ArticleComments = styled.div`
-  @media (min-width: 768px) {
-    grid-column: 2 / span 1;
-    grid-row: 4 / span 1;
-  }
-`;
+// const ArticleComments = styled.div`
+//   @media (min-width: 768px) {
+//     grid-column: 2 / span 1;
+//     grid-row: 4 / span 1;
+//   }
+// `;
 const Separator = styled.div`
 
   width: 40%;
@@ -194,7 +194,7 @@ class ArticlePage extends Component {
   render() {
     const { article, likes, liked } = this.state;
     // console.log(this.props)
-    const article_url = this.props.location.pathname;
+    // const article_url = this.props.location.pathname;
 
     if (article) {
 
@@ -214,16 +214,18 @@ class ArticlePage extends Component {
               </Tags>
             </ArticleHeader>
             <ArticleButtons>
-            <Button
-              // onClick={like}
-              style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
-            >
-              Share <Icon
-                type="mail"
+              <Button
+                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
+              >
+                <Icon
+                  type="mail"
+                /> Share
+              </Button>
+              {/* <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} /> */}
+              <Linkedin
+                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px", padding: "7px 11px" }}
+                link={`${article.metadata.url}`}
               />
-            </Button>
-            {/* <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} /> */}
-            <Linkedin link={`${article.metadata.url}`} />
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}
