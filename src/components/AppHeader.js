@@ -36,6 +36,25 @@ const MainMenu = styled.div`
   }
 `;
 
+const InterestsModalButton = styled(Button)`
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
+const InterestsModalButtonDropdown = styled(Menu.Item)`
+  @media (min-width: 501px) {
+    display: none;
+  }
+`;
+
+const FeedSpan = styled.span`
+  @media (max-width: 500px) {
+    visibility: hidden;
+    width: 0;
+  }
+`;
+
 
 const icon = {
   fontSize: "1.5em",
@@ -61,6 +80,9 @@ class AppHeader extends Component {
               View Profile
             </Link>
           </Menu.Item>
+          <InterestsModalButtonDropdown onClick={this.props.showInterestsModal}>
+              Edit Interests
+          </InterestsModalButtonDropdown>
           <Menu.Item onClick={this.onLogoutClick}>
               Logout
           </Menu.Item>
@@ -74,12 +96,12 @@ class AppHeader extends Component {
           <MainLogo />
           <MainMenu>    
 
-            <Button onClick={this.props.showInterestsModal}>
+            <InterestsModalButton onClick={this.props.showInterestsModal}>
               Edit Interests
-            </Button>
+            </InterestsModalButton>
 
             <Button href="/feed" type="primary">
-              View Feed
+              <FeedSpan>View&nbsp;</FeedSpan>Feed
             </Button>
 
             {userInterests && userInterests.length > 0 &&
