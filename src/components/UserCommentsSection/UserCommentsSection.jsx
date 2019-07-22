@@ -19,7 +19,7 @@ class UserCommentsSection extends Component {
   }
 
   handleSubmit = async() => {
-    console.log(this.props.user)
+    // console.log(this.props.user)
     const { user } = this.props
     if (!this.state.value) {
       return;
