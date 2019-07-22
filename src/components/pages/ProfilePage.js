@@ -2,7 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import LocalAPI from "./../../apis/local";
-import { showArticleModal, fetchArticles, fetchCurrentUser } from "./../../actions";
+import { fetchCurrentUser } from "./../../actions";
+import LoadingPage from "./LoadingPage";
+import ArticleCard from "./ArticleCard"
+import { Tag } from "antd";
+
+const FeedContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 40px;
+`;
+
+const Tags = styled.div`
+  line-height: 2.5em;
+`;
+
+const InterestTag = styled(Tag)`
+  // margin: 5px auto;
+`;
 
 class ProfilePage extends Component {
   state = {
@@ -11,7 +28,6 @@ class ProfilePage extends Component {
   }
 
   componentDidMount = () => {
-    // const { id } = this.props.match.params;
     const { fetchCurrentUser, token } = this.props;
 
     if (token) {
@@ -44,24 +60,41 @@ class ProfilePage extends Component {
 
   render() {
     const { likes } = this.state;
-    const { user, showArticleModal } = this.props;
+    const { user } = this.props;
     console.log(user);
-
-    return(
-      <>
-      <h1>Profile Page</h1>
-        <ul>
-          {likes.map(article => {
-            return (
-              <li
-                key={article._id}
-              >
-                {article.metadata.title}
-              </li>
-            );
-          })}
-        </ul>
-      </>
+    
+    if (user) {
+        return(
+            <>
+            <h1>{`${user.firstName} ${user.lastName}`}</h1>
+            <Tags>
+              {user.interests.map((tag) => {
+                return (<InterestTag key={tag}>{tag}</InterestTag>);
+              })}
+            </Tags>
+            <FeedContainer>
+              <ul>
+                {likes.map(article => {
+                  return (
+                    <ArticleCard 
+                  date={article.date_posted}
+                  title={article.metadata.title}
+                  author={article.metadata.author}
+                  source={article.metadata.source}
+                  image={article.metadata.image}
+                  id={article._id}
+                  key={article._id}
+                  interests={article.interests}
+                />
+                  );
+                })}
+              </ul>
+            </FeedContainer>
+            </>
+          );
+    }
+    return (
+        <LoadingPage />
     );
   }
 }
@@ -70,9 +103,9 @@ const mapStateToProps = (state) => {
     return {
       token: state.auth.token,
       user: state.user.user,
-      userInterests: state.userInterests,
-      articles: state.articles
+    //   userInterests: state.userInterests,
+    //   articles: state.articles
     }
   }
   
-export default connect(mapStateToProps, { showArticleModal, fetchArticles, fetchCurrentUser })(ProfilePage);
+export default connect(mapStateToProps, { fetchCurrentUser })(ProfilePage);
