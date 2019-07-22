@@ -13,10 +13,10 @@ max-width: 800px;
 margin: 0 auto;
 `;
 
-const FeedContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 40px;
+const UserName = styled.h1`
+  font-size: 3em;
+  // font-family: 'DM Serif Text', serif;
+  line-height: 1.2em;
 `;
 
 const Tags = styled.div`
@@ -26,6 +26,19 @@ const Tags = styled.div`
 const InterestTag = styled(Tag)`
   // margin: 5px auto;
 `;
+
+const LikeTitle = styled.h3`
+    font-size: 2em;
+    border-bottom: 1px solid #CCC;
+    padding-top: 2em;
+`;
+
+const LikeContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 40px;
+`;
+
 
 class ProfilePage extends Component {
   state = {
@@ -67,18 +80,19 @@ class ProfilePage extends Component {
   render() {
     const { likes } = this.state;
     const { user } = this.props;
-    console.log(user);
+    // console.log(user);
     
     if (user) {
         return(
             <ProfileContainer>
-            <h1>{`${user.firstName} ${user.lastName}`}</h1>
+            <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
             <Tags>
               {user.interests.map((tag) => {
                 return (<InterestTag key={tag}>{tag}</InterestTag>);
               })}
             </Tags>
-            <FeedContainer>
+            <LikeTitle>Likes</LikeTitle>
+            <LikeContainer>
                 {likes.map(article => {
                   return (
                     <ArticleCard 
@@ -93,7 +107,7 @@ class ProfilePage extends Component {
                 />
                   );
                 })}
-            </FeedContainer>
+            </LikeContainer>
             </ProfileContainer>
           );
     }
