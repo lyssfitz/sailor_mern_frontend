@@ -6,6 +6,7 @@ import { fetchCurrentUser } from "./../../actions";
 import LoadingPage from "./LoadingPage";
 import ArticleCard from "./ArticleCard"
 import { Tag } from "antd";
+import Avatar from 'react-avatar';
 
 
 const ProfileContainer = styled.section`
@@ -81,11 +82,16 @@ class ProfilePage extends Component {
     const { likes } = this.state;
     const { user } = this.props;
     // console.log(user);
-    
+
     if (user) {
         return(
             <ProfileContainer>
             <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
+            {user.avatar ? (
+                <Avatar src={`${user.avatar}`} size="150" round={true} />
+             ) : (
+                <Avatar name={`${user.firstName} ${user.lastName}`} round={true} color={'#CCC'} size="150" />
+             )}
             <Tags>
               {user.interests.map((tag) => {
                 return (<InterestTag key={tag}>{tag}</InterestTag>);
