@@ -2,7 +2,7 @@ import "antd/dist/antd.css";
 import "./../assets/style.css"
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Router, Switch } from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import OAuthPage from "./pages/OAuthPage";
@@ -14,6 +14,11 @@ import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 import FeedPage from "./pages/FeedPage";
 import ArticlePage from "./pages/ArticlePage"
+import HelpPage from "./pages/info/HelpPage";
+import InfoPage from "./pages/info/InfoPage";
+import AboutUsPage from "./pages/info/AboutUsPage"
+import PrivacyPage from "./pages/info/PrivacyPage";
+import TermsPage from "./pages/info/TermsPage";
 import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
@@ -59,7 +64,8 @@ class App extends Component {
     }
   }
 
-  render() {
+  render(props) {
+
     return (
       <GridLayout>
         <Router history={history}>
@@ -79,8 +85,28 @@ class App extends Component {
                 <PrivateRoute exact path="/feed/:interest" component={CategoryPage} />
                 <PrivateRoute exact path="/article/:id" component={ArticlePage} />
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
-                 <PublicRoute exact path="/user-comments" component={UserCommentsPage} />
+                <PublicRoute exact path="/user-comments" component={UserCommentsPage} />
                 {/* ---- */}
+                <Route exact path="/info" render={routeProps => (
+                  <InfoPage heading="About Us">
+                    <AboutUsPage {...routeProps}/>
+                  </InfoPage>
+                )}/>
+                <Route exact path="/help" render={routeProps => (
+                  <InfoPage heading="Help">
+                    <HelpPage {...routeProps}/>
+                  </InfoPage>
+                )}/>
+                <Route exact path="/terms" render={routeProps => (
+                  <InfoPage heading="Terms & Conditions">
+                    <TermsPage {...routeProps}/>
+                  </InfoPage>
+                )}/>
+                <Route exact path="/privacy" render={routeProps => (
+                  <InfoPage heading="Privacy Policy">
+                    <PrivacyPage {...routeProps}/>
+                  </InfoPage>
+                )}/>
               </Switch>
             </GridContent>
           <GridFooter />

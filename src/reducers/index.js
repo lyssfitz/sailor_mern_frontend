@@ -4,6 +4,7 @@ import interestsModalReducer from "./interests_modal_reducer"
 import interestsReducer from "./interests_reducer"
 import userInterestsReducer from "./user_interests_reducer"
 import articlesReducer from "./articles_reducer"
+import categoryArticlesReducer from "./category_articles_reducer"
 import articleModalReducer from "./article_modal_reducer"
 import userReducer from "./user_reducer"
 import { reducer as formReducer } from "redux-form";
@@ -14,6 +15,7 @@ export default combineReducers({
   interestsModal: interestsModalReducer,
   userInterests: userInterestsReducer,
   articles: articlesReducer,
+  categoryArticles: categoryArticlesReducer,
   articleModal: articleModalReducer,
   user: userReducer,
   form: formReducer
