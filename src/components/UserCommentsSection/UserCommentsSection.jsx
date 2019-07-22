@@ -74,11 +74,11 @@ class UserCommentsSection extends Component {
   }
 }
 
-UserCommentsSection.propTypes = {
-  authorName: PropTypes.string.isRequired,
-  commentList: PropTypes.array.isRequired,
-  userList: PropTypes.array.isRequired
-};
+// UserCommentsSection.propTypes = {
+//   authorName: PropTypes.string.isRequired,
+//   commentList: PropTypes.array.isRequired,
+//   userList: PropTypes.array.isRequired
+// };
 
 const mapStateToProps = (state) => {
   return {

@@ -9,6 +9,7 @@ import { Comment, Tooltip } from 'antd';
 class UserComment extends Component {
   render() {
     const {authorName, content, dateTime} = this.props;
+    console.log(this.props.dateTime);
     return (
       <Comment
         author={<h4>{authorName}</h4>}
