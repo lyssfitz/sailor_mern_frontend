@@ -10,7 +10,7 @@ import { Linkedin, EmailShareButton } from "react-social-sharing"
 import moment from "moment";
 import ScrollToTopOnMount from "./../ScrollToTopOnMount"
 
-// import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
+import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
 
 const Article = styled.article`
   max-width: 700px;
@@ -244,7 +244,7 @@ class ArticlePage extends Component {
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}
             </ArticleBody>
-            {/* <ArticleComments>{article && <UserCommentsSection comments={article.comments} articleId={article._id}/>}</ArticleComments> */}
+            <ArticleComments>{article && <UserCommentsSection comments={article.comments} articleId={article._id}/>}</ArticleComments>
           </Article>
 
         </>
