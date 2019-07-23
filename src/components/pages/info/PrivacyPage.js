@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import ScrollToTopOnMount from "./../../ScrollToTopOnMount"
 
 class PrivacyPage extends Component {
   render() {
     return (
       <>
+        <ScrollToTopOnMount />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Eget duis at tellus at urna. Blandit turpis cursus in hac habitasse platea dictumst. Viverra orci sagittis eu volutpat. In eu mi bibendum neque egestas congue. Id nibh tortor id aliquet lectus proin nibh nisl. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Ornare suspendisse sed nisi lacus sed viverra tellus in. Dolor sit amet consectetur adipiscing elit ut. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Nulla posuere sollicitudin aliquam ultrices sagittis orci a. Nunc id cursus metus aliquam eleifend mi. Risus quis varius quam quisque id diam vel quam elementum. Consequat semper viverra nam libero justo. Rhoncus dolor purus non enim praesent.
         </p>
