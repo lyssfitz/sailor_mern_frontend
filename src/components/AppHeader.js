@@ -141,7 +141,7 @@ class AppHeader extends Component {
   
     return (
       <MainHeader>
-        <MainLogo />
+        <MainLogo src={logo}/>
         <MainMenu>    
           <Button href="/signup" type="primary">Sign Up</Button>
           <Button href="/login">Login</Button>

@@ -8,6 +8,7 @@ import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
 import { Linkedin } from "react-social-sharing"
 import moment from "moment";
+import ScrollToTopOnMount from "./../ScrollToTopOnMount"
 
 // import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
 
@@ -205,6 +206,7 @@ class ArticlePage extends Component {
 
       return (
         <>
+          <ScrollToTopOnMount />
           <Article>
             <ArticleHeader>
               <ArticleSource>Source: {article.metadata.source} <Icon type="border" /></ArticleSource>
