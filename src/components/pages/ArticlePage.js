@@ -117,12 +117,12 @@ const ArticleBody = styled.div`
 
 `;
 
-// const ArticleComments = styled.div`
-//   @media (min-width: 768px) {
-//     grid-column: 2 / span 1;
-//     grid-row: 4 / span 1;
-//   }
-// `;
+const ArticleComments = styled.div`
+  @media (min-width: 768px) {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+  }
+`;
 const Separator = styled.div`
   display: none;
 
