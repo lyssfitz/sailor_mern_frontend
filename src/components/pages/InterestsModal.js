@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card } from 'antd';
-import { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal,  } from "./../../actions";
+import { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal, fetchCurrentUser  } from "./../../actions";
 import LoadingPage from "./LoadingPage"
 import styled from "styled-components";
 
@@ -66,6 +66,7 @@ class InterestsModal extends Component {
     const { userInterests } = this.props;
     await this.props.saveUserInterests(userInterests);
     this.props.fetchArticles();
+    this.props.fetchCurrentUser();
   }
 
   render() {
@@ -125,4 +126,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal })(InterestsModal);
+export default connect(mapStateToProps, { fetchArticles, setUserInterests, fetchAllInterests, fetchUserInterests, saveUserInterests, closeInterestsModal, fetchCurrentUser })(InterestsModal);
