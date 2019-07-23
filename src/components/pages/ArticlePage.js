@@ -6,10 +6,12 @@ import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
-import { LinkedinShareButton, EmailShareButton, EmailIcon, LinkedinIcon } from "react-share";
+import { Linkedin } from "react-social-sharing";
+import { EmailShareButton } from "react-share";
 import moment from "moment";
+import ScrollToTopOnMount from "./../ScrollToTopOnMount"
 
-// import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
+import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
 
 const Article = styled.article`
   max-width: 700px;
@@ -207,6 +209,7 @@ class ArticlePage extends Component {
 
       return (
         <>
+          <ScrollToTopOnMount />
           <Article>
             <ArticleHeader>
               <ArticleSource>Source: {article.metadata.source} <Icon type="border" /></ArticleSource>
@@ -221,34 +224,21 @@ class ArticlePage extends Component {
               </Tags>
             </ArticleHeader>
             <ArticleButtons>
-              <Button
-                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
-              >
-                <Icon
-                  type="mail"
-                /> Share
-              </Button>
-              {/* <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} /> */}
-              <LinkedinShareButton
-                url={`${article.metadata.url}`}
-                windowWidth={750}
-                windowHeight={600}
-                className="Demo__some-network__share-button">
-                <LinkedinIcon
-                  size={32}
-                  round />
-              </LinkedinShareButton>
-              
               <EmailShareButton
                 url={`${article.metadata.url}`}
                 subject={`${article.metadata.title}`}
-                body="body"
-                openWindow={true}
-                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px", padding: "7px 11px" }}>
-                <EmailIcon
-                  size={32}
-                  round />
+                openWindow={true}>
+                  <Button
+                    style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
+                  >
+                    <Icon
+                      type="mail"
+                    /> SHARE
+                  </Button>
               </EmailShareButton>
+              
+              <Linkedin link={`${article.metadata.url}`} />
+
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}
@@ -260,7 +250,7 @@ class ArticlePage extends Component {
             <ArticleBody>
               {ReactHtmlParser(article.article_body)}
             </ArticleBody>
-            {/* <ArticleComments>{article && <UserCommentsSection comments={article.comments} articleId={article._id}/>}</ArticleComments> */}
+            <ArticleComments>{article && <UserCommentsSection comments={article.comments} articleId={article._id}/>}</ArticleComments>
           </Article>
 
         </>

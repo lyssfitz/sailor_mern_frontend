@@ -7,6 +7,7 @@ import LoadingPage from "./LoadingPage";
 import ArticleCard from "./ArticleCard"
 import { Tag } from "antd";
 import Avatar from 'react-avatar';
+import ScrollToTopOnMount from "./../ScrollToTopOnMount"
 
 
 const ProfileContainer = styled.section`
@@ -123,6 +124,8 @@ class ProfilePage extends Component {
 
     if (user) {
         return(
+          <>
+          <ScrollToTopOnMount />
             <ProfileContainer>
                 <UserInfo>
                     <LeftSection>
@@ -159,6 +162,7 @@ class ProfilePage extends Component {
                 })}
             </LikeContainer>
             </ProfileContainer>
+            </>
           );
     }
     return (
