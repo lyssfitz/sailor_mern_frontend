@@ -15,7 +15,7 @@ class UserComment extends Component {
         author={<h4>{authorName}</h4>}
         content={<p>{content}</p>}
         datetime={
-          <Tooltip title={dateTime.format('YYYY-MM-DD HH:mm:ss')}>
+          <Tooltip title={dateTime.format("HH:mm ddd Do MMM, 'YY")}>
             <span>{dateTime.fromNow()}</span>
           </Tooltip>
         }
