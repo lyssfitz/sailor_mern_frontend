@@ -6,7 +6,8 @@ import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
-import { Linkedin, EmailShareButton } from "react-social-sharing"
+import { Linkedin } from "react-social-sharing";
+import { EmailShareButton } from "react-share";
 import moment from "moment";
 import ScrollToTopOnMount from "./../ScrollToTopOnMount"
 
@@ -200,7 +201,9 @@ class ArticlePage extends Component {
   render() {
     const { article, likes, liked } = this.state;
     // console.log(this.props)
-    // const article_url = this.props.location.pathname;
+    const article_url = this.props.location.pathname;
+    //console.log(article_url);
+    console.log(`http://sailor-mern.herokuapp.com${article_url}`);
 
     if (article) {
 
@@ -221,18 +224,21 @@ class ArticlePage extends Component {
               </Tags>
             </ArticleHeader>
             <ArticleButtons>
-              <Button
-                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
-              >
-                <Icon
-                  type="mail"
-                /> Share
-              </Button>
-              {/* <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} /> */}
-              <Linkedin
-                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px", padding: "7px 11px" }}
-                link={`${article.metadata.url}`}
-              />
+              <EmailShareButton
+                url={`${article.metadata.url}`}
+                subject={`${article.metadata.title}`}
+                openWindow={true}>
+                  <Button
+                    style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
+                  >
+                    <Icon
+                      type="mail"
+                    /> SHARE
+                  </Button>
+              </EmailShareButton>
+              
+              <Linkedin link={`${article.metadata.url}`} />
+
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}
