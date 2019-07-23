@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
+// import debounce from 'lodash/debounce';
 
 // Ant.d components
 import {Form, Button, Mentions} from 'antd';
 
-const { Option } = Mentions;
+// const { Option } = Mentions;
 
 class UserCommentEditor extends Component {
   constructor(props) {
@@ -13,39 +13,39 @@ class UserCommentEditor extends Component {
     this.state = {
       value: this.props.value,
       loading: false,
-      search: '',
-      users: [],
+      // search: '',
+      // users: [],
     };
 
-    this.loadGithubUsers = debounce(this.loadGithubUsers, 800);
+    // this.loadGithubUsers = debounce(this.loadGithubUsers, 800);
   }
 
-  loadGithubUsers(key) {
-    if (!key) {
-      this.setState({
-        users: [],
-      });
-      return;
-    }
+  // loadGithubUsers(key) {
+  //   if (!key) {
+  //     this.setState({
+  //       users: [],
+  //     });
+  //     return;
+  //   }
 
-    fetch(`https://api.github.com/search/users?q=${key}`)
-      .then(res => res.json())
-      .then(({ items = [] }) => {
-        const { search } = this.state;
-        if (search !== key) return;
+  //   fetch(`https://api.github.com/search/users?q=${key}`)
+  //     .then(res => res.json())
+  //     .then(({ items = [] }) => {
+  //       const { search } = this.state;
+  //       if (search !== key) return;
 
-        this.setState({
-          users: items.slice(0, 10),
-          loading: false,
-        });
-      });
-  }
+  //       this.setState({
+  //         users: items.slice(0, 10),
+  //         loading: false,
+  //       });
+  //     });
+  // }
 
-  handleSearch = search => {
-    this.setState({ search, loading: !!search, users: [] });
-    console.log('Search:', search);
-    this.loadGithubUsers(search);
-  };
+  // handleSearch = search => {
+  //   this.setState({ search, loading: !!search, users: [] });
+  //   console.log('Search:', search);
+  //   this.loadGithubUsers(search);
+  // };
 
   handleChange = value => {
     this.setState({value: value,});
@@ -60,19 +60,19 @@ class UserCommentEditor extends Component {
   render() {
     // console.log(this.state.users);
     const { submitting } = this.props;
-    const { loading, value, users } = this.state;
+    const { loading, value } = this.state;
     return (
       <div>
         <Form.Item>
           <Mentions
             value={value}
             onChange={this.handleChange}
-            onSearch={this.handleSearch}
+            // onSearch={this.handleSearch}
             loading={loading}
             style={{ width: '100%' }}
             rows="4"
           >
-            {users && users.map(({ login }) => <Option key={login} value={login}>{login}</Option>)}
+            {/* {users && users.map(({ login }) => <Option key={login} value={login}>{login}</Option>)} */}
           </Mentions>
         </Form.Item>
         <Form.Item>

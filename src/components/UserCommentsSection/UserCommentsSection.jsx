@@ -28,9 +28,10 @@ class UserCommentsSection extends Component {
     });
     const body = this.state.value
     const user_metadata = {commentor_id: user._id, firstName: user.firstName, lastName: user.lastName}
-    const mention = {mentionee_id: "5d2d6050ec1b07710c0efa84"}
-    const response = await LocalAPI.post(`/article/${this.props.articleId}/comment_create`, {body, user_metadata, mention})
-    console.log(response);
+    // const mention = {mentionee_id: "5d2d6050ec1b07710c0efa84"}
+    const date_posted = Date.now();
+    const response = await LocalAPI.post(`/article/${this.props.articleId}/comment_create`, {body, user_metadata, date_posted})
+    // console.log(response);
     this.setState({
       submitting: false, 
       comments: response.data
