@@ -222,14 +222,19 @@ class ArticlePage extends Component {
               </Tags>
             </ArticleHeader>
             <ArticleButtons>
-              <Button
-                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
-              >
-                <Icon
-                  type="mail"
-                /> Share
-              </Button>
-              {/* <Linkedin link={`${process.env.REACT_APP_API_URL}${article_url}`} /> */}
+            <EmailShareButton
+              url={`${article.metadata.url}`}
+              subject={`${article.metadata.title}`}
+              openWindow={true}>
+                <Button
+                  style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
+                >
+                  <Icon
+                    type="mail"
+                  /> SHARE
+                </Button>
+            </EmailShareButton>
+
               <LinkedinShareButton
                 url={`${article.metadata.url}`}
                 windowWidth={750}
@@ -240,16 +245,6 @@ class ArticlePage extends Component {
                   round />
               </LinkedinShareButton>
               
-              <EmailShareButton
-                url={`${article.metadata.url}`}
-                subject={`${article.metadata.title}`}
-                body="body"
-                openWindow={true}
-                style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px", padding: "7px 11px" }}>
-                <EmailIcon
-                  size={32}
-                  round />
-              </EmailShareButton>
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}
