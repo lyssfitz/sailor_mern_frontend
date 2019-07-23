@@ -29,9 +29,9 @@ class InterestsModal extends Component {
     this.props.fetchUserInterests();
   }
 
-  componentDidUpdate = () => {
-    this.props.fetchArticles();
-  }
+  // componentDidUpdate = () => {
+  //   this.props.fetchArticles();
+  // }
 
   onInterestClick = (interest) => {
     const { userInterests, setUserInterests } = this.props; 
@@ -58,8 +58,14 @@ class InterestsModal extends Component {
     return {
       backgroundColor: "#FFF",
       borderRadius: "7px",
-      boxShadow: "1px 1px 4px #CCC"
+      boxShadow: "1px 1px 2px #EEE"
     }
+  }
+
+  handleSaveUserInterests = async () => {
+    const { userInterests } = this.props;
+    await this.props.saveUserInterests(userInterests);
+    this.props.fetchArticles();
   }
 
   render() {
@@ -80,9 +86,7 @@ class InterestsModal extends Component {
             <Button key="back" onClick={this.props.closeInterestsModal}>
               Skip
             </Button>,
-            <Button key="submit" type="primary" onClick={() => {
-                this.props.saveUserInterests(userInterests);
-              }}>
+            <Button key="submit" type="primary" onClick={this.handleSaveUserInterests}>
               Save Interests
             </Button>,
           ]}
