@@ -5,6 +5,7 @@ import { Menu, Icon, Dropdown, Button } from 'antd';
 import InterestsModal from "./pages/InterestsModal";
 import { connect } from "react-redux";
 import { removeAuthToken, showInterestsModal, getArticlesByInterest } from "./../actions";
+import logo from "./../assets/image/heart-health.png";
 
 const MainHeader = styled.header`
   padding: 20px;
@@ -18,11 +19,9 @@ const MainHeader = styled.header`
   z-index: 2;
 `;
 
-const MainLogo = styled.div`
+const MainLogo = styled.img`
   width: 32px;
   height: 32px;
-  background-color: #DDD;
-  border-radius: 10px;
   grid-column: 1;
 `;
 
@@ -93,7 +92,7 @@ class AppHeader extends Component {
         <>
         <InterestsModal />
         <MainHeader>
-          <MainLogo />
+          <MainLogo src={logo}/>
           <MainMenu>    
 
             <InterestsModalButton onClick={this.props.showInterestsModal}>
