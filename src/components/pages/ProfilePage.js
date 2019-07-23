@@ -39,6 +39,7 @@ const LeftSection = styled.div`
 const RightSection = styled.div`
     grid-column: 4 / span 1;
     grid-row: 1 / span 1;
+    margin-left: auto;
 
     @media (min-width: 768px) {
         grid-column: 4 / span 1;
@@ -125,7 +126,7 @@ class ProfilePage extends Component {
             <ProfileContainer>
                 <UserInfo>
                     <LeftSection>
-                        <UserName>{`${user.firstName} ${user.lastName}`}</UserName>
+                        <UserName>{`${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)} ${user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}`}</UserName>
                         <Tags>
                             {user.interests.map((tag) => {
                                 return (<InterestTag key={tag}>{tag}</InterestTag>);

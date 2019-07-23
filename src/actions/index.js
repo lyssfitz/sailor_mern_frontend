@@ -144,7 +144,7 @@ export const fetchUserInterests = () => {
 
 export const saveUserInterests = (userInterests) => {
   return async (dispatch, getState) => {
-    LocalAPI.post(`/user/interests`, userInterests);
+    await LocalAPI.post(`/user/interests`, userInterests);
     dispatch(setUserInterests(userInterests));
     dispatch(closeInterestsModal());
   }
