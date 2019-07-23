@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SignupForm from "./../forms/SignupForm";
 import LinkedinButton from "./LinkedinButton";
+import SignUpImg from "./../../assets/image/signup.svg"
 
 const Signup = styled.section`
   text-align: center;
@@ -29,11 +30,11 @@ const SignupContent = styled.div`
   }
 `; 
 
-const SignupImage = styled.div`
+const SignupImage = styled.img`
   grid-column: 2;
-  background: #EEE;
+  // background: #EEE;
   margin: 40px;
-  border-radius: 20px;
+  // border-radius: 20px;
 `;
 
 class SignupPage extends Component {
@@ -50,7 +51,7 @@ class SignupPage extends Component {
             Already a member? <Link to="/login">Log In</Link>
           </div>
         </SignupContent>
-        <SignupImage />
+        <SignupImage src={SignUpImg}/>
       </Signup>
     );
   }

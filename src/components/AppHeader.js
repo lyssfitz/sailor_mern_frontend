@@ -92,7 +92,9 @@ class AppHeader extends Component {
         <>
         <InterestsModal />
         <MainHeader>
-          <MainLogo src={logo}/>
+          <Link to="/">
+            <MainLogo src={logo}/>
+          </Link>
           <MainMenu>    
 
             <InterestsModalButton onClick={this.props.showInterestsModal}>
@@ -141,7 +143,9 @@ class AppHeader extends Component {
   
     return (
       <MainHeader>
-        <MainLogo src={logo}/>
+        <Link to="/">
+          <MainLogo src={logo}/>
+        </Link>
         <MainMenu>    
           <Button href="/signup" type="primary">Sign Up</Button>
           <Button href="/login">Login</Button>
