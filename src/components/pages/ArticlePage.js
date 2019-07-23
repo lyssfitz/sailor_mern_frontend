@@ -6,7 +6,6 @@ import styled from "styled-components";
 import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
-import { Linkedin } from "react-social-sharing";
 import { LinkedinShareButton, EmailShareButton, EmailIcon, LinkedinIcon } from "react-share";
 import moment from "moment";
 
