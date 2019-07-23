@@ -51,6 +51,7 @@ class ArticleForm extends Component {
       <Modal
       visible={visible}
       width="300px"
+      centered
       title="Add an Article"
       onCancel={this.props.closeArticleModal}
       footer={null}
