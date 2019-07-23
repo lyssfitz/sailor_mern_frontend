@@ -7,7 +7,7 @@ import LoadingPage from "./LoadingPage"
 import LikeButton from "./LikeButton";
 import ReactHtmlParser from 'react-html-parser';
 import { Linkedin } from "react-social-sharing";
-import { LinkedinShareButton, EmailShareButton, EmailIcon, LinkedinIcon } from "react-share";
+import { EmailShareButton } from "react-share";
 import moment from "moment";
 
 // import UserCommentsSection from "./../UserCommentsSection/UserCommentsSection"
@@ -222,29 +222,21 @@ class ArticlePage extends Component {
               </Tags>
             </ArticleHeader>
             <ArticleButtons>
-            <EmailShareButton
-              url={`${article.metadata.url}`}
-              subject={`${article.metadata.title}`}
-              openWindow={true}>
-                <Button
-                  style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
-                >
-                  <Icon
-                    type="mail"
-                  /> SHARE
-                </Button>
-            </EmailShareButton>
-
-              <LinkedinShareButton
+              <EmailShareButton
                 url={`${article.metadata.url}`}
-                windowWidth={750}
-                windowHeight={600}
-                className="Demo__some-network__share-button">
-                <LinkedinIcon
-                  size={32}
-                  round />
-              </LinkedinShareButton>
+                subject={`${article.metadata.title}`}
+                openWindow={true}>
+                  <Button
+                    style={{ textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.5px" }}
+                  >
+                    <Icon
+                      type="mail"
+                    /> SHARE
+                  </Button>
+              </EmailShareButton>
               
+              <Linkedin link={`${article.metadata.url}`} />
+
               <LikeButton 
                 like={this.onLikeButtonClick}
                 liked={liked}
