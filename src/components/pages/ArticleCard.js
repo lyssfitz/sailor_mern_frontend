@@ -87,7 +87,7 @@ const ArticleSource = styled.h3`
   padding-top: 5px;
 
   a {
-    color: #FFF;
+    color: #22C458;
   }
 `;
 
