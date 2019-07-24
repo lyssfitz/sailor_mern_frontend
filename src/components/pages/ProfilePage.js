@@ -157,6 +157,7 @@ class ProfilePage extends Component {
                   id={article._id}
                   key={article._id}
                   interests={article.interests}
+                  url={article.metadata.url}
                 />
                   );
                 })}

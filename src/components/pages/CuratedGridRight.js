@@ -87,6 +87,7 @@ class CuratedGridRight extends Component {
                   id={tag.articles[0]._id}
                   key={tag.articles[0]._id}
                   interests={tag.articles[0].interests}
+                  url={tag.articles[0].metadata.url}
                 />
               </MainArticle>
               <SubArticle1>
@@ -99,6 +100,7 @@ class CuratedGridRight extends Component {
                   id={tag.articles[1]._id}
                   key={tag.articles[1]._id}
                   interests={tag.articles[1].interests}
+                  url={tag.articles[1].metadata.url}
                 />
               </SubArticle1>
               <SubArticle2>
@@ -111,6 +113,7 @@ class CuratedGridRight extends Component {
                   id={tag.articles[2]._id}
                   key={tag.articles[2]._id}
                   interests={tag.articles[2].interests}
+                  url={tag.articles[2].metadata.url}
                 />
               </SubArticle2>  
         </CuratedGrid>
