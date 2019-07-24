@@ -20,7 +20,7 @@ describe('Logs in as a user', () => {
   })
 })
 
-describe('Navigates to an article that the user hasnt liked yet', () => {
+describe('Navigates to an article that the user hasnt liked yet, clicks like, and the article appears on profile page', () => {
   it("visits the article page", () => {
     cy.visit("/article/5d37edcd4562574fe94b2482");
   })
