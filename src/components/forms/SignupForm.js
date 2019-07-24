@@ -60,7 +60,7 @@ class SignupForm extends Component {
         </div>
 
         <div>
-          <Field style={{margin: "5p 0"}} size="large" placeholder="Password" name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+          <Field style={{margin: "5px 0"}} size="large" placeholder="Password" name="password" component={AInput} type="password" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} />
         </div>
 
         <div>

@@ -129,7 +129,7 @@ class AppHeader extends Component {
 
 
             <Dropdown overlay={dropdownUserItems} trigger={['click']}>
-              <Link to="#">
+              <Link className="userprofile" to="#">
                 <Icon style={icon} type="user" />
               </Link>
             </Dropdown>

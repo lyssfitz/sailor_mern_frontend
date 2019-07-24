@@ -16,6 +16,6 @@ describe('Landing Page', () => {
 
   it("Without a token, feed should be inaccessible", () => {
     cy.visit("/feed");
-    cy.url().should('eq', 'http://localhost:3001/')
+    cy.url().should('eq', 'http://localhost:3001/login')
   })
 })

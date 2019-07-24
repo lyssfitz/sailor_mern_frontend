@@ -14,8 +14,13 @@ describe('Signup Form invalid input', () => {
   })
 
   it("adds a password", () => {
-    cy.get('input[type=password]').type('testpass')
+    cy.get('input[name=password]').type('testpass')
   })
+
+  it("confirms a password", () => {
+    cy.get('input[name=passwordConfirmation]').type('testpass')
+  })
+
 
   it("clicks the sign up button", () => {
     cy.get('button').click();
