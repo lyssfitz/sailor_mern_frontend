@@ -42,6 +42,10 @@ const Header = styled.h1`
   line-height: 1.2em;
   border-bottom: 7px solid #EEE;
   width: max-content;
+  margin: auto;
+  @media (min-width: 550px) {
+    margin: 0 auto 0 0;
+  }
 `;
 
 class NotificationsPage extends Component {
