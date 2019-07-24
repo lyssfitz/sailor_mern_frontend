@@ -106,7 +106,7 @@ class ArticleCard extends Component {
             theme={favourited && "filled"}
             onClick={this.onFavClick}
           /> */}
-          <ArticleSource><a href={this.props.url} target="_blank">{this.props.source} <Icon type="link" /></a></ArticleSource>
+          <ArticleSource><a href={this.props.url} target="_blank" rel="noopener noreferrer">{this.props.source} <Icon type="link" /></a></ArticleSource>
         </ArticleFooter>
       </Article>
     );

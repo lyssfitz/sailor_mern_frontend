@@ -216,7 +216,7 @@ class ArticlePage extends Component {
           <ScrollToTopOnMount />
           <Article>
             <ArticleHeader>
-              <ArticleSource><a href={article.metadata.url} target="_blank">Source: {article.metadata.source} <Icon type="link" /></a></ArticleSource>
+              <ArticleSource><a href={article.metadata.url} target="_blank" rel="noopener noreferrer">Source: {article.metadata.source} <Icon type="link" /></a></ArticleSource>
               <ArticleTitle>{article.metadata.title}</ArticleTitle>
               {article.metadata.author && <ArticleAuthor><Icon style={{ color: "#CCC", padding: "0 3px" }} type="line" /> {article.metadata.author} <Icon style={{ color: "#CCC", padding: "0 3px" }} type="line" /></ArticleAuthor>}
               <ArticleDate>{moment(article.date_posted).format("h:mma dddd Do MMM 'YY")}</ArticleDate>
