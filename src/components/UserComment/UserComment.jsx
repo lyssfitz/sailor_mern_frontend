@@ -25,7 +25,7 @@ class UserComment extends Component {
 }
 
 UserComment.propTypes = {
-  authorName: PropTypes.string.isRequired,
+  // authorName: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   dateTime: PropTypes.instanceOf(Moment).isRequired
 };

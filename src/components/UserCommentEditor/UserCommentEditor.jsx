@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import LocalAPI from "./../../apis/local"
 // import debounce from 'lodash/debounce';
 
 // Ant.d components
 import {Form, Button, Mentions} from 'antd';
 
-// const { Option } = Mentions;
+const { Option } = Mentions;
 
 class UserCommentEditor extends Component {
   constructor(props) {
@@ -13,39 +14,35 @@ class UserCommentEditor extends Component {
     this.state = {
       value: this.props.value,
       loading: false,
-      // search: '',
-      // users: [],
+      search: '',
+      users: [],
+      tagged: []
     };
 
-    // this.loadGithubUsers = debounce(this.loadGithubUsers, 800);
   }
 
-  // loadGithubUsers(key) {
-  //   if (!key) {
-  //     this.setState({
-  //       users: [],
-  //     });
-  //     return;
-  //   }
+  componentDidMount = () => {
+    this.fetchUsers();
+  }
 
-  //   fetch(`https://api.github.com/search/users?q=${key}`)
-  //     .then(res => res.json())
-  //     .then(({ items = [] }) => {
-  //       const { search } = this.state;
-  //       if (search !== key) return;
+  fetchUsers = async () => {
+    const articleId = this.props.articleId
+    await LocalAPI.get(`article/${articleId}/comment`)
+      .then(response => this.setState({ users: response.data.filteredUsers }))
+      .catch(error => console.log(error))
+  }
 
-  //       this.setState({
-  //         users: items.slice(0, 10),
-  //         loading: false,
-  //       });
-  //     });
-  // }
+  handleOnSelect = (selected) => {
+    const { tagged } = this.state;
+    const { user } = this.props;
+    const taggedUserEmail = selected.value;
+    if (tagged.includes(taggedUserEmail) || user.email === taggedUserEmail) {
+      return;
+    }
 
-  // handleSearch = search => {
-  //   this.setState({ search, loading: !!search, users: [] });
-  //   console.log('Search:', search);
-  //   this.loadGithubUsers(search);
-  // };
+    return this.setState({ tagged: [...tagged, taggedUserEmail] });
+  }
+
 
   handleChange = value => {
     this.setState({value: value,});
@@ -54,25 +51,24 @@ class UserCommentEditor extends Component {
 
   handleSubmit = () => {
     this.setState({value: '',});
-    this.props.onSubmit();
+    this.props.onSubmit(this.state.tagged);
   };
 
   render() {
-    // console.log(this.state.users);
     const { submitting } = this.props;
-    const { loading, value } = this.state;
+    const { loading, value, users } = this.state;
     return (
       <div>
         <Form.Item>
           <Mentions
             value={value}
             onChange={this.handleChange}
-            // onSearch={this.handleSearch}
+            onSelect={this.handleOnSelect}
             loading={loading}
-            style={{ width: '100%' }}
+            style={{ width: '100%', lineHeight: "1.3em", padding: "7px 0" }}
             rows="4"
           >
-            {/* {users && users.map(({ login }) => <Option key={login} value={login}>{login}</Option>)} */}
+            {users && users.map(({ email, firstName, lastName }) => <Option key={email} value={email}>{firstName.charAt(0).toUpperCase() + firstName.slice(1)} {lastName.charAt(0).toUpperCase() + lastName.slice(1)}</Option>)}
           </Mentions>
         </Form.Item>
         <Form.Item>

@@ -16,9 +16,10 @@ class UserCommentsSection extends Component {
     }
   }
 
-  handleSubmit = async() => {
-    // console.log(this.props.user)
+  handleSubmit = async(tagged) => {
+
     const { user } = this.props
+
     if (!this.state.value) {
       return;
     }
@@ -28,10 +29,9 @@ class UserCommentsSection extends Component {
     });
     const body = this.state.value
     const user_metadata = {commentor_id: user._id, firstName: user.firstName, lastName: user.lastName}
-    // const mention = {mentionee_id: "5d2d6050ec1b07710c0efa84"}
+    const mentions = {taggedUsers: tagged}
     const date_posted = Date.now();
-    const response = await LocalAPI.post(`/article/${this.props.articleId}/comment_create`, {body, user_metadata, date_posted})
-    // console.log(response);
+    const response = await LocalAPI.post(`/article/${this.props.articleId}/comment_create`, {body, user_metadata, date_posted, mentions})
     this.setState({
       submitting: false, 
       comments: response.data
@@ -47,7 +47,7 @@ class UserCommentsSection extends Component {
 
   render() {
     const { comments, submitting, value } = this.state;
-    console.log(this.state);
+    const { user } = this.props;
     return (
       <div>
         {comments.length > 0 && <UserCommentList userComments={comments}/>}
@@ -57,6 +57,8 @@ class UserCommentsSection extends Component {
           submitting={submitting}
           userList={this.props.userList}
           value={value}
+          articleId={this.props.articleId}
+          user={user}
         />
       </div>
     );

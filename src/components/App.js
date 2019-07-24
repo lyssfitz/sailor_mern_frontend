@@ -19,12 +19,13 @@ import InfoPage from "./pages/info/InfoPage";
 import AboutUsPage from "./pages/info/AboutUsPage"
 import PrivacyPage from "./pages/info/PrivacyPage";
 import TermsPage from "./pages/info/TermsPage";
+import NotificationsPage from "./pages/NotificationsPage";
 import { Layout } from 'antd';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
 import styled from "styled-components";
 import { fetchCurrentUser } from "./../actions"
-import UserCommentsPage from "./pages/UserCommentsPage";
+// import UserCommentsPage from "./pages/UserCommentsPage";
 
 const { Content } = Layout;
 
@@ -85,7 +86,8 @@ class App extends Component {
                 <PrivateRoute exact path="/feed/:interest" component={CategoryPage} />
                 <PrivateRoute exact path="/article/:id" component={ArticlePage} />
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
-                <PublicRoute exact path="/user-comments" component={UserCommentsPage} />
+                <PrivateRoute exact path="/notifications" component={NotificationsPage} />
+                {/* <PublicRoute exact path="/user-comments" component={UserCommentsPage} /> */}
                 {/* ---- */}
                 <Route exact path="/info" render={routeProps => (
                   <InfoPage heading="About Us">

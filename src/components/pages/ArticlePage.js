@@ -93,6 +93,14 @@ const ArticleSource = styled.h2`
   letter-spacing: 1px;
   color: #CCC;
   text-align: right;
+
+  a {
+    color: #22C458;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.3em;
+  }
 `;
 
 const ArticleBody = styled.div`
@@ -200,10 +208,6 @@ class ArticlePage extends Component {
 
   render() {
     const { article, likes, liked } = this.state;
-    // console.log(this.props)
-    const article_url = this.props.location.pathname;
-    //console.log(article_url);
-    console.log(`http://sailor-mern.herokuapp.com${article_url}`);
 
     if (article) {
 
@@ -212,7 +216,7 @@ class ArticlePage extends Component {
           <ScrollToTopOnMount />
           <Article>
             <ArticleHeader>
-              <ArticleSource>Source: {article.metadata.source} <Icon type="border" /></ArticleSource>
+              <ArticleSource><a href={article.metadata.url} target="_blank" rel="noopener noreferrer">Source: {article.metadata.source} <Icon type="link" /></a></ArticleSource>
               <ArticleTitle>{article.metadata.title}</ArticleTitle>
               {article.metadata.author && <ArticleAuthor><Icon style={{ color: "#CCC", padding: "0 3px" }} type="line" /> {article.metadata.author} <Icon style={{ color: "#CCC", padding: "0 3px" }} type="line" /></ArticleAuthor>}
               <ArticleDate>{moment(article.date_posted).format("h:mma dddd Do MMM 'YY")}</ArticleDate>

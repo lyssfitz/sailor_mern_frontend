@@ -96,18 +96,6 @@ class ProfilePage extends Component {
     this.fetchLikes();
   }
 
-  // componentDidUpdate = () => {
-  //   const { user } = this.props;
-  //   const { article, liked } = this.state;
-  //   console.log(this.props);
-  //   if (user && article && liked === null ) {
-  //     this.setState((state) => {
-  //       console.log(user);
-  //       console.log("***")
-  //       return { liked: state.article.likes.includes(user._id) }
-  //     });
-  //   }
-  // }
 
   fetchLikes = () => {
     LocalAPI.get(`/user/profile`)
@@ -120,7 +108,7 @@ class ProfilePage extends Component {
   render() {
     const { likes } = this.state;
     const { user } = this.props;
-    // console.log(user);
+
 
     if (user) {
         return(
@@ -157,6 +145,7 @@ class ProfilePage extends Component {
                   id={article._id}
                   key={article._id}
                   interests={article.interests}
+                  url={article.metadata.url}
                 />
                   );
                 })}
@@ -175,8 +164,6 @@ const mapStateToProps = (state) => {
     return {
       token: state.auth.token,
       user: state.user.user,
-    //   userInterests: state.userInterests,
-    //   articles: state.articles
     }
   }
   

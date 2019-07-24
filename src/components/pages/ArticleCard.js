@@ -63,6 +63,10 @@ const ArticleSource = styled.h3`
   letter-spacing: 1px;
   color: #CCC;
   padding-top: 5px;
+
+  a {
+    color: #22C458;
+  }
 `;
 
 const Tags = styled.div`
@@ -102,7 +106,7 @@ class ArticleCard extends Component {
             theme={favourited && "filled"}
             onClick={this.onFavClick}
           /> */}
-          <ArticleSource>{this.props.source} <Icon type="border" /></ArticleSource>
+          <ArticleSource><a href={this.props.url} target="_blank" rel="noopener noreferrer">{this.props.source} <Icon type="link" /></a></ArticleSource>
         </ArticleFooter>
       </Article>
     );

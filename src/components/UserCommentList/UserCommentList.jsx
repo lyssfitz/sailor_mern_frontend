@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Moment from 'moment';
 
 // Ant.d components
@@ -23,7 +23,7 @@ class UserCommentList extends Component {
 
   render() {
     const { userComments } = this.props;
-    // console.log(this.props.userComments);
+
     return (
       <List
         className="comment-list"
@@ -46,7 +46,7 @@ class UserCommentList extends Component {
 }
 
 UserCommentList.propTypes = {
-  userComments: PropTypes.array.isRequired,
+  // userComments: PropTypes.array.isRequired,
 };
 
 export default UserCommentList;
