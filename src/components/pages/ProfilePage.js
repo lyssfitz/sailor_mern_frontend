@@ -20,7 +20,7 @@ const UserInfo = styled.div`
     grid-gap: 30px;
     grid-template-columns: 1fr;
 
-    @media (min-width: 768px) {
+    @media (min-width: 550px) {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: max-content max-content;
     }
@@ -29,32 +29,46 @@ const UserInfo = styled.div`
 const LeftSection = styled.div`
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
+    margin: 0 auto;
 
-    @media (min-width: 768px) {
+    @media (min-width: 550px) {
         grid-column: 1 / span 3;
         grid-row: 1 / span 1;
         padding-right: 20px;
+        margin: 0 auto 0 0;
     }
 `;
 
 const RightSection = styled.div`
-    grid-column: 4 / span 1;
-    grid-row: 1 / span 1;
-    margin-left: auto;
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    margin: auto;
 
-    @media (min-width: 768px) {
+    @media (min-width: 550px) {
         grid-column: 4 / span 1;
         grid-row: 1 / span 1;
+        margin-left: auto;
     }
 `;
 
 const UserName = styled.h1`
   font-size: 3em;
   line-height: 1.2em;
+  border-bottom: 7px solid #EEE;
+  padding-bottom: 5px;
+  width: max-content;
+  margin: 0 auto 10px auto;
+  @media (min-width: 550px) {
+    margin: 0 auto 10px 0;
+  }
 `;
 
 const Tags = styled.div`
   line-height: 2.5em;
+  text-align: center;
+  @media (min-width: 550px) {
+    text-align: left;
+  }
 `;
 
 const InterestTag = styled(Tag)`
@@ -137,16 +151,18 @@ class ProfilePage extends Component {
                 {likes.map(article => {
                   return (
                     <ArticleCard 
-                  date={article.date_posted}
-                  title={article.metadata.title}
-                  author={article.metadata.author}
-                  source={article.metadata.source}
-                  image={article.metadata.image}
-                  id={article._id}
-                  key={article._id}
-                  interests={article.interests}
-                  url={article.metadata.url}
-                />
+                      date={article.date_posted}
+                      title={article.metadata.title}
+                      author={article.metadata.author}
+                      source={article.metadata.source}
+                      image={article.metadata.image}
+                      id={article._id}
+                      key={article._id}
+                      interests={article.interests}
+                      url={article.metadata.url}
+                      likes={article.likes.length}
+                      comments={article.comments.length}
+                    />
                   );
                 })}
             </LikeContainer>

@@ -88,7 +88,8 @@ class CuratedGridLeft extends Component {
                   key={tag.articles[0]._id}
                   interests={tag.articles[0].interests}
                   url={tag.articles[0].metadata.url}
-
+                  likes={tag.articles[0].likes.length}
+                  comments={tag.articles[0].comments.length}
                 />
               </MainArticle>
               <SubArticle1>
@@ -102,6 +103,8 @@ class CuratedGridLeft extends Component {
                   key={tag.articles[1]._id}
                   interests={tag.articles[1].interests}
                   url={tag.articles[1].metadata.url}
+                  likes={tag.articles[1].likes.length}
+                  comments={tag.articles[1].comments.length}
                 />
               </SubArticle1>
               <SubArticle2>
@@ -115,6 +118,8 @@ class CuratedGridLeft extends Component {
                   key={tag.articles[2]._id}
                   interests={tag.articles[2].interests}
                   url={tag.articles[2].metadata.url}
+                  likes={tag.articles[2].likes.length}
+                  comments={tag.articles[2].comments.length}
                 />
               </SubArticle2>  
         </CuratedGrid>

@@ -32,6 +32,8 @@ class RegularFeed extends Component {
                   key={article._id}
                   interests={article.interests}
                   url={article.metadata.url}
+                  likes={article.likes.length}
+                  comments={article.comments.length}
                 />
               );
             })}
