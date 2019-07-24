@@ -8,11 +8,15 @@ const Landing = styled.div`
 `;
 
 const HeadingLg = styled.h1`
-  font-size: 4em;
+  font-size: 3em;
   font-weight: bold;
   letter-spacing: -1px;
   margin: 0;
   padding: 0;
+
+  @media (min-width: 768px) {
+    font-size: 5em;
+  }
 `;
 
 const HeadingSm = styled.h2`
@@ -20,17 +24,20 @@ const HeadingSm = styled.h2`
   font-weight: bold;
   letter-spacing: -1px;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 3em;
+  }
 `;
 
-const Line = styled.hr`
-  border: 2px solid #EEE;
-  border-radius: 5px;
+const Line = styled.div`
+  border-top: 6px solid #EEE;
   max-width: 500px;
   margin: 20px auto;
 `;
 
 const StartButton = styled(Button)`
-  margin-top: 20px;
+  margin-top: 30px;
   font-weight: bold;
 `;
 
@@ -38,10 +45,9 @@ class LandingPage extends Component {
   render() {
     return (
       <Landing>
-        <HeadingLg>Heading 1</HeadingLg>
-        <HeadingLg>Heading 2</HeadingLg>
+        <HeadingLg>Stay in the loop.</HeadingLg>
         <Line />
-        <HeadingSm>Heading 3</HeadingSm>
+        <HeadingSm>Up-to-date health news, all in one place.</HeadingSm>
         <Link to="/signup">
           <StartButton type="primary" size="large" shape="round">Get Started</StartButton>
         </Link>

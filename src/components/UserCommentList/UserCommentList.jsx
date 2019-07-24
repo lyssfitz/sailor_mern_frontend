@@ -33,7 +33,8 @@ class UserCommentList extends Component {
         renderItem={item => (
           <li>
             <UserComment
-              authorName={item.user_metadata.firstName}
+              authorFirstName={item.user_metadata.firstName}
+              authorLastName={item.user_metadata.lastName}
               content={item.body}
               dateTime={Moment(item.date_posted)}
             />
