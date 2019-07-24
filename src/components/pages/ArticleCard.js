@@ -23,14 +23,37 @@ const ArticleFooter = styled.div`
   align-content: end;
 `;
 
+const ImgCover = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 80px;
+  opacity: 0;
+  transition: .1s ease;
+  background-color: transparent;
+`;
+
+const ArticleImgContainer = styled.div`
+  background: #EEE;
+  grid-row: 1;
+  position: relative;
+
+  &:hover ${ImgCover} {
+    opacity: 1;
+  }
+`;
+
 const ArticleImg = styled.img`
   height: 200px;
   width: 100%;
+  display: block;
   object-fit: cover;
   background: #EEE;
   margin: 0;
   padding: 0;
-  grid-row: 1;
+  
 `;
 
 const ArticleTitle = styled.h2`
@@ -38,7 +61,6 @@ const ArticleTitle = styled.h2`
   line-height: 1.2em;
   letter-spacing: -0.5px;
   margin: 10px 0;
-  // font-family: 'DM Serif Text', serif;
 `;
 
 const ArticleAuthor = styled.h3`
@@ -65,7 +87,7 @@ const ArticleSource = styled.h3`
   padding-top: 5px;
 
   a {
-    color: #22C458;
+    color: #FFF;
   }
 `;
 
@@ -78,6 +100,23 @@ const InterestTag = styled(Tag)`
   // margin: 5px auto;
 `;
 
+const LikesComments = styled.div`
+  width: 46px;
+  height: 46px;
+  margin: 5px 5px 5px auto;
+  padding: 12px 5px 12px 5px;
+  border-radius: 50%;
+  background: #22C458;
+  text-align: center;
+  font-size: 1em;
+  align-content: center;
+
+  > * {
+    color: #FFF;
+
+  }
+`;
+
 
 
 class ArticleCard extends Component {
@@ -85,8 +124,18 @@ class ArticleCard extends Component {
 
     return (
       <Article>
-        <Link to={{ pathname: `/article/${this.props.id}` }}>
-          <ArticleImg src={this.props.image} />
+        <Link style={{ color: "#FFF" }} to={{ pathname: `/article/${this.props.id}` }}>
+          <ArticleImgContainer>
+            <ArticleImg src={this.props.image} />
+            <ImgCover>
+              <LikesComments>
+                <Icon type="heart" /> {this.props.likes}
+              </LikesComments>
+                <LikesComments>
+                <Icon type="message" /> {this.props.comments}
+              </LikesComments>
+            </ImgCover>
+          </ArticleImgContainer>
         </Link>
           <ArticleInfo>
             <Link to={{ pathname: `/article/${this.props.id}` }}>

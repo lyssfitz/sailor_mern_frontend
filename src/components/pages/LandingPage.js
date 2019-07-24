@@ -10,12 +10,13 @@ const Landing = styled.div`
 const HeadingLg = styled.h1`
   font-size: 3em;
   font-weight: bold;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   margin: 0;
   padding: 0;
 
   @media (min-width: 768px) {
     font-size: 5em;
+    letter-spacing: -3px;
   }
 `;
 
