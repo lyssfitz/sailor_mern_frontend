@@ -19,7 +19,6 @@ class UserCommentEditor extends Component {
       tagged: []
     };
 
-    // this.loadGithubUsers = debounce(this.loadGithubUsers, 800);
   }
 
   componentDidMount = () => {
@@ -33,40 +32,11 @@ class UserCommentEditor extends Component {
       .catch(error => console.log(error))
   }
 
-  // loadGithubUsers(key) {
-  //   if (!key) {
-  //     this.setState({
-  //       users: [],
-  //     });
-  //     return;
-  //   }
-
-  //   fetch(`https://api.github.com/search/users?q=${key}`)
-  //     .then(res => res.json())
-  //     .then(({ items = [] }) => {
-  //       const { search } = this.state;
-  //       if (search !== key) return;
-
-  //       this.setState({
-  //         users: items.slice(0, 10),
-  //         loading: false,
-  //       });
-  //     });
-  // }
-
-
-
-  // handleSearch = search => {
-  //   this.setState({ search, loading: !!search, users: [] });
-  //   console.log('Search:', search);
-  //   this.loadGithubUsers(search);
-  // };
-
   handleOnSelect = (selected) => {
     const { tagged } = this.state;
+    const { user } = this.props;
     const taggedUserEmail = selected.value;
-
-    if (tagged.includes(taggedUserEmail)) {
+    if (tagged.includes(taggedUserEmail) || user.email === taggedUserEmail) {
       return;
     }
 
@@ -85,7 +55,6 @@ class UserCommentEditor extends Component {
   };
 
   render() {
-    console.log(this.state.tagged);
     const { submitting } = this.props;
     const { loading, value, users } = this.state;
     return (
@@ -94,10 +63,9 @@ class UserCommentEditor extends Component {
           <Mentions
             value={value}
             onChange={this.handleChange}
-            // onSearch={this.handleSearch}
             onSelect={this.handleOnSelect}
             loading={loading}
-            style={{ width: '100%' }}
+            style={{ width: '100%', lineHeight: "1.3em", padding: "7px 0" }}
             rows="4"
           >
             {users && users.map(({ email, firstName, lastName }) => <Option key={email} value={email}>{firstName.charAt(0).toUpperCase() + firstName.slice(1)} {lastName.charAt(0).toUpperCase() + lastName.slice(1)}</Option>)}

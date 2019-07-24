@@ -22,7 +22,6 @@ class ArticleForm extends Component {
   onFormSubmit = async (formValues, dispatch) => {
     const { url } = formValues;
     this.setState({ loading: true });
-    console.log("here");
     await LocalAPI.post("/admin/article/new", { url })
       .then(response => {
         if (response.data.error === 11000) {
