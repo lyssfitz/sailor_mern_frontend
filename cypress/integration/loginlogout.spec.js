@@ -4,11 +4,11 @@ describe('Successful Login', () => {
   })
 
   it("adds a valid email", () => {
-    cy.get('input[type=email]').type('login@test.com')
+    cy.get('input[type=email]').type('user+1@test.com')
   })
 
   it("adds a password", () => {
-    cy.get('input[type=password]').type('testpass')
+    cy.get('input[type=password]').type('usertest')
   })
 
   it("clicks the sign up button", () => {

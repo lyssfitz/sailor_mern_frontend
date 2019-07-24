@@ -4,20 +4,24 @@ describe('Signup Form', () => {
   })
 
   it("adds a first name", () => {
-    cy.get('input[name=firstName]').type('Test')
+    cy.get('input[name=firstName]').type('Cypress')
   })
 
   it("adds a last name", () => {
-    cy.get('input[name=lastName]').type('User')
+    cy.get('input[name=lastName]').type('Testing')
   })
 
-
+// change this to a new email if it already exists in the database
   it("adds an email", () => {
-    cy.get('input[type=email]').type('login2@test.com')
+    cy.get('input[type=email]').type('cypress+2@test.com')
   })
 
   it("adds a password", () => {
-    cy.get('input[type=password]').type('testpass')
+    cy.get('input[name=password]').type('testpass')
+  })
+
+  it("confirms a password", () => {
+    cy.get('input[name=passwordConfirmation]').type('testpass')
   })
 
   it("clicks the sign up button", () => {
