@@ -269,7 +269,7 @@ We kept in contact with DigitalHealthX ("client") throughout the project, asking
 | 22/7/19 - 23/7/19 | Discuss RSS feeds and client concerns re. compliance with RSS feed owners' terms and conditions. | 2019-07-22-rss-disc1.png, 2019-07-22-rss-disc2.png           |
 | 23/7/19 - 24/7/19 | Provide updated production site to client and guide for user testing, client completion of user testing. | 2019-07-23-production-testing1.png, 2019-07-23-production-testing2.png, 2019-07-23-clienttesting-julian.pdf |
 | 24/7/19 - 25/7/19 | Sent and received Client Feedback Survey and received client user testing and survey feedback. | 2019-07-25-client-feedback-survey.pdf                        |
-| 25/7/19           | Sent handover document to client                             |                                                              |
+| 25/7/19           | Sent handover document to client                             | 2019-07-25-handover-documentation.pdf                        |
 
 
 
