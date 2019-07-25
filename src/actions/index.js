@@ -1,5 +1,6 @@
 import LocalAPI from "./../apis/local";
 
+// Method for setting authorization token to allow users to access feed
 export const setAuthToken = token => {
   sessionStorage.setItem("token", token);
 
@@ -9,8 +10,7 @@ export const setAuthToken = token => {
   };
 };
 
-// User Info
-
+// Setting the fetched current user to global state
 export const setCurrentUser = (user) => {
   return {
     type: "CURRENT_USER",
@@ -18,6 +18,7 @@ export const setCurrentUser = (user) => {
   }
 }
 
+// Retrieving the current user who is logged in and their info
 export const fetchCurrentUser = () => {
   return async (dispatch, getState) => {
       const response = await LocalAPI.get("/user");
@@ -26,8 +27,7 @@ export const fetchCurrentUser = () => {
 }
 
 
-// Auth token
-
+// Remove authorization token on logout
 export const removeAuthToken = () => {
   sessionStorage.removeItem("token");
 
@@ -40,7 +40,7 @@ export const removeAuthToken = () => {
 
 
 
-// feed
+// Setting articles to global state
 export const setArticles = (articles) => {
   return {
     type: "ARTICLES_LIST",
@@ -48,14 +48,14 @@ export const setArticles = (articles) => {
   }
 }
 
-
+// fetching all articles stored in the database
 export const fetchArticles = () => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.get("/feed");
     dispatch(setArticles(response.data));
   }
 }
-
+// Setting categorized articles to global state
 export const setArticlesByInterest = (selectedArticles) => {
   return {
     type: "CATEGORY_ARTICLES_LIST",
@@ -63,7 +63,7 @@ export const setArticlesByInterest = (selectedArticles) => {
   }
 }
 
-
+// retrieving articles by interest from database
 export const getArticlesByInterest = (interest) => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.get(`/feed/${interest}`);
@@ -72,8 +72,8 @@ export const getArticlesByInterest = (interest) => {
 }
 
 
-// Add Article Modal
 
+// show the Add Article modal (popup) that admin users access
 export const showArticleModal = () => {
   return {
     type: "ARTICLE_MODAL",
@@ -82,7 +82,7 @@ export const showArticleModal = () => {
     }
   };
 }
-
+//  Close the Add Article modal
 export const closeArticleModal = () => {
   return {
     type: "ARTICLE_MODAL",
@@ -94,14 +94,14 @@ export const closeArticleModal = () => {
 
 
 // Interests
-// Retrieve list of interests
+// Set a list of possible interests/categories to global state
 export const setAllInterests = (interests) => {
   return {
     type: "INTERESTS_LIST",
     payload: interests
   }
 }
-
+// Retrieving all possible interests that users can select
 export const fetchAllInterests = () => {
   return async (dispatch, getState) => {
       const response = await LocalAPI.get("/user/interests/all");
@@ -113,14 +113,14 @@ export const fetchAllInterests = () => {
 
 
 
-// User interests editing and saving
+// Setting user-selected interests to global state
 export const setUserInterests = (userInterests) => {
   return {
     type: "USER_INTERESTS_LIST",
     payload: userInterests
   }
 }
-
+// Retrieving user-selected interests from database
 export const fetchUserInterests = () => {
   return async (dispatch, getState) => {
       const response = await LocalAPI.get("/user/interests");
@@ -128,7 +128,7 @@ export const fetchUserInterests = () => {
   }
 } 
 
-
+// Saving edited interests to database
 export const saveUserInterests = (userInterests) => {
   return async (dispatch, getState) => {
     await LocalAPI.post(`/user/interests`, userInterests);
@@ -137,7 +137,7 @@ export const saveUserInterests = (userInterests) => {
   }
 }
 
-// Interests popup
+// Show the edit interests modal popup
 export const showInterestsModal = () => {
   return {
     type: "INTERESTS_MODAL",
@@ -147,7 +147,7 @@ export const showInterestsModal = () => {
   };
 }
 
-
+// Close the edit interests modal
 export const closeInterestsModal = () => {
   return {
     type: "INTERESTS_MODAL",

@@ -12,7 +12,7 @@ const FeedContainer = styled.section`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 40px;
 `;
-
+// Component rendered in Feed when user has selected one or more interest
 class CuratedFeed extends Component {
   render() {
     const { articles } = this.props;

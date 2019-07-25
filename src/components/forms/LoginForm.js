@@ -9,13 +9,13 @@ import MakeField from "./fields/MakeField";
 const AInput = MakeField(Input);
 
 class LoginForm extends Component {
-
+// Method for sending login credentials to backend 
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    
+    // HTTP request that will send email and password to backend to authenticate user
     await LocalAPI.post("/auth/login", { email, password })
       .then(response => {
-        // currently response.data.token is faked from json server
+
         this.props.setAuthToken(response.data.token);
         this.props.history.push("/feed");
       })
@@ -52,7 +52,7 @@ class LoginForm extends Component {
     );
   }
 }
-
+// Handling errors for login form
 const WrappedLoginForm = reduxForm({
   form: "login",
   validate: formValues => {

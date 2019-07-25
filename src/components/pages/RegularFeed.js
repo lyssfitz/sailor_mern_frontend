@@ -11,7 +11,7 @@ const FeedContainer = styled.section`
   grid-gap: 40px;
 `;
 
-
+// Regular Feed component - this renders if the user hasn't selected any interests
 class RegularFeed extends Component {
   render() {
     const { articles } = this.props;

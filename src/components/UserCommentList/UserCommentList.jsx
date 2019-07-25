@@ -9,7 +9,7 @@ import { List } from 'antd';
 import UserComment from 'components/UserComment/UserComment.jsx'
 
 class UserCommentList extends Component {
-
+  // Set correct display depending on number of replies
   getHeader() {
     const { userComments } = this.props;
     if (userComments) {

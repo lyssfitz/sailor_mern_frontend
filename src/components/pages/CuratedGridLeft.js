@@ -64,7 +64,7 @@ const SubArticle2 = styled.div`
   }
 `;
 
-
+// Left-aligned curated grid showing 3 articles
 class CuratedGridLeft extends Component {
   
   render() {

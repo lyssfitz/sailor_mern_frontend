@@ -22,7 +22,7 @@ const Name = styled.div`
 `;
 
 class SignupForm extends Component {
-
+  // Method for sending details to backend for user info to be stored in database
   onFormSubmit = async formValues => {
     const { firstName, lastName, email, password } = formValues;
     
@@ -74,7 +74,7 @@ class SignupForm extends Component {
     );
   }
 }
-// SubmissionError 
+// Error handling, validating email format, password and password confirmation 
 const WrappedSignupForm = reduxForm({
   form: "signup",
   validate: formValues => {

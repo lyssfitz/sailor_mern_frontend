@@ -152,7 +152,7 @@ const Tags = styled.div`
 const InterestTag = styled(Tag)`
 `;
 
-
+// Component for rendering individual articles
 class ArticlePage extends Component {
   state = {
     article: null,
@@ -160,12 +160,12 @@ class ArticlePage extends Component {
     liked: null
   }
 
-
+  // Fetch article on mount
   componentDidMount = () => {
     const { id } = this.props.match.params;
     this.fetchArticle(id);
   }
-
+  // Set liked status - whether the current user has liked the article
   componentDidUpdate = () => {
     const { user } = this.props;
     const { article, liked } = this.state;
@@ -176,7 +176,7 @@ class ArticlePage extends Component {
       });
     }
   }
-
+  // Method for retrieving article from database
   fetchArticle = (id) => {
 
     LocalAPI.get(`/article/${id}`)
@@ -188,7 +188,7 @@ class ArticlePage extends Component {
       })
       .catch(error => console.log(error));
   }
-
+  // Method for liking the article. This sends the current user information to backend, which stores the user ID in the array of likes that an article has
   onLikeButtonClick = () => {
     const { user } = this.props;
     const { id } = this.props.match.params;

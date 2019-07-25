@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
-// Ant.d components
+
 import { List } from 'antd';
 
-// Custom components
-import UserNotificationItem from 'components/UserNotificationItem/UserNotificationItem.jsx'
 
+import UserNotificationItem from 'components/UserNotificationItem/UserNotificationItem.jsx'
+// Unused components for generating a list of user notifications
 class UserNotificationList extends Component {
 
   getHeader() {

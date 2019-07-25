@@ -99,7 +99,7 @@ class ProfilePage extends Component {
     likes: [],
     
   }
-
+  // Fetch current user and likes on mount
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
 
@@ -110,7 +110,7 @@ class ProfilePage extends Component {
     this.fetchLikes();
   }
 
-
+  // Method for making HTTP request to get likes associated with users
   fetchLikes = () => {
     LocalAPI.get(`/user/profile`)
       .then(response => {

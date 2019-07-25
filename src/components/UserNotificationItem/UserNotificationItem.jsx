@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Moment from 'moment';
 import PropTypes from 'prop-types';
 
-// Ant.d components
+// Unused components for user notifications
 import { Comment, Tooltip } from 'antd';
 
 class UserNotificationItem extends Component {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
+// Redirect to feed if token exists and not to landing page
 const PublicRoute = (props) => {
   const { component: Component, token, ...rest } = props;
 

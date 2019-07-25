@@ -9,7 +9,7 @@ const Loading = styled(Icon)`
 const LoadingContainer = styled.div`
   text-align: center;
 `;
-
+// Rendered within other components if data isn't available yet
 const LoadingPage = () => {
   return (
     <LoadingContainer>

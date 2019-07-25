@@ -60,9 +60,9 @@ const icon = {
 }
 
 
-// const AppHeader = (props) => {
-class AppHeader extends Component {
 
+class AppHeader extends Component {
+  // Destroy auth token when logout button clicked
   onLogoutClick = () => {
     this.props.removeAuthToken();
     return <Redirect to="/" />;

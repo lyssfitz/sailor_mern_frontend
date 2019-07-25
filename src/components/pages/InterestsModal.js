@@ -23,16 +23,14 @@ const InterestCard = styled(Card)`
   }
 `;
 
+// Edit interests popup
 class InterestsModal extends Component {
+  // Get all available user interests, and the interests that users have selected
   componentDidMount = () => {
     this.props.fetchAllInterests();
     this.props.fetchUserInterests();
   }
-
-  // componentDidUpdate = () => {
-  //   this.props.fetchArticles();
-  // }
-
+  // Method for adding and removing selected interests from an array on click, and setting them to be the users interests
   onInterestClick = (interest) => {
     const { userInterests, setUserInterests } = this.props; 
     if (userInterests !== null && userInterests.includes(interest)) {
@@ -44,7 +42,7 @@ class InterestsModal extends Component {
 
     return setUserInterests([...userInterests, interest]);
   }
-
+  // Render selected interests differently so the user knows they have selected it
   selected = (interest) => {
     const { userInterests } = this.props;
 
@@ -61,7 +59,7 @@ class InterestsModal extends Component {
       boxShadow: "1px 1px 2px #EEE"
     }
   }
-
+  // Save selected interests to database, and do a re-fetch of articles so that they can be curated
   handleSaveUserInterests = async () => {
     const { userInterests } = this.props;
     await this.props.saveUserInterests(userInterests);

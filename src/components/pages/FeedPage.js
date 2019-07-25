@@ -48,6 +48,7 @@ const ArticleButton = styled(Button)`
 `;
 
 class FeedPage extends Component {
+  // Fetch current user on mount, and all the articles stored in database
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
 
@@ -59,10 +60,6 @@ class FeedPage extends Component {
 
   render() {
     const { user, showArticleModal } = this.props;
-
-    // if (userInterests !== null && userInterests.length === 0) {
-    //   this.props.showInterestsModal();
-    // }
 
     return (
       <>

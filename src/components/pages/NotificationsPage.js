@@ -54,7 +54,7 @@ class NotificationsPage extends Component {
   }
 
 
-  
+  // Fetch notifications on mount
   componentDidMount = () => {
     const { fetchCurrentUser, token } = this.props;
 
@@ -64,7 +64,7 @@ class NotificationsPage extends Component {
 
     this.fetchNotifications();
   }
-
+  // Method for fetching notifications from backend
   fetchNotifications = () => {
 
     LocalAPI.get(`/user/notifications`)

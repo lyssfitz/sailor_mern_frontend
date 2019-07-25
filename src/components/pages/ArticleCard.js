@@ -118,7 +118,7 @@ const LikesComments = styled.div`
 `;
 
 
-
+// Component for individual article cards that appear on feed page, profile page and category pages
 class ArticleCard extends Component {
   render() {
 

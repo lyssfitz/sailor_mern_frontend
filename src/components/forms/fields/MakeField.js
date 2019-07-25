@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "antd";
-
+// Component/template for creating Ant Design form fields
 const makeField = Component => ({ input, meta, children, hasFeedback, label, ...rest }) => {
   const hasError = meta.touched && meta.invalid;
   return (

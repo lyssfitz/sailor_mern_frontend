@@ -15,7 +15,7 @@ class UserCommentsSection extends Component {
       value: '',
     }
   }
-
+  // Main method for collating information from child components, and sending them to backend (post request)
   handleSubmit = async(tagged) => {
 
     const { user } = this.props

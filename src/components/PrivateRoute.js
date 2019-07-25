@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
+// Component for private route--redirect to login of there is no token
 const PrivateRoute = (props) => {
   const { component: Component, token, ...rest } = props;
 

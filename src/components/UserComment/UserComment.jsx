@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import Moment from 'moment';
 import PropTypes from 'prop-types';
 
-// Ant.d components
+
 import { Comment, Tooltip } from 'antd';
 
-
+// Component for rendering an individual comment a user has left
 class UserComment extends Component {
   render() {
     const {authorFirstName, authorLastName, content, dateTime} = this.props;
-    // console.log(this.props.dateTime);
+
     return (
       <Comment
         author={<h4>{authorFirstName.charAt(0).toUpperCase() + authorFirstName.slice(1)} {authorLastName.charAt(0).toUpperCase() + authorLastName.slice(1)}</h4>}

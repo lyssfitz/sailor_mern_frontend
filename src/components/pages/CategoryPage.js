@@ -26,6 +26,7 @@ const CategoryTitle = styled.h1`
 `;
 
 class CategoryPage extends Component {
+  // Get articles from a specific category on mount.
   componentDidMount() {
     const { interest } = this.props.match.params;
     this.props.getArticlesByInterest(interest);

@@ -8,20 +8,22 @@ import MakeField from "./fields/MakeField";
 import history from "./../../history"
 
 const AInput = MakeField(Input);
-
+//  Component for the popup
 class ArticleForm extends Component {
   state = {
     formError: null,
     loading: false
   }
-
+  // Remove error onclick
   onFieldClick = () => {
     this.setState({formError: null});
   }
-
+  // Method for posting article URL to backend
+  // will throw an error if the article already exists in database
   onFormSubmit = async (formValues, dispatch) => {
     const { url } = formValues;
     this.setState({ loading: true });
+    // HTTP request to send data to backend
     await LocalAPI.post("/admin/article/new", { url })
       .then(response => {
         if (response.data.error === 11000) {
